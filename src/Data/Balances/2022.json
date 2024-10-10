@@ -1,0 +1,58 @@
+{
+  "Activos": {
+    "Activos Corrientes": {
+      "Efectivo y equivalentes de efectivo": 2066,
+      "Cuentas por cobrar, neto": 837,
+      "Inventarios": 610,
+      "Impuestos por recuperar": 303,
+      "Otros activos financieros corrientes": 149,
+      "Otros activos corrientes": 98,
+      "Total activos corrientes": 4063
+    },
+    "Activos No Corrientes": {
+      "Inversiones en otras entidades": 434,
+      "Activos por derecho de uso": 106,
+      "Propiedad, planta y equipo, neto": 3652,
+      "Activos intangibles, neto": 5289,
+      "Activos por impuestos diferidos": 409,
+      "Otros activos financieros no corrientes": 38,
+      "Otros activos no corrientes": 268,
+      "Total activos no corrientes": 10196
+    },
+    "Total Activos": 14259
+  },
+  "Pasivo y Capital": {
+    "Pasivos Corrientes": {
+      "Préstamos bancarios y documentos por pagar": 0,
+      "Vencimiento a corto plazo del pasivo no corriente": 437,
+      "Vencimiento a corto plazo del pasivo por arrendamiento": 24,
+      "Intereses por pagar": 44,
+      "Proveedores": 1376,
+      "Cuentas por pagar o otros pasivos corrientes": 608,
+      "Impuestos por pagar": 409,
+      "Otros pasivos financieros corrientes": 75,
+      "Total pasivos corrientes": 2973
+    },
+    "Pasivos No Corrientes": {
+      "Préstamos bancarios y documentos por pagar": 3598,
+      "Beneficios posteriores al retiro y otros beneficios a empleados": 190,
+      "Porción no corriente de pasivos por arrendamiento": 85,
+      "Pasivos por impuestos diferidos": 146,
+      "Otros pasivos financieros no corrientes y provisiones": 198,
+      "Otros pasivos no corrientes": 305,
+      "Total pasivos no corrientes": 4522
+    },
+    "Total Pasivos": 7495,
+    "Capital": {
+      "Capital Social": 106,
+      "Prima en suscripción de acciones": 2337,
+      "Utilidades retenidas": 4548,
+      "Otros instrumentos de capital": 112,
+      "Otras partidas acumuladas de la utilidad integral": 447,
+      "Capital atribuible a los propietarios de la controladora": 6431,
+      "Participación no controladora en subsidiarias consolidadas": 333,
+      "Total capital": 6764
+    },
+    "Total Pasivos y Capital": 14259
+  }
+}
