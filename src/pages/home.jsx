@@ -14,42 +14,45 @@ const HomePage = () => {
                 </p>
 
                 <div className="flex flex-wrap justify-center space-x-4">
-
                     <NavLink
                         to="/analisis"
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg shadow-md"
+                        className="bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out text-white font-bold py-2 px-6 rounded-lg shadow-md"
+                        aria-label="Ir a Análisis de Datos"
                     >
                         Análisis de Datos
                     </NavLink>
 
                     <NavLink
                         to="/reportes"
-                        className="bg-white hover:bg-gray-200 text-red-600 font-bold py-2 px-6 rounded-lg shadow-md border border-red-600"
+                        className="bg-white hover:bg-gray-200 transition duration-300 ease-in-out text-red-600 font-bold py-2 px-6 rounded-lg shadow-md border border-red-600"
+                        aria-label="Ir a Reportes"
                     >
                         Reportes
                     </NavLink>
 
                     <NavLink
                         to="/configuracion"
-                        className="bg-black hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-lg shadow-md"
+                        className="bg-black hover:bg-gray-800 transition duration-300 ease-in-out text-white font-bold py-2 px-6 rounded-lg shadow-md"
+                        aria-label="Ir a Configuración"
                     >
                         Configuración
                     </NavLink>
 
                     <NavLink
                         to="/balances"
-                        className="bg-white hover:bg-gray-200 text-red-600 font-bold py-2 px-6 rounded-lg shadow-md border border-red-600"
+                        className="bg-white hover:bg-gray-200 transition duration-300 ease-in-out text-red-600 font-bold py-2 px-6 rounded-lg shadow-md border border-red-600"
+                        aria-label="Ir a Balances Generales"
                     >
                         Balances Generales
                     </NavLink>
 
                     <NavLink
                         to="/estado-resultados"
-                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg shadow-md"
+                        className="bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out text-white font-bold py-2 px-6 rounded-lg shadow-md"
+                        aria-label="Ir a Estado de Resultados"
                     >
                         Estado de Resultados
                     </NavLink>
-
                 </div>
             </div>
         </div>
