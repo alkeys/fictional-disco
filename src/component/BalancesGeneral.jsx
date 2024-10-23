@@ -15,7 +15,7 @@ const BalanceGeneral = ({ balance, Anio }) => {
         <div className="min-h-screen flex flex-col items-center justify-center bg-red-600 p-8">
             <h1 className="text-5xl font-bold text-white mb-6" style={{ fontFamily: 'Cursive' }}>
                 Balance General {Anio}
-            </h1>
+            </h1>   
 
             <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
                 {/* Activos */}

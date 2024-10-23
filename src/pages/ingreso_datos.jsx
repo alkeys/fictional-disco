@@ -24,8 +24,10 @@ export const IngresoDatos = () => {
                     Ingreso de Datos
                 </h1>
                 <section className="flex items-center justify-center">
-                    <label htmlFor="select_estado">Seleccione tipo de Estado: </label>
-                    <select id="select_estado" value={seleccion} onChange={handleSeleccion}>
+                    <label htmlFor="select_estado" className="px-2">
+                        Seleccione tipo de Estado:
+                    </label>
+                    <select id="select_estado" className="border border-black rounded" value={seleccion} onChange={handleSeleccion}>
                         {catalogo.map((estado, index) => (
                             <option key={index} value={estado.name}>
                                 {estado.name}
@@ -33,7 +35,8 @@ export const IngresoDatos = () => {
                         ))}    
                     </select>
                 </section>
-
+            </div>
+            <div className="flex flex-col text-center px-10 py-6 mx-12 border border-black">
                 { seleccion === 'Balance General' ? (
                     <BalanceGeneral estado={catalogo[0]}/>
                 ) : (

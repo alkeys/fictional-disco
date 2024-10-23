@@ -36,7 +36,6 @@ const BalanceGeneral = ({estado}) => {
         setBalanceData(newBalanceData);
     };
 
-
     const handleAddAccount = (key1, key2, key3, key4) => {
     const newBalanceData = { ...balanceData };
     const newAccountName = prompt("Ingrese el nombre de la nueva cuenta:");
@@ -46,25 +45,33 @@ const BalanceGeneral = ({estado}) => {
                 if (!newBalanceData[key1][key2][key3][key4]) {
                     newBalanceData[key1][key2][key3][key4] = {};
                 }
-                newBalanceData[key1][key2][key3][key4][newAccountName] = 0;
+                newBalanceData[key1][key2][key3][key4][newAccountName] = null;
             } else if (key3) {
                 if (!newBalanceData[key1][key2][key3]) {
                     newBalanceData[key1][key2][key3] = {};
                 }
-                newBalanceData[key1][key2][key3][newAccountName] = 0;
+                newBalanceData[key1][key2][key3][newAccountName] = null;
             } else if (key2) {
                 if (!newBalanceData[key1][key2]) {
                     newBalanceData[key1][key2] = {};
                 }
-                newBalanceData[key1][key2][newAccountName] = 0;
+                newBalanceData[key1][key2][newAccountName] = null;
             } else if (key1) {
                 if (!newBalanceData[key1]) {
                     newBalanceData[key1] = {};
                 }
-                newBalanceData[key1][newAccountName] = 0;
+                newBalanceData[key1][newAccountName] = null;
             }
         }
 
+        setBalanceData(newBalanceData);
+    };
+
+    // Función para manejar cambios en los inputs
+    const handleInputChange = (e, key1, key2, key3, key4, key5) => {
+        const newBalanceData = { ...balanceData };
+        newBalanceData[key1][key2][key3][key4][key5] = e.target.value !== "" ? e.target.value : null;
+        console.log(newBalanceData)
         setBalanceData(newBalanceData);
     };
 
@@ -72,10 +79,20 @@ const BalanceGeneral = ({estado}) => {
     return (
         <>
             <table className="text-left">
-                <thead>
+                <thead className="text-center">
                     <tr>
-                        <th colSpan={3}>
+                        <th colSpan={6}>
                             {balanceData.name}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colSpan={6}>
+                            <input type="text" placeholder="Ingresar nombre de la empresa"></input>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colSpan={6}>
+                            <input type="date" placeholder="Ingresar fecha"></input>
                         </th>
                     </tr>
                 </thead>
@@ -90,6 +107,7 @@ const BalanceGeneral = ({estado}) => {
                                         key1
                                     )}
                                 </td>
+                                <td></td>
                                 <td>
                                     <button
                                         className="ml-2 p-1 bg-green-500 text-white rounded px-3"
@@ -106,6 +124,7 @@ const BalanceGeneral = ({estado}) => {
                                             <td colSpan={3} className="px-4">
                                                 <strong>{key2}</strong>
                                             </td>
+                                            <td></td>
                                             <td>
                                                 <button
                                                     className="ml-2 p-1 bg-green-500 text-white rounded px-3"
@@ -121,6 +140,15 @@ const BalanceGeneral = ({estado}) => {
                                                     <tr>
                                                         <td colSpan={3} className="px-7">
                                                         <strong>{key3}</strong>
+                                                        </td>
+                                                        <td></td>
+                                                        <td>
+                                                            <button
+                                                                className="ml-2 p-1 bg-green-500 text-white rounded px-3"
+                                                                onClick={() => handleAddAccount(key1, key2, key3)}
+                                                            >
+                                                                +
+                                                            </button>
                                                         </td>
                                                         <td>
                                                             <button
@@ -138,6 +166,26 @@ const BalanceGeneral = ({estado}) => {
                                                                     <td colSpan={3} className="px-10">
                                                                         {key4}
                                                                     </td>
+                                                                    {balanceData[key1][key2][key3][key4] &&typeof balanceData[key1][key2][key3][key4] === 'object' && Object.keys(balanceData[key1][key2][key3][key4]).length > 0 ? (
+                                                                        // Si `key4` tiene subcuentas, no mostramos el input
+                                                                        <td></td>
+                                                                    ) : (
+                                                                        // Si `key4` no tiene subcuentas, mostramos el input
+                                                                        <input
+                                                                            type="text"
+                                                                            value={balanceData[key1][key2][key3][key4]}
+                                                                            onChange={(e) => handleInputChange(e, key1, key2, key3, key4)}
+                                                                            className="border border-black rounded px-2"
+                                                                        />
+                                                                    )}
+                                                                    <td>
+                                                                        <button
+                                                                            className="ml-2 p-1 bg-green-500 text-white rounded px-3"
+                                                                            onClick={() => handleAddAccount(key1, key2, key3, key4)}
+                                                                        >
+                                                                            +
+                                                                        </button>
+                                                                    </td>
                                                                     <td>
                                                                         <button
                                                                             className="ml-2 p-1 bg-red-500 text-white rounded px-3.5"
@@ -151,8 +199,22 @@ const BalanceGeneral = ({estado}) => {
                                                                     Object.keys(balanceData[key1][key2][key3][key4]).map((key5, index5) => (
                                                                         <React.Fragment key={index5}>
                                                                             <tr>
-                                                                                <td colSpan={3} className="px-13">
+                                                                                <td colSpan={3} className="px-12">
                                                                                     {key5}
+                                                                                </td>
+                                                                                <input
+                                                                                    type="text"
+                                                                                    value={balanceData[key1][key2][key3][key4][key5]}
+                                                                                    onChange={(e) => handleInputChange(e, key1, key2, key3, key4, key5)}
+                                                                                    className="border border-black rounded px-2"
+                                                                                />
+                                                                                <td>
+                                                                                <button
+                                                                                    className="ml-2 p-1 bg-green-500 text-white rounded px-3"
+                                                                                    onClick={() => handleAddAccount(key1, key2, key3, key4, key5)}
+                                                                                >
+                                                                                    +
+                                                                                </button>
                                                                                 </td>
                                                                                 <td>
                                                                                     <button

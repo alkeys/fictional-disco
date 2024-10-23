@@ -1,7 +1,7 @@
 {
   "balance": {
     "name": "Balance General",
-    "name_empresa": "Empresa 1",
+    "name_empresa": "Coca-Cola FEMSA",
     "fecha": {
       "dia": 31,
       "mes": "diciembre",
@@ -123,6 +123,7 @@
       "mes": "diciembre",
       "anio": 2020
     },
-    "ventas": null
+    "Ventas": null,
+    "Costo de ventas": null
   }
 }
