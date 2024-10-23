@@ -1,0 +1,80 @@
+{
+  "balance": {
+    "name": "Balance General",
+    "name_empresa": "Empresa 1",
+    "fecha": {
+      "dia": 31,
+      "mes": "diciembre",
+      "anio": 2020
+    },
+    "Activos": {
+      "Activo Corriente":{
+        "Efectivo y equivalentes": {
+          "Efectivo": null,
+          "Caja": null,
+          "Bancos": null
+        },
+        "Cuentas y Documentos por Cobrar": {
+          "Cuentas por cobrar": null,
+          "Documentos por cobrar": null,
+          "Clientes": null,
+          "Empleados": null,
+          "Anticipo a proveedores": null,
+          "Prestamos y anticipos al personal": null,
+          "Otras cuentas por cobrar": null
+        },
+        "Estimación de cuentas incobrables": {
+          "Clientes": null,
+          "Empleados": null,
+          "Otros": null
+        }, 
+        "Iva crédito fiscal": {
+          "Por compras": null,
+          "Retención IVA": null,
+          "Remanente (Período anterior)": null
+        },
+        "Inventarios": {
+          "Materia prima, Insumos y Materiales": null,
+          "Productos en proceso": null,
+          "Productos terminados": null,
+          "Mercancadería para la venta": null,
+          "Materia prima": null,
+          "Otros inventarios": null
+        },
+        "Estimación para obsolencia de inventarios": {
+          "Materia prima, Insumos y Materiales": null,
+          "Productos en proceso": null,
+          "Productos terminados": null,
+          "Mercancadería para la venta": null,
+          "Materia prima": null,
+          "Otros inventarios": null
+        },
+        "Accionistas": {
+          "Fundadores": null,
+          "Nuevos socios": null
+        },
+        "Gastos pagados por anticipado": {
+          "Seguros": null,
+          "Publicidad": null,
+          "Intereses": null,
+          "Alquileres": null,
+          "Otros": null
+        }
+      },
+      "Activo No Corriente":{
+
+      }
+    },
+    "Pasivos": {},
+    "Patrimonio": {}
+  },
+  "resultados": {
+    "name": "Estado de Resultados",
+    "name_empresa": "Empresa 2",
+    "fecha": {
+      "dia": 31,
+      "mes": "diciembre",
+      "anio": 2020
+    }
+  }
+}

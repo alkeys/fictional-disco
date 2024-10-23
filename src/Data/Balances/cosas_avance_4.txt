@@ -1,0 +1,5 @@
+Ingreso de datos
+Modificación de datos
+Generación de reportes 
+Reporte: Balance General 
+Reporte: Estado de Resultados

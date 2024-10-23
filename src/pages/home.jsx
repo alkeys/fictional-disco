@@ -53,6 +53,14 @@ const HomePage = () => {
                     >
                         Estado de Resultados
                     </NavLink>
+
+                    <NavLink
+                        to="/Ingreso_Datos"
+                        className="bg-red-500 hover:bg-red-700 transition duration-300 ease-in-out text-white font-bold py-2 px-6 rounded-lg shadow-md"
+                        aria-label="Ir a Análisis de Datos"
+                    >
+                        Ingresar Datos
+                    </NavLink>
                 </div>
             </div>
         </div>
