@@ -61,11 +61,58 @@
           "Otros": null
         }
       },
-      "Activo No Corriente":{
-
+      "Activo No Corriente": {
+        "Terrenos": null,
+        "Edificios": null,
+        "Mobiliario y equipo": {
+          "Mobiliario y equipo de oficina": null,
+          "Mobiliario y equipo de ventas": null,
+          "Equipos": null
+        },
+        "Maquinaria": null,
+        "Otros activos fijos": null,
+        "Equipo de trasporte": {
+          "Vehículos": null,
+          "Camiones": null,
+          "Otros": null
+        },
+        "Depreciación acumulada": {
+          "Terrenos": null,
+          "Edificios": null,
+          "Mobiliario y equipo": null,
+          "Maquinaria": null,
+          "Otros activos fijos": null,
+          "Equipo de trasporte": null
+        },
+        "Depreciación de revaluación": {
+          "Terrenos": null,
+          "Edificios": null,
+          "Mobiliario y equipo": null,
+          "Maquinaria": null,
+          "Otros activos fijos": null,
+          "Equipo de trasporte": null
+        },
+        "Otros activos": {
+          "Cuentas difereridas": {
+            "Gastos de organización": null,
+            "Rentas pagadas por anticipado": null,
+            "Intereses pagados por anticipado": null,
+            "Seguros pagados por anticipado": null
+          },
+          "Cuentas transitorias": null
+        }
       }
     },
-    "Pasivos": {},
+    "Pasivos": {
+      "Pasivo Corriente": {
+        "Prestamos y sobregiros bancarios": {
+          "Sobre giros bancarios": null,
+          "Prestamos a corto plazo": null,
+          "Porcion corriente de prestamos a largo plazo": null,
+          "Otros prestamos": null
+        }
+      }
+    },
     "Patrimonio": {}
   },
   "resultados": {
@@ -75,6 +122,7 @@
       "dia": 31,
       "mes": "diciembre",
       "anio": 2020
-    }
+    },
+    "ventas": null
   }
 }

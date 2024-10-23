@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import catalogo_cuentas from "../Data/Balances/catalogo_cuentas.json";
-import BalanceGeneral from "../component/BalanceGeneral";
+import BalanceGeneral from "../component/Balance_General";
 import EstadoResultados from "../component/EstadoResultados";
 
 export const IngresoDatos = () => {
@@ -37,7 +37,7 @@ export const IngresoDatos = () => {
                 { seleccion === 'Balance General' ? (
                     <BalanceGeneral estado={catalogo[0]}/>
                 ) : (
-                    <EstadoResultados/>
+                    <BalanceGeneral estado={catalogo[1]}/>
                 )}
             </div>
         </>

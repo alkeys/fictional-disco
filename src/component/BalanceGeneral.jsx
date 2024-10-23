@@ -72,9 +72,37 @@ const BalanceGeneral = ({ estado }) => {
         return cleanedData;
     };
 
+    // Función para calcular el total de un tipo de activo o pasivo
+    const calculateTotal = (cuentas) => {
+        let total = 0;
+        if (cuentas && Object.keys(cuentas).length > 0) {
+            Object.keys(cuentas).forEach((key2) => {
+                const valores = cuentas[key2];
+                if (valores) {
+                    Object.values(valores).forEach((valor) => {
+                        total += parseFloat(valor) || 0;
+                    });
+                }
+            });
+        }
+        return total;
+    };
+
+    const totalActivosCorrientes = calculateTotal(balanceData.Activos["Activo Corriente"] || {});
+    const totalActivosNoCorrientes = calculateTotal(balanceData.Activos["Activo No Corriente"] || {});
+    const totalActivos = totalActivosCorrientes + totalActivosNoCorrientes;
+
     // Función para generar y descargar el archivo JSON, excluyendo campos con `null` y cuentas vacías
     const handleSaveToFile = () => {
         const cleanedBalanceData = cleanBalanceData(balanceData); // Limpiar el balance
+
+        // Agregar totales al JSON
+        cleanedBalanceData.Totales = {
+            TotalActivosCorrientes: totalActivosCorrientes,
+            TotalActivosNoCorrientes: totalActivosNoCorrientes,
+            TotalActivos: totalActivos,
+        };
+
         const jsonString = `data:text/json;charset=utf-8,${encodeURIComponent(
             JSON.stringify(cleanedBalanceData, null, 2)
         )}`;
@@ -96,7 +124,7 @@ const BalanceGeneral = ({ estado }) => {
                                     <strong>{key1}</strong>
                                 </td>
                             </tr>
-                            {Object.keys(balanceData.Activos[key1]).map((key2, index2) => (
+                            {Object.keys(balanceData.Activos[key1] || {}).map((key2, index2) => (
                                 <React.Fragment key={index2}>
                                     <tr>
                                         <td colSpan={3}>
@@ -111,7 +139,7 @@ const BalanceGeneral = ({ estado }) => {
                                             </button>
                                         </td>
                                     </tr>
-                                    {Object.keys(balanceData.Activos[key1][key2]).map((key3, index3) => (
+                                    {Object.keys(balanceData.Activos[key1][key2] || {}).map((key3, index3) => (
                                         <tr key={index3}>
                                             <td>{key3}</td>
                                             <td>
@@ -140,6 +168,21 @@ const BalanceGeneral = ({ estado }) => {
                             ))}
                         </React.Fragment>
                     ))}
+                    <tr>
+                        <td colSpan={3}>
+                            <strong>Total Activos Corrientes:</strong> {totalActivosCorrientes}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={3}>
+                            <strong>Total Activos No Corrientes:</strong> {totalActivosNoCorrientes}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={3}>
+                            <strong>Total Activos:</strong> {totalActivos}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <button
@@ -153,6 +196,8 @@ const BalanceGeneral = ({ estado }) => {
 };
 
 export default BalanceGeneral;
+
+
 
 
 
