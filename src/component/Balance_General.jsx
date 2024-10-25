@@ -140,7 +140,7 @@ const BalanceGeneral = ({estado}) => {
                                             type="number"
                                             value={balanceData[key1]}
                                             onChange={(e) => handleInputChange(e, key1)}
-                                            className="border border-black rounded px-2 w-full sm:w-48"
+                                            className="border border-black rounded px-2 w-16 md:w-56"
                                         />
                                     </td>
                                 )}
@@ -192,7 +192,7 @@ const BalanceGeneral = ({estado}) => {
                                                                     type="number"
                                                                     value={balanceData[key1][key2][key3]}
                                                                     onChange={(e) => handleInputChange(e, key1, key2, key3)}
-                                                                    className="border border-black rounded px-2"
+                                                                    className="border border-black rounded px-2 w-16 md:w-56"
                                                                 />
                                                             </td>
                                                         )}
@@ -230,7 +230,7 @@ const BalanceGeneral = ({estado}) => {
                                                                                 type="number"
                                                                                 value={balanceData[key1][key2][key3][key4]}
                                                                                 onChange={(e) => handleInputChange(e, key1, key2, key3, key4)}
-                                                                                className="border border-black rounded px-2"
+                                                                                className="border border-black rounded px-2 w-16 md:w-56"
                                                                             />
                                                                         </td>
                                                                     )}
@@ -263,7 +263,7 @@ const BalanceGeneral = ({estado}) => {
                                                                                         type="number"
                                                                                         value={balanceData[key1][key2][key3][key4][key5]}
                                                                                         onChange={(e) => handleInputChange(e, key1, key2, key3, key4, key5)}
-                                                                                        className="border border-black rounded px-2"
+                                                                                        className="border border-black rounded px-2 w-16 md:w-56"
                                                                                     />
                                                                                 </td>
                                                                                 <td>

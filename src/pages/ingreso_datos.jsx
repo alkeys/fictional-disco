@@ -35,13 +35,14 @@ export const IngresoDatos = () => {
                     </select>
                 </section>
             </div>
-            <div className="flex flex-col text-center px-10 py-6 mx-12 border rounded-lg bg-white overflow-x-auto">
-                { seleccion === 'Balance General' ? (
-                    <BalanceGeneral estado={catalogo[0]}/>
+            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white">
+                {seleccion === 'Balance General' ? (
+                    <BalanceGeneral estado={catalogo[0]} />
                 ) : (
-                    <BalanceGeneral estado={catalogo[1]}/>
+                    <BalanceGeneral estado={catalogo[1]} />
                 )}
             </div>
+
         </div>
     );
 };
