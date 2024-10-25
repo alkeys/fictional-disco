@@ -124,6 +124,16 @@
       "anio": 2020
     },
     "Ventas": null,
-    "Costo de ventas": null
+    "Otros ingresos de operación": null,
+    "Ingresos totales": null,
+    "Costo de ventas": null,
+    "Utilidad bruta": null,
+    "Gastos de administración": null,
+    "Gastos de venta": null,
+    "Otros ingresos": null,
+    "Otros gastos": null,
+    "Gasto por intereses": null,
+    "Ingresos por intereses": null,
+    "(Pérdidas) ganancia por fluctuación cambiaría, neta": null
   }
 }

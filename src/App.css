@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Great Vibes';
+    src: url('fonts/GreatVibes-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Coca-Cola';
+    src: url('fonts/cocacola.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LOKICOLA';
+    src: url('fonts/LOKICOLA.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

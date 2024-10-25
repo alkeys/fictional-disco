@@ -87,7 +87,7 @@ const BalanceGeneral = ({estado}) => {
                     </tr>
                     <tr>
                         <th colSpan={6}>
-                            <input type="text" placeholder="Ingresar nombre de la empresa"></input>
+                            <input type="text" placeholder="Ingresar nombre de la empresa" className="text-center"></input>
                         </th>
                     </tr>
                     <tr>
@@ -172,7 +172,7 @@ const BalanceGeneral = ({estado}) => {
                                                                     ) : (
                                                                         // Si `key4` no tiene subcuentas, mostramos el input
                                                                         <input
-                                                                            type="text"
+                                                                            type="number"
                                                                             value={balanceData[key1][key2][key3][key4]}
                                                                             onChange={(e) => handleInputChange(e, key1, key2, key3, key4)}
                                                                             className="border border-black rounded px-2"
@@ -203,7 +203,7 @@ const BalanceGeneral = ({estado}) => {
                                                                                     {key5}
                                                                                 </td>
                                                                                 <input
-                                                                                    type="text"
+                                                                                    type="number"
                                                                                     value={balanceData[key1][key2][key3][key4][key5]}
                                                                                     onChange={(e) => handleInputChange(e, key1, key2, key3, key4, key5)}
                                                                                     className="border border-black rounded px-2"
