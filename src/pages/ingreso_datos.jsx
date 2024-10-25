@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import catalogo_cuentas from "../Data/Balances/catalogo_coca-cola.json";
 import BalanceGeneral from "../component/Balance_General";
-import EstadoResultados from "../component/EstadoResultados";
 
 export const IngresoDatos = () => {
     const [catalogo, setCatalogo] = useState([]);
@@ -36,7 +35,7 @@ export const IngresoDatos = () => {
                     </select>
                 </section>
             </div>
-            <div className="flex flex-col text-center px-10 py-6 mx-12 border rounded-lg bg-white">
+            <div className="flex flex-col text-center px-10 py-6 mx-12 border rounded-lg bg-white overflow-x-auto">
                 { seleccion === 'Balance General' ? (
                     <BalanceGeneral estado={catalogo[0]}/>
                 ) : (

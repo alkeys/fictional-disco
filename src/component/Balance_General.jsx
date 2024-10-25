@@ -37,8 +37,8 @@ const BalanceGeneral = ({estado}) => {
     };
 
     const handleAddAccount = (key1, key2, key3, key4) => {
-    const newBalanceData = { ...balanceData };
-    const newAccountName = prompt("Ingrese el nombre de la nueva cuenta:");
+        const newBalanceData = { ...balanceData };
+        const newAccountName = prompt("Ingrese el nombre de la nueva cuenta:");
 
         if (newAccountName) {
             if (key4) {
@@ -70,10 +70,31 @@ const BalanceGeneral = ({estado}) => {
     // Función para manejar cambios en los inputs
     const handleInputChange = (e, key1, key2, key3, key4, key5) => {
         const newBalanceData = { ...balanceData };
-        newBalanceData[key1][key2][key3][key4][key5] = e.target.value !== "" ? e.target.value : null;
-        console.log(newBalanceData)
+        
+        // Verificamos y creamos los niveles faltantes si no existen
+        if (!newBalanceData[key1]) newBalanceData[key1] = {};
+        if (key2 && !newBalanceData[key1][key2]) newBalanceData[key1][key2] = {};
+        if (key3 && !newBalanceData[key1][key2][key3]) newBalanceData[key1][key2][key3] = {};
+        if (key4 && !newBalanceData[key1][key2][key3][key4]) newBalanceData[key1][key2][key3][key4] = {};
+
+        // Asignamos el valor solo en el nivel correcto (hasta key5)
+        if (key5) {
+            newBalanceData[key1][key2][key3][key4][key5] = e.target.value !== "" ? e.target.value : null;
+        } else if (key4) {
+            newBalanceData[key1][key2][key3][key4] = e.target.value !== "" ? e.target.value : null;
+        } else if (key3) {
+            newBalanceData[key1][key2][key3] = e.target.value !== "" ? e.target.value : null;
+        } else if (key2) {
+            newBalanceData[key1][key2] = e.target.value !== "" ? e.target.value : null;
+        } else if (key1) {
+            newBalanceData[key1] = e.target.value !== "" ? e.target.value : null;
+        }
+
         setBalanceData(newBalanceData);
+        console.log(newBalanceData);
     };
+
+    
 
     return (
         <>
@@ -84,18 +105,21 @@ const BalanceGeneral = ({estado}) => {
                             {balanceData.name}
                         </th>
                     </tr>
-                    <tr>
+                    <tr>    
                         <th colSpan={6}>
-                            <input type="text" placeholder="Ingresar nombre de la empresa" className="text-center"></input>
+                            <input type="text" placeholder="Ingresar nombre de la empresa" className="text-center" />
                         </th>
                     </tr>
                     <tr>
                         <th colSpan={6}>
-                            <input type="date" placeholder="Ingresar fecha"></input>
+                            <input type="date" placeholder="Ingresar fecha" />
                         </th>
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                    <td>&nbsp;</td>
+                    </tr>
                     {Object.keys(balanceData).splice(3).map((key1, index1) => (
                         <React.Fragment key={index1}>
                             <tr>
@@ -106,7 +130,20 @@ const BalanceGeneral = ({estado}) => {
                                         key1
                                     )}
                                 </td>
-                                <td></td>
+                                {balanceData[key1] && typeof balanceData[key1] === 'object' && Object.keys(balanceData[key1]).length > 0 ? (
+                                    // Si `key1` tiene subcuentas, no mostramos el input
+                                    <td>&nbsp;</td>
+                                ) : (
+                                    // Si `key1` no tiene subcuentas, mostramos el input
+                                    <td>
+                                        <input
+                                            type="number"
+                                            value={balanceData[key1]}
+                                            onChange={(e) => handleInputChange(e, key1)}
+                                            className="border border-black rounded px-2 w-full sm:w-48"
+                                        />
+                                    </td>
+                                )}
                                 <td>
                                     <button
                                         className="ml-2 p-1 bg-green-500 text-white rounded px-3"
@@ -123,7 +160,7 @@ const BalanceGeneral = ({estado}) => {
                                             <td colSpan={3} className="px-4">
                                                 <strong>{key2}</strong>
                                             </td>
-                                            <td></td>
+                                            <td>&nbsp;</td>
                                             <td>
                                                 <button
                                                     className="ml-2 p-1 bg-green-500 text-white rounded px-3"
@@ -147,15 +184,17 @@ const BalanceGeneral = ({estado}) => {
                                                         </td>
                                                         {balanceData[key1][key2][key3] && typeof balanceData[key1][key2][key3] === 'object' && Object.keys(balanceData[key1][key2][key3]).length > 0 ? (
                                                             // Si `key3` tiene subcuentas, no mostramos el input
-                                                            <td></td>
+                                                            <td>&nbsp;</td>
                                                         ) : (
                                                             // Si `key3` no tiene subcuentas, mostramos el input
-                                                            <input
-                                                                type="number"
-                                                                value={balanceData[key1][key2][key3]}
-                                                                onChange={(e) => handleInputChange(e, key1, key2, key3)}
-                                                                className="border border-black rounded px-2"
-                                                            />
+                                                            <td>
+                                                                <input
+                                                                    type="number"
+                                                                    value={balanceData[key1][key2][key3]}
+                                                                    onChange={(e) => handleInputChange(e, key1, key2, key3)}
+                                                                    className="border border-black rounded px-2"
+                                                                />
+                                                            </td>
                                                         )}
                                                         <td>
                                                             <button
@@ -183,15 +222,17 @@ const BalanceGeneral = ({estado}) => {
                                                                     </td>
                                                                     {balanceData[key1][key2][key3][key4] &&typeof balanceData[key1][key2][key3][key4] === 'object' && Object.keys(balanceData[key1][key2][key3][key4]).length > 0 ? (
                                                                         // Si `key4` tiene subcuentas, no mostramos el input
-                                                                        <td></td>
+                                                                        <td>&nbsp;</td>
                                                                     ) : (
                                                                         // Si `key4` no tiene subcuentas, mostramos el input
-                                                                        <input
-                                                                            type="number"
-                                                                            value={balanceData[key1][key2][key3][key4]}
-                                                                            onChange={(e) => handleInputChange(e, key1, key2, key3, key4)}
-                                                                            className="border border-black rounded px-2"
-                                                                        />
+                                                                        <td>
+                                                                            <input
+                                                                                type="number"
+                                                                                value={balanceData[key1][key2][key3][key4]}
+                                                                                onChange={(e) => handleInputChange(e, key1, key2, key3, key4)}
+                                                                                className="border border-black rounded px-2"
+                                                                            />
+                                                                        </td>
                                                                     )}
                                                                     <td>
                                                                         <button
@@ -217,12 +258,14 @@ const BalanceGeneral = ({estado}) => {
                                                                                 <td colSpan={3} className="px-12">
                                                                                     {key5}
                                                                                 </td>
-                                                                                <input
-                                                                                    type="number"
-                                                                                    value={balanceData[key1][key2][key3][key4][key5]}
-                                                                                    onChange={(e) => handleInputChange(e, key1, key2, key3, key4, key5)}
-                                                                                    className="border border-black rounded px-2"
-                                                                                />
+                                                                                <td>
+                                                                                    <input
+                                                                                        type="number"
+                                                                                        value={balanceData[key1][key2][key3][key4][key5]}
+                                                                                        onChange={(e) => handleInputChange(e, key1, key2, key3, key4, key5)}
+                                                                                        className="border border-black rounded px-2"
+                                                                                    />
+                                                                                </td>
                                                                                 <td>
                                                                                 <button
                                                                                     className="ml-2 p-1 bg-green-500 text-white rounded px-3"
@@ -245,6 +288,7 @@ const BalanceGeneral = ({estado}) => {
                                                                 ) : (
                                                                     <tr>
                                                                         {/* Mensaje opcional si `key4` no tiene cuentas */}
+                                                                        <td>&nbsp;</td>
                                                                     </tr>
                                                                 )}
                                                             </React.Fragment>
@@ -252,6 +296,7 @@ const BalanceGeneral = ({estado}) => {
                                                     ) : (
                                                         <tr>
                                                             {/* Mensaje opcional si `key3` no tiene cuentas */}
+                                                            <td>&nbsp;</td>
                                                         </tr>
                                                     )}
                                                 </React.Fragment>
@@ -259,6 +304,7 @@ const BalanceGeneral = ({estado}) => {
                                         ) : (
                                             <tr>
                                                 {/* Mensaje opcional si `key2` no tiene cuentas */}
+                                                <td>&nbsp;</td>
                                             </tr>
                                         )}
                                     </React.Fragment>
@@ -266,6 +312,7 @@ const BalanceGeneral = ({estado}) => {
                             ) : (
                                 <tr>
                                     {/* Mensaje opcional si `key1` no tiene cuentas */}
+                                    <td>&nbsp;</td>
                                 </tr>
                             )}
                         </React.Fragment>    
