@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import catalogo_cuentas from "../Data/Balances/catalogo_cuentas.json";
+import catalogo_cuentas from "../Data/Balances/catalogo_coca-cola.json";
 import BalanceGeneral from "../component/Balance_General";
 import EstadoResultados from "../component/EstadoResultados";
 
@@ -18,8 +18,8 @@ export const IngresoDatos = () => {
     };
 
     return (
-        <div className="bg-red-600 pb-6">
-            <div className="flex flex-col text-center px-10 py-4 bg-red-600">
+        <div className="bg-red-700 pb-6">
+            <div className="flex flex-col text-center px-10 py-4 bg-red-700">
                 <h1 className="text-5xl font-bold mb-6 text-white">
                     Ingreso de Datos
                 </h1>
@@ -27,7 +27,7 @@ export const IngresoDatos = () => {
                     <label htmlFor="select_estado" className="px-2 text-white">
                         Seleccione tipo de Estado:
                     </label>
-                    <select id="select_estado" className="border rounded" value={seleccion} onChange={handleSeleccion}>
+                    <select id="select_estado" className="border rounded " value={seleccion} onChange={handleSeleccion}>
                         {catalogo.map((estado, index) => (
                             <option key={index} value={estado.name}>
                                 {estado.name}

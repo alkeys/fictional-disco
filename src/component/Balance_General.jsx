@@ -75,7 +75,6 @@ const BalanceGeneral = ({estado}) => {
         setBalanceData(newBalanceData);
     };
 
-
     return (
         <>
             <table className="text-left">
@@ -139,9 +138,25 @@ const BalanceGeneral = ({estado}) => {
                                                 <React.Fragment key={index3}>
                                                     <tr>
                                                         <td colSpan={3} className="px-7">
-                                                        <strong>{key3}</strong>
+                                                            {/* Aplica negrita solo si `key3` tiene subcuentas */}
+                                                            {balanceData[key1][key2][key3] && typeof balanceData[key1][key2][key3] === 'object' && Object.keys(balanceData[key1][key2][key3]).length > 0 ? (
+                                                                <strong>{key3}</strong>
+                                                            ) : (
+                                                                key3
+                                                            )}
                                                         </td>
-                                                        <td></td>
+                                                        {balanceData[key1][key2][key3] && typeof balanceData[key1][key2][key3] === 'object' && Object.keys(balanceData[key1][key2][key3]).length > 0 ? (
+                                                            // Si `key3` tiene subcuentas, no mostramos el input
+                                                            <td></td>
+                                                        ) : (
+                                                            // Si `key3` no tiene subcuentas, mostramos el input
+                                                            <input
+                                                                type="number"
+                                                                value={balanceData[key1][key2][key3]}
+                                                                onChange={(e) => handleInputChange(e, key1, key2, key3)}
+                                                                className="border border-black rounded px-2"
+                                                            />
+                                                        )}
                                                         <td>
                                                             <button
                                                                 className="ml-2 p-1 bg-green-500 text-white rounded px-3"
@@ -229,28 +244,28 @@ const BalanceGeneral = ({estado}) => {
                                                                     ))
                                                                 ) : (
                                                                     <tr>
-                                                                        {/* <td colSpan={3}>No hay cuentas disponibles en {key4}</td> */}
+                                                                        {/* Mensaje opcional si `key4` no tiene cuentas */}
                                                                     </tr>
                                                                 )}
                                                             </React.Fragment>
                                                         ))
                                                     ) : (
                                                         <tr>
-                                                            {/* <td colSpan={3}>No hay cuentas disponibles en {key3}</td> */}
+                                                            {/* Mensaje opcional si `key3` no tiene cuentas */}
                                                         </tr>
                                                     )}
                                                 </React.Fragment>
                                             ))
                                         ) : (
                                             <tr>
-                                                {/* <td colSpan={3}>No hay cuentas disponibles en {key2}</td> */}
+                                                {/* Mensaje opcional si `key2` no tiene cuentas */}
                                             </tr>
                                         )}
                                     </React.Fragment>
                                 ))
                             ) : (
                                 <tr>
-                                    {/* <td colSpan={4}>No hay cuentas disponibles en {key1}</td> */}
+                                    {/* Mensaje opcional si `key1` no tiene cuentas */}
                                 </tr>
                             )}
                         </React.Fragment>    
@@ -259,6 +274,6 @@ const BalanceGeneral = ({estado}) => {
             </table>
         </>
     );
-};
+};    
 
 export default BalanceGeneral;
