@@ -94,8 +94,39 @@ const BalanceGeneral = ({estado}) => {
         console.log(newBalanceData);
     };
 
-    
+    const inputNameEmpresa = (e) => {
+        const newBalanceData = { ...balanceData };
+        newBalanceData.name_empresa = e.target.value;
+        setBalanceData(newBalanceData);
+        console.log(newBalanceData);
+    }
 
+    const inputDateEmpresa = (e) => {
+        const newBalanceData = { ...balanceData };
+        const dateParts = e.target.value.split("/");
+    
+        if (dateParts.length === 3) {
+            const [day, month, year] = dateParts;
+    
+            // Convertimos el mes numérico a texto
+            const monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+            const monthText = monthNames[parseInt(month, 10) - 1];
+    
+            // Actualizamos el estado solo si la fecha es válida
+            if (day && monthText && year) {
+                newBalanceData.fecha = {
+                    dia: parseInt(day, 10),
+                    mes: monthText,
+                    anio: parseInt(year, 10),
+                };
+            }
+            setBalanceData(newBalanceData);
+        }
+        console.log(newBalanceData);
+    };
+    
+        
+    
     return (
         <>
             <table className="text-left">
@@ -107,12 +138,28 @@ const BalanceGeneral = ({estado}) => {
                     </tr>
                     <tr>    
                         <th colSpan={6}>
-                            <input type="text" placeholder="Ingresar nombre de la empresa" className="text-center" />
+                            <input type="text"
+                                placeholder="Ingresar nombre de la empresa"
+                                className="text-center"
+                                value={balanceData.name_empresa}
+                                onChange={(e) => inputNameEmpresa(e)}
+                            />
                         </th>
                     </tr>
                     <tr>
                         <th colSpan={6}>
-                            <input type="date" placeholder="Ingresar fecha" />
+                        <input
+                            type="text"
+                            placeholder="dd/mm/yyyy"
+                            className="text-center"
+                            value={
+                                balanceData.fecha.dia && balanceData.fecha.mes && balanceData.fecha.anio
+                                    ? `${balanceData.fecha.dia}/${balanceData.fecha.mes}/${balanceData.fecha.anio}`
+                                    : ""
+                            }
+                            onChange={(e) => inputDateEmpresa(e)}
+                        />
+
                         </th>
                     </tr>
                 </thead>

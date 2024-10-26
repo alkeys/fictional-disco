@@ -1,7 +1,7 @@
 {
     "balance": {
         "name": "Balance General",
-        "name_empresa": 0,
+        "name_empresa": "",
         "fecha": {
             "dia": 0,
             "mes": 0,
@@ -9,83 +9,84 @@
         },
         "Activos": {
             "Activos Corrientes": {
-                "Efectivo y equivalentes de efectivo": 0,
-                "Cuentas por cobrar, neto": 0,
-                "Inventarios": 0,
-                "Impuestos por recuperar": 0,
-                "Otros activos financieros corrientes": 0,
-                "Otros activos corrientes": 0,
-                "Total activos corrientes": 0
+                "Efectivo y equivalentes de efectivo": "null",
+                "Cuentas por cobrar, neto": "null",
+                "Inventarios": "null",
+                "Impuestos por recuperar": "null",
+                "Otros activos financieros corrientes": "null",
+                "Otros activos corrientes": "null",
+                "Total activos corrientes": "null"
             },
             "Activos No Corrientes": {
-                "Inversiones en otras entidades": 0,
-                "Activos por derecho de uso": 0,
-                "Propiedad, planta y equipo, neto": 0,
-                "Activos intangibles, neto": 0,
-                "Activos por impuestos diferidos": 0,
-                "Otros activos financieros no corrientes": 0,
-                "Otros activos no corrientes": 0,
-                "Total activos no corrientes": 0
+                "Inversiones en otras entidades": "null",
+                "Activos por derecho de uso": "null",
+                "Propiedad, planta y equipo, neto": "null",
+                "Activos intangibles, neto": "null",
+                "Activos por impuestos diferidos": "null",
+                "Otros activos financieros no corrientes": "null",
+                "Otros activos no corrientes": "null",
+                "Total activos no corrientes": "null"
             },
-            "Total Activos": 0
+            "Total Activos": "null"
         },
         "Pasivo y Capital": {
             "Pasivos Corrientes": {
-                "Préstamos bancarios y documentos por pagar": 0,
-                "Vencimiento a corto plazo del pasivo no corriente": 0,
-                "Vencimiento a corto plazo del pasivo por arrendamiento": 0,
-                "Intereses por pagar": 0,
-                "Proveedores": 0,
-                "Cuentas por pagar o otros pasivos corrientes": 0,
-                "Impuestos por pagar": 0,
-                "Otros pasivos financieros corrientes": 0,
-                "Total pasivos corrientes": 0
+                "Préstamos bancarios y documentos por pagar": "null",
+                "Vencimiento a corto plazo del pasivo no corriente": "null",
+                "Vencimiento a corto plazo del pasivo por arrendamiento": "null",
+                "Intereses por pagar": "null",
+                "Proveedores": "null",
+                "Cuentas por pagar o otros pasivos corrientes": "null",
+                "Impuestos por pagar": "null",
+                "Otros pasivos financieros corrientes": "null",
+                "Total pasivos corrientes": "null"
             },
             "Pasivos No Corrientes": {
-                "Préstamos bancarios y documentos por pagar": 0,
-                "Beneficios posteriores al retiro y otros beneficios a empleados": 0,
-                "Porción no corriente de pasivos por arrendamiento": 0,
-                "Pasivos por impuestos diferidos": 0,
-                "Otros pasivos financieros no corrientes y Provisiones": 0,
-                "Otros pasivos no corrientes": 0,
-                "Total pasivos no corrientes": 0
+                "Préstamos bancarios y documentos por pagar": "null",
+                "Beneficios posteriores al retiro y otros beneficios a empleados": "null",
+                "Porción no corriente de pasivos por arrendamiento": "null",
+                "Pasivos por impuestos diferidos": "null",
+                "Otros pasivos financieros no corrientes y Provisiones": "null",
+                "Otros pasivos no corrientes": "null",
+                "Total pasivos no corrientes": "null"
             },
-            "Total Pasivos": 0,
+            "Total Pasivos": "null",
             "Capital": {
-                "Capital Social": 0,
-                "Prima en suscripción de acciones": 0,
-                "Utilidades retenidas": 0,
-                "Otros instrumentos de capital": 0,
-                "Otras partidas acumuladas de la utilidad integral": 0,
-                "Capital atribuible a los propietarios de la controladora": 0,
-                "Participación no controladora en subsidiarias consolidadas": 0
+                "Capital Social": "null",
+                "Prima en suscripción de acciones": "null",
+                "Utilidades retenidas": "null",
+                "Otros instrumentos de capital": "null",
+                "Otras partidas acumuladas de la utilidad integral": "null",
+                "Capital atribuible a los propietarios de la controladora": "null",
+                "Participación no controladora en subsidiarias consolidadas": "null"
             },
-            "Total Capital": 0,
-            "Total Pasivos y Capital": 0
+            "Total Capital": "null",
+            "Total Pasivos y Capital": "null"
         }
     },
     "resultados": {
         "name": "Estado de Resultados",
-        "name_empresa": "Empresa 2",
+        "name_empresa": "",
         "fecha": {
-            "dia": 31,
-            "mes": "diciembre",
-            "anio": 2020
+            "dia": 0,
+            "mes": 0,
+            "anio": 0
         },
-        "Ventas": 0,
-        "Otros ingresos de operación": 0,
-        "Ingresos totales": 0,
-        "Costo de ventas": 0,
-        "Utilidad bruta": 0,
-        "Gastos de administración": 0,
-        "Gastos de venta": 0,
-        "Otros ingresos": 0,
-        "Otros gastos": 0,
-        "Gasto por intereses": 0,
-        "Ingresos por intereses": 0,
-        "(Pérdidas) ganancia por fluctuación cambiaria, neta": 0,
-        "Utilidad por posición monetaria por subsidiarias en economías hiperinflacionarias": 0,
-        "(Pérdidas) ganancia por posición monetaria por subsidiarias en economías hiperinflacionarias": 0,
-        "Utilidad (pérdida) antes impuestos": 0
+        "Ventas": "null",
+        "Otros ingresos de operación": "null",
+        "Ingresos totales": "null",
+        "Costo de ventas": "null",
+        "Utilidad bruta": "null",
+        "Gastos de administración": "null",
+        "Gastos de venta": "null",
+        "Otros ingresos": "null",
+        "Otros gastos": "null",
+        "Gasto por intereses": "null",
+        "Ingresos por intereses": "null",
+        "(Pérdidas) ganancia por fluctuación cambiaria, neta": "null",
+        "Utilidad por posición monetaria por subsidiarias en economías hiperinflacionarias": "null",
+        "(Pérdidas) ganancia por posición monetaria por subsidiarias en economías hiperinflacionarias": "null",
+        "Utilidad (pérdida) antes impuestos": "null"
     }
 }
+

@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import catalogo_cuentas from "../Data/Balances/catalogo_coca-cola.json";
 import BalanceGeneral from "../component/Balance_General";
+import flechaAtras from "../images/back-button-white.png";
 
 export const IngresoDatos = () => {
     const [catalogo, setCatalogo] = useState([]);
@@ -16,8 +17,21 @@ export const IngresoDatos = () => {
         setSeleccion(event.target.value);
     };
 
+    const handleInicio = () => {
+        history.push("/");
+    }
+
     return (
         <div className="bg-red-700 pb-6">
+            <button className="mx-4 my-3">
+                <a href="/">
+                    <img 
+                        src={flechaAtras}
+                        alt="atrás"
+                        className="w-7 h-7"
+                    />
+                </a>
+            </button>
             <div className="flex flex-col text-center px-10 py-4 bg-red-700">
                 <h1 className="text-5xl font-bold mb-6 text-white">
                     Ingreso de Datos
