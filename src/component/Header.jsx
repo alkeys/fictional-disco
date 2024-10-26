@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ButtonAtras from './ButtonAtras';
 
 const Header = ({ selectedYear, onYearChange }) => {
     const years = [2019, 2020, 2021, 2022, 2023];
@@ -12,9 +13,12 @@ const Header = ({ selectedYear, onYearChange }) => {
 
     return (
         <div className="bg-red-600 p-4">
-            <h1 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Cursive' }}>
-                Análisis Financiero
-            </h1>
+            <div className='flex items-center mb-4'>
+                <ButtonAtras />
+                <h1 className="text-3xl font-bold text-white" style={{ fontFamily: 'Cursive' }}>
+                    Análisis Financiero
+                </h1>
+            </div>
             <div className="flex justify-center space-x-4">
                 {years.map(year => (
                     <button
