@@ -60,7 +60,7 @@ const HomePage = () => {
                     </NavLink>
 
                     <NavLink
-                        to="/Ingreso_Datos"
+                        to="/ingreso-datos"
                         className="rounded-lg shadow-lg p-6 text-white bg-gradient-to-r from-blue-700 to-blue-500 hover:shadow-xl transition-transform transform hover:scale-105"
                         aria-label="Ir a Ingresar Datos"
                     >
