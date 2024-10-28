@@ -1,25 +1,30 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import catalogo_cuentas from "../Data/Balances/catalogo_cuentas.json";
 
-const EstadoResultados = () => {
+const EstadoResultados = ({ estado, Anio }) => {
+    if (!estado) {
+        return <p className="text-white text-center">Cargando datos del balance...</p>;
+    }
+
     return (
-        <>
-            <div className="flex items-center justify-center text-center border border-black py-2 my-4">
-                <form aria-required>
-                    <h1>Estado: {catalogo_cuentas.resultados.name}</h1>
-                    <section>
-                        <label htmlFor="in_empresa">Nombre de la empresa: </label>
-                        <input type="text" name="in_empresa" placeholder="Ingrese nombre empresa"/>
-                    </section>
-                    <section>
-                        <label htmlFor="in_date">Fecha: </label>
-                        <input type="date" name="in_date"/>
-                    </section>
-                </form>
+        <div className="min-h-screen flex flex-col items-center justify-center bg-red-600 p-8">
+            <h1 className="text-5xl font-bold text-white mb-6" style={{ fontFamily: 'Cursive' }}>
+                Estado Resultados {Anio}
+            </h1>
+
+            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
+                <table className="table-auto w-full mb-8">
+                    <tbody>
+                        {Object.keys(estado).map((key, index) => (
+                            <tr key={index} className="bg-gray-100">
+                                <td className="border px-4 py-2">{key}</td>
+                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">${estado[key].toLocaleString()}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
-        </>
+        </div>
     );
-}
+};
 
 export default EstadoResultados;

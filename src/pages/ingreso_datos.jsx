@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import catalogo_cuentas from "../Data/Balances/catalogo_coca-cola.json";
+import catalogo_cuentas from "../Data/catalogo_coca-cola.json";
 import BalanceGeneral from "../component/Balance_General";
 import ButtonAtras from "../component/ButtonAtras";
 
