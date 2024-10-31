@@ -125,8 +125,84 @@ const BalanceGeneral = ({estado}) => {
         console.log(newBalanceData);
     };
     
-        
-    
+    // Función para limpiar datos del balance eliminando valores null y cuentas vacías
+    const cleanBalanceData = (data) => {
+        const cleanData = {};
+      
+        Object.keys(data).forEach((key1) => {
+          const value1 = data[key1];
+      
+          if (value1 && typeof value1 === 'object') {
+            const cleanedValue1 = {};
+      
+            Object.keys(value1).forEach((key2) => {
+              const value2 = value1[key2];
+      
+              if (value2 && typeof value2 === 'object') {
+                const cleanedValue2 = {};
+      
+                Object.keys(value2).forEach((key3) => {
+                  const value3 = value2[key3];
+      
+                  if (value3 && typeof value3 === 'object') {
+                    const cleanedValue3 = {};
+      
+                    Object.keys(value3).forEach((key4) => {
+                      const value4 = value3[key4];
+      
+                      if (value4 && typeof value4 === 'object') {
+                        const cleanedValue4 = {};
+      
+                        Object.keys(value4).forEach((key5) => {
+                          if (value4[key5] !== null && value4[key5] !== "null") {
+                            cleanedValue4[key5] = value4[key5];
+                          }
+                        });
+      
+                        if (Object.keys(cleanedValue4).length > 0) {
+                          cleanedValue3[key4] = cleanedValue4;
+                        }
+                      } else if (value4 !== null && value4 !== "null") {
+                        cleanedValue3[key4] = value4;
+                      }
+                    });
+      
+                    if (Object.keys(cleanedValue3).length > 0) {
+                      cleanedValue2[key3] = cleanedValue3;
+                    }
+                  } else if (value3 !== null && value3 !== "null") {
+                    cleanedValue2[key3] = value3;
+                  }
+                });
+      
+                if (Object.keys(cleanedValue2).length > 0) {
+                  cleanedValue1[key2] = cleanedValue2;
+                }
+              } else if (value2 !== null && value2 !== "null") {
+                cleanedValue1[key2] = value2;
+              }
+            });
+      
+            // Si cleanedValue1 tiene contenido, se añade, o si no tiene, pero es de nivel key1, se mantiene en cleanData.
+            cleanData[key1] = Object.keys(cleanedValue1).length > 0 ? cleanedValue1 : {};
+          } else {
+            cleanData[key1] = value1;
+          }
+        });
+      
+        return cleanData;
+    };
+      
+    const handleSaveToFile = () => {
+        const cleanedData = cleanBalanceData(balanceData);
+        const blob = new Blob([JSON.stringify(cleanedData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "estados.json";
+        a.click();
+    }
+
     return (
         <>
             <table className="text-left">
@@ -366,6 +442,14 @@ const BalanceGeneral = ({estado}) => {
                     ))}
                 </tbody>
             </table>
+            <div className="text-center mt-4">
+                <button
+                    className="p-2 bg-blue-500 text-white rounded"
+                    onClick={handleSaveToFile}
+                >
+                    Guardar
+                </button>
+            </div>
         </>
     );
 };    
