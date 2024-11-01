@@ -6,6 +6,7 @@ import {Balances} from "./pages/Balances.jsx";
 import {IngresoDatos} from "./pages/ingreso_datos.jsx";
 import Resultados from "./pages/Resultados.jsx";
 
+
 const App = () => {
     return (
         <Router>
