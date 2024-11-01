@@ -1,6 +1,5 @@
 import { agregarDocumento ,obtenerDocumentos,actualizarDocumento} from "../Services/Firebase/Crudfirebase.js";
 import { useState } from "react";
-import "./Styles/Boton.css";
 import json19 from "../Data/Balances/2019.json";
 import json20 from "../Data/Balances/2020.json";
 import json21 from "../Data/Balances/2021.json";

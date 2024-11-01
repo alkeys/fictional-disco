@@ -11,8 +11,6 @@ import {SubirData} from "../component/SubirData.jsx";
 const HomePage = () => {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-red-700">
-            <SubirData></SubirData>
-
             <div className="bg-white shadow-lg rounded-lg p-8 max-w-5xl text-center">
                 <h1 className="text-6xl text-red-600 mb-4" style={{ fontFamily: 'LOKICOLA' }}>
                     Bienvenido a CocaCola Financials
