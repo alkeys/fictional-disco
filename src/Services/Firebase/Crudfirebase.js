@@ -1,4 +1,4 @@
-import { collection, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore/lite";
+import { getDoc, doc, setDoc, deleteDoc } from "firebase/firestore/lite";
 import { FirebaseConfig } from "./FirebaseService.js";
 
 
@@ -32,4 +32,20 @@ export const eliminarDocumento = async (nombreColeccion, id) => {
     } catch (error) {
         console.error("Error al eliminar el documento: ", error);
     }
+
 }
+
+export const obtenerDocumentos = async (nombreColeccion,id) => {
+    const { db } = FirebaseConfig();
+    try {
+        const docRef = doc(db, nombreColeccion, id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            console.log("Datos del documento: ", docSnap.data());
+        } else {
+            console.log("No hay datos en el documento");
+        }
+    } catch (error) {
+        console.error("Error al obtener el documento: ", error);
+    }
+    }

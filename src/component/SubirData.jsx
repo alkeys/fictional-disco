@@ -1,4 +1,4 @@
-import { agregarDocumento ,eliminarDocumento,actualizarDocumento} from "../Services/Firebase/Crudfirebase.js";
+import { agregarDocumento ,obtenerDocumentos,actualizarDocumento} from "../Services/Firebase/Crudfirebase.js";
 import { useState } from "react";
 import "./Styles/Boton.css";
 import json19 from "../Data/Balances/2019.json";
@@ -18,9 +18,14 @@ export const SubirData = () => {
     const handleModificar = async () => {
         await actualizarDocumento(Nombre, "b1", Balance);
     }
+
+    const hadleobtener = async () => {
+        const data = await obtenerDocumentos(Nombre,"b1");
+        console.log(data);
+    }
     return (
         <div>
-            <button onClick={handleModificar}>
+            <button onClick={hadleobtener}>
                 <div>
     <span>
       <p>Subir</p><p>:)</p>
