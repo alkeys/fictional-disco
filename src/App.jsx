@@ -4,7 +4,8 @@ import './App.css'
 import Home from "./pages/home.jsx";
 import {Balances} from "./pages/Balances.jsx";
 import {IngresoDatos} from "./pages/ingreso_datos.jsx";
-import Resultados from "./pages/Resultados.jsx";
+import {Resultados} from "./pages/Resultados.jsx";
+import {ModificarDatos} from "./pages/modificar_datos.jsx";
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
                 <Route path="/Balances" element={<Balances/>} />
                 <Route path="/ingreso-datos" element={<IngresoDatos />} />
                 <Route path="/estado-resultados" element={<Resultados />} />
+                <Route path="modificar-datos" element={<ModificarDatos />} />
             </Routes>
         </Router>
     );

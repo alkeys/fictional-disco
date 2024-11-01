@@ -7,7 +7,7 @@ import json22 from "../Data/Resultados/2022.json";
 import json23 from "../Data/Resultados/2023.json";
 import EstadoResultados from "../component/EstadoResultados";
 
-const Resultados = () => {
+export const Resultados = () => {
     const [json, setJson] = useState(json19);
     const [selectedYear, setSelectedYear] = useState(2019); // Inicializa con un año por defecto
 
@@ -56,5 +56,3 @@ const Resultados = () => {
     );
 
 };
-
-export default Resultados;

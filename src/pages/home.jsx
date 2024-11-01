@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+
+//iconos de las opciones NavLinks
 import analisisImage from '../images/datos.png';
 import resultadosImage from '../images/estado-de-resultados.png';
 import ingresoImage from '../images/procesamiento-de-datos.png';
 import modificarImage from '../images/nota.png';
 import balancesImage from '../images/hoja-de-balance.png';
 import cocacolaImage from '../images/coca-cola.svg';
-import {SubirData} from "../component/SubirData.jsx";
 
 const HomePage = () => {
     return (
@@ -34,7 +35,7 @@ const HomePage = () => {
                      <NavLink
                         to="/modificar-datos"
                         className="rounded-lg shadow-lg p-6 text-white bg-gradient-to-r from-black to-gray-800 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
-                        aria-label="Ir a Configuración"
+                        aria-label="Ir a Modificar Datos"
                     >
                         <img src={modificarImage} className='h-16 mb-1'/>
                         <h3 className="font-bold text-lg">Modificar Datos</h3>
