@@ -1,4 +1,4 @@
-import { getDoc, doc, setDoc, deleteDoc } from "firebase/firestore/lite";
+import { getDoc,doc,getDocs, setDoc, deleteDoc ,collection} from "firebase/firestore/lite";
 import { FirebaseConfig } from "./FirebaseService.js";
 
 
@@ -50,5 +50,21 @@ export const obtenerDocumentos = async (nombreColeccion, id) => {
     } catch (error) {
         console.error("Error al obtener el documento: ", error);
         return null; // Return null in case of error
+    }
+}
+
+export  const obtenerDocumentosall= async (nombreColeccion) => {
+    const { db } = FirebaseConfig();
+    try {
+        const querySnapshot = await getDocs(collection(db, nombreColeccion));
+        const documents = [];
+        querySnapshot.forEach((doc) => {
+            documents.push({ id: doc.id, ...doc.data() });
+        });
+        console.log("Documentos: ", documents);
+        return documents;
+    } catch (error) {
+        console.error("Error al obtener los documentos: ", error);
+        return null;
     }
 }
