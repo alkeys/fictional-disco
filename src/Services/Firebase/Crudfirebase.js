@@ -53,8 +53,14 @@ export const obtenerDocumentos = async (nombreColeccion, id) => {
     }
 }
 
-export  const obtenerDocumentosall= async (nombreColeccion) => {
+export const obtenerDocumentosall = async (nombreColeccion) => {
     const { db } = FirebaseConfig();
+
+    if (!nombreColeccion) {
+        console.error("Error: El nombre de la colección está vacío.");
+        return [];
+    }
+
     try {
         const querySnapshot = await getDocs(collection(db, nombreColeccion));
         const documents = [];
@@ -65,6 +71,6 @@ export  const obtenerDocumentosall= async (nombreColeccion) => {
         return documents;
     } catch (error) {
         console.error("Error al obtener los documentos: ", error);
-        return null;
+        return [];
     }
 }
