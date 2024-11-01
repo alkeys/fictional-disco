@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 const BalanceGeneral = ({estado}) => {
+    const initialBalanceData = estado ? { ...estado } : null; // Estado inicial
     const [balanceData, setBalanceData] = useState(null);
     
     useEffect(() => {
@@ -103,10 +104,11 @@ const BalanceGeneral = ({estado}) => {
 
     const inputDateEmpresa = (e) => {
         const newBalanceData = { ...balanceData };
-        const dateParts = e.target.value.split("/");
-    
+        const dateParts = e.target.value.split("-");
+        console.log(dateParts);
+
         if (dateParts.length === 3) {
-            const [day, month, year] = dateParts;
+            const [year, month, day] = dateParts;
     
             // Convertimos el mes numérico a texto
             const monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
@@ -201,6 +203,7 @@ const BalanceGeneral = ({estado}) => {
         a.href = url;
         a.download = "estados.json";
         a.click();
+        setBalanceData(initialBalanceData);
     }
 
     return (
@@ -225,12 +228,11 @@ const BalanceGeneral = ({estado}) => {
                     <tr>
                         <th colSpan={6}>
                         <input
-                            type="text"
-                            placeholder="dd/mm/yyyy"
+                            type="date"
                             className="text-center"
                             value={
-                                balanceData.fecha.dia && balanceData.fecha.mes && balanceData.fecha.anio
-                                    ? `${balanceData.fecha.dia}/${balanceData.fecha.mes}/${balanceData.fecha.anio}`
+                                balanceData.fecha.anio && balanceData.fecha.mes && balanceData.fecha.dia
+                                    ? `${balanceData.fecha.anio}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(balanceData.fecha.dia).padStart(2, '0')}`   
                                     : ""
                             }
                             onChange={(e) => inputDateEmpresa(e)}
@@ -267,14 +269,18 @@ const BalanceGeneral = ({estado}) => {
                                         />
                                     </td>
                                 )}
-                                <td>
-                                    <button
-                                        className="ml-2 p-1 bg-green-500 text-white rounded px-3"
-                                        onClick={() => handleAddAccount(key1)}
-                                    >
-                                        +
-                                    </button>
-                                </td>
+                                {esBalanceGeneral ? (
+                                    <td>
+                                        <button
+                                            className="ml-2 p-1 bg-green-500 text-white rounded px-3"
+                                            onClick={() => handleAddAccount(key1)}
+                                        >
+                                            +
+                                        </button>
+                                    </td>
+                                ) : (
+                                    <td>&nbsp;</td>
+                                )}
                             </tr>
                             {balanceData[key1] && typeof balanceData[key1] === 'object' && Object.keys(balanceData[key1]).length > 0 ? (
                                 Object.keys(balanceData[key1]).map((key2, index2) => (
