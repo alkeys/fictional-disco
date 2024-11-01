@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import catalogo_cuentas from "../Data/catalogo_coca-cola.json";
-import BalanceGeneral from "../component/Balance_General";
+import BalanceGeneral from "../component/IngresoDatos";
 import ButtonAtras from "../component/ButtonAtras";
 
 export const IngresoDatos = () => {

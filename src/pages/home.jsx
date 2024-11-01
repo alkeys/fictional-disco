@@ -63,7 +63,7 @@ const HomePage = () => {
                     <NavLink
                         to="/estado-resultados"
                         className="rounded-lg shadow-lg p-6 text-green-700 bg-gradient-to-r from-green-300 to-green-500 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
-                        aria-label="Ir a Estado de Resultados"
+                        aria-label="Ir a Estados de Resultados"
                     >
                         <img src={resultadosImage} className='h-16 mb-1'/>
                         <h3 className="font-bold text-lg">Estado de Resultados</h3>
