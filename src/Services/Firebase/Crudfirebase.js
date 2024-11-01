@@ -35,17 +35,20 @@ export const eliminarDocumento = async (nombreColeccion, id) => {
 
 }
 
-export const obtenerDocumentos = async (nombreColeccion,id) => {
+export const obtenerDocumentos = async (nombreColeccion, id) => {
     const { db } = FirebaseConfig();
     try {
         const docRef = doc(db, nombreColeccion, id);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             console.log("Datos del documento: ", docSnap.data());
+            return docSnap.data(); // Return the document data
         } else {
             console.log("No hay datos en el documento");
+            return null; // Return null if no data
         }
     } catch (error) {
         console.error("Error al obtener el documento: ", error);
+        return null; // Return null in case of error
     }
-    }
+}

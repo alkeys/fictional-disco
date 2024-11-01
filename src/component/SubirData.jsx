@@ -20,8 +20,10 @@ export const SubirData = () => {
     }
 
     const hadleobtener = async () => {
-        const data = await obtenerDocumentos(Nombre,"b1");
-        console.log(data);
+        const data = await obtenerDocumentos(Nombre, "b1");
+        if (data) {
+            console.log("Datos obtenidos xdxd: ", data);
+        }
     }
     return (
         <div>
