@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
-import { agregarDocumento ,obtenerDocumentos,actualizarDocumento} from "../Services/Firebase/Crudfirebase.js";  
+import { agregarDocumento} from "../Services/Firebase/Crudfirebase.js";  
 
 const BalanceGeneral = ({estado}) => {
     const initialBalanceData = estado ? { ...estado } : null; // Estado inicial
-    const [balanceData, setBalanceData] = useState(null);
-    
+    const [balanceData, setBalanceData] = useState(initialBalanceData);
+
     useEffect(() => {
         if (estado) {
-            setBalanceData(estado); // Cargar el balance inicial cuando `estado` esté disponible
+            setBalanceData({...estado}); // Cargar el balance inicial cuando estado esté disponible
         }
     }, [estado]);
 
@@ -70,43 +70,39 @@ const BalanceGeneral = ({estado}) => {
     };
 
     // Función para manejar cambios en los inputs
-    const handleInputChange = (e, key1, key2, key3, key4, key5) => {
-        const newBalanceData = { ...balanceData };
-        
-        // Verificamos y creamos los niveles faltantes si no existen
-        if (!newBalanceData[key1]) newBalanceData[key1] = {};
-        if (key2 && !newBalanceData[key1][key2]) newBalanceData[key1][key2] = {};
-        if (key3 && !newBalanceData[key1][key2][key3]) newBalanceData[key1][key2][key3] = {};
-        if (key4 && !newBalanceData[key1][key2][key3][key4]) newBalanceData[key1][key2][key3][key4] = {};
-
-        // Asignamos el valor solo en el nivel correcto (hasta key5)
-        if (key5) {
-            newBalanceData[key1][key2][key3][key4][key5] = e.target.value !== "" ? e.target.value : null;
-        } else if (key4) {
-            newBalanceData[key1][key2][key3][key4] = e.target.value !== "" ? e.target.value : null;
-        } else if (key3) {
-            newBalanceData[key1][key2][key3] = e.target.value !== "" ? e.target.value : null;
-        } else if (key2) {
-            newBalanceData[key1][key2] = e.target.value !== "" ? e.target.value : null;
-        } else if (key1) {
-            newBalanceData[key1] = e.target.value !== "" ? e.target.value : null;
-        }
-
-        setBalanceData(newBalanceData);
-        console.log(newBalanceData);
+    const handleInputChange = (e, ...keys) => {
+        const value = e.target.value;
+    
+        setBalanceData(prevData => {
+            // Crear una copia profunda de prevData
+            const newData = JSON.parse(JSON.stringify(prevData));
+            let temp = newData;
+    
+            // Navegar hasta el nivel adecuado usando las claves
+            for (let i = 0; i < keys.length - 1; i++) {
+                temp = temp[keys[i]];
+            }
+    
+            // Asignar el nuevo valor en la última clave
+            temp[keys[keys.length - 1]] = value;
+    
+            return newData;
+        });
     };
+    
+    
 
     const inputNameEmpresa = (e) => {
         const newBalanceData = { ...balanceData };
         newBalanceData.name_empresa = e.target.value;
         setBalanceData(newBalanceData);
-        console.log(newBalanceData);
+        //console.log(newBalanceData);
     }
 
     const inputDateEmpresa = (e) => {
         const newBalanceData = { ...balanceData };
         const dateParts = e.target.value.split("-");
-        console.log(dateParts);
+        console.log(e.target.value);
 
         if (dateParts.length === 3) {
             const [year, month, day] = dateParts;
@@ -122,10 +118,10 @@ const BalanceGeneral = ({estado}) => {
                     mes: monthText,
                     anio: parseInt(year, 10),
                 };
+                setBalanceData(newBalanceData);
             }
-            setBalanceData(newBalanceData);
         }
-        console.log(newBalanceData);
+        //console.log(newBalanceData);
     };
     
     // Función para limpiar datos del balance eliminando valores null y cuentas vacías
@@ -195,7 +191,8 @@ const BalanceGeneral = ({estado}) => {
       
         return cleanData;
     };
-      
+    
+    //Guardar JSON y descargarlo
     const handleSaveToFile = () => {
         const cleanedData = cleanBalanceData(balanceData);
         const blob = new Blob([JSON.stringify(cleanedData, null, 2)], { type: "application/json" });
@@ -207,16 +204,18 @@ const BalanceGeneral = ({estado}) => {
         setBalanceData(initialBalanceData);
     }
 
-    let nameCollection;
-    if(esBalanceGeneral) {
-        nameCollection = import.meta.env.VITE_NOMBRE_COLECION;
-    } else {
-        nameCollection = import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
-    }
+    //Guardar en Firebase
     const handleAgregar = async () => {
         const dataCleaned = cleanBalanceData(balanceData);
+        let nameCollection;
+        if(esBalanceGeneral) {
+            nameCollection = import.meta.env.VITE_NOMBRE_COLECION;
+        } else {
+            nameCollection = import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
+        }
         await agregarDocumento(nameCollection, balanceData.fecha.anio.toString(), dataCleaned);
         setBalanceData(initialBalanceData);
+        alert("Datos guardados correctamente");
     }
 
     return (
@@ -233,7 +232,7 @@ const BalanceGeneral = ({estado}) => {
                             <input type="text"
                                 placeholder="Ingresar nombre de la empresa"
                                 className="text-center"
-                                value={balanceData.name_empresa}
+                                value={balanceData.name_empresa || ""}
                                 onChange={(e) => inputNameEmpresa(e)}
                             />
                         </th>
@@ -241,13 +240,9 @@ const BalanceGeneral = ({estado}) => {
                     <tr>
                         <th colSpan={6}>
                         <input
-                            type="date"
+                            type="text"
                             className="text-center"
-                            value={
-                                balanceData.fecha.anio && balanceData.fecha.mes && balanceData.fecha.dia
-                                    ? `${balanceData.fecha.anio}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(balanceData.fecha.dia).padStart(2, '0')}`   
-                                    : ""
-                            }
+                            value={`${String(balanceData.fecha.anio).padStart(4, "0000")}-${String(balanceData.fecha.mes).padStart(2, '0')}-${String(balanceData.fecha.dia).padStart(2, '0')}`}
                             onChange={(e) => inputDateEmpresa(e)}
                         />
 

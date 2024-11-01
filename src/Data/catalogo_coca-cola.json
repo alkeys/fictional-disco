@@ -3,9 +3,9 @@
         "name": "Balance General",
         "name_empresa": "",
         "fecha": {
-            "dia": 0,
-            "mes": 0,
-            "anio": 0
+            "dia": "",
+            "mes": "",
+            "anio": ""
         },
         "Activos": {
             "Activos Corrientes": {
