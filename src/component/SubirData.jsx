@@ -28,14 +28,14 @@ export const SubirData = () => {
         <div>
             <button onClick={hadleobtener}>
                 <div>
-    <span>
-      <p>Subir</p><p>:)</p>
-    </span>
+                    <span>
+                        <p>Subir</p><p>:)</p>
+                    </span>
                 </div>
                 <div>
-    <span>
-      <p>Subir</p><p>!!</p>
-    </span>
+                    <span>
+                        <p>Subir</p><p>!!</p>
+                    </span>
                 </div>
             </button>
         </div>

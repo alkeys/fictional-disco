@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { agregarDocumento ,obtenerDocumentos,actualizarDocumento} from "../Services/Firebase/Crudfirebase.js";  
 
 const BalanceGeneral = ({estado}) => {
     const initialBalanceData = estado ? { ...estado } : null; // Estado inicial
@@ -203,6 +204,18 @@ const BalanceGeneral = ({estado}) => {
         a.href = url;
         a.download = "estados.json";
         a.click();
+        setBalanceData(initialBalanceData);
+    }
+
+    let nameCollection;
+    if(esBalanceGeneral) {
+        nameCollection = import.meta.env.VITE_NOMBRE_COLECION;
+    } else {
+        nameCollection = import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
+    }
+    const handleAgregar = async () => {
+        const dataCleaned = cleanBalanceData(balanceData);
+        await agregarDocumento(nameCollection, balanceData.fecha.anio.toString(), dataCleaned);
         setBalanceData(initialBalanceData);
     }
 
@@ -451,7 +464,7 @@ const BalanceGeneral = ({estado}) => {
             <div className="text-center mt-4">
                 <button
                     className="p-2 bg-blue-500 text-white rounded"
-                    onClick={handleSaveToFile}
+                    onClick={handleAgregar}
                 >
                     Guardar
                 </button>
