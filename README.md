@@ -23,4 +23,4 @@
 ```shell
     npm run preview
 ```
-[![vista-pagina-en-construccion.jpg](https://i.postimg.cc/cHw4ZrgM/vista-pagina-en-construccion.jpg)](https://postimg.cc/r0yLNy9K)
+[![imagen.png](https://i.postimg.cc/5ts1X9yV/imagen.png)](https://postimg.cc/d7ZgXYGH)
