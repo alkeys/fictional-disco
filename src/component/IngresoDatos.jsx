@@ -240,7 +240,7 @@ const BalanceGeneral = ({estado}) => {
                     <tr>
                         <th colSpan={6}>
                         <input
-                            type="text"
+                            type="date"
                             className="text-center"
                             value={`${String(balanceData.fecha.anio).padStart(4, "0000")}-${String(balanceData.fecha.mes).padStart(2, '0')}-${String(balanceData.fecha.dia).padStart(2, '0')}`}
                             onChange={(e) => inputDateEmpresa(e)}
