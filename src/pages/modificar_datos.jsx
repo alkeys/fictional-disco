@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import catalogo_cuentas from "../Data/catalogo_coca-cola.json";
 import { obtenerDocumentosall } from "../Services/Firebase/Crudfirebase";
 import ButtonAtras from "../component/ButtonAtras";
-import BalanceGeneral from "../component/ModificarDatos2";
+import BalanceGeneral from "../component/ModificarDatos";
 
 export const ModificarDatos = () => {
     const [data, setData] = useState([]);
@@ -100,12 +100,12 @@ export const ModificarDatos = () => {
                     <p className="mt-3">&nbsp;</p>
                 )}
             </div>
-            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white pb-6 min-h-screen">
+            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white min-h-screen">
                 {seleccionCatalogo && documento && (
                     <BalanceGeneral
                         estado={data.find(item => item.name === seleccionCatalogo)}
                         anio={seleccionAnio}
-                        document={documento}
+                        documento={documento}
                     />
                 )}
             </div>
