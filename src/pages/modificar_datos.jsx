@@ -32,7 +32,7 @@ export const ModificarDatos = () => {
             if (!nameCollection) {
                 console.error("El nombre de la colección es vacío.");
                 return;
-            }
+            }   
 
             const obtenerDocumentos = async () => {
                 try {
@@ -73,7 +73,7 @@ export const ModificarDatos = () => {
     };
 
     return (
-        <div className="bg-red-700  pb-6 h-screen flex flex-col">
+        <div className="bg-red-700 pb-6 flex flex-col">
             <ButtonAtras />
             <div className="flex flex-col text-center px-10 py-4 bg-red-700">
                 <h1 className="text-5xl font-bold mb-6 text-white">Modificación de Datos</h1>
@@ -86,17 +86,21 @@ export const ModificarDatos = () => {
                         ))}
                     </select>
                 </section>
-                <section className="flex items-center justify-center mt-3">
-                    <label htmlFor="select_anio" className="px-2 text-white">Seleccione Año:</label>
-                    <select id="select_anio" className="border rounded w-36 ml-5" value={seleccionAnio || ""} onChange={handleAnio}>
-                        <option value="">Seleccionar</option>
-                        {documentos && documentos.map((doc, index) => (
-                            <option key={index} value={doc.id}>{doc.id}</option>
-                        ))}
-                    </select>
-                </section>
+                {documentos.length ? (
+                    <section className="flex items-center justify-center mt-3">
+                        <label htmlFor="select_anio" className="px-2 text-white">Seleccione Año:</label>
+                        <select id="select_anio" className="border rounded w-36 ml-5" value={seleccionAnio || ""} onChange={handleAnio}>
+                            <option value="">Seleccionar</option>
+                            {documentos && documentos.map((doc, index) => (
+                                <option key={index} value={doc.id}>{doc.id}</option>
+                            ))}
+                        </select>
+                    </section>
+                ) : (
+                    <p className="mt-3">&nbsp;</p>
+                )}
             </div>
-            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white  pb-6 h-screen flex flex-col">
+            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white pb-6">
                 {seleccionCatalogo && documento && (
                     <BalanceGeneral
                         estado={data.find(item => item.name === seleccionCatalogo)}
