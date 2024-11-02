@@ -152,6 +152,10 @@ export const analisisHorizontal = (periodo1, periodo2) => {
     return (((periodo2) / periodo1)-1) * 100;
 }
 
+export const  AnalisiHorizontal2Variacion = (periodo1, periodo2) => {
+    return (periodo2 - periodo1);
+}
+
 /**
  * Calcula el punto de equilibrio en unidades.
  *
