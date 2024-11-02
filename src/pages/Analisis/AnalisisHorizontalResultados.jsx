@@ -13,20 +13,20 @@ const EstadoResultadosConAnalisis = ({ estadoActual, anioActual, estadoAnterior,
     const calcularVariacion = (valor1, valor2) => AnalisiHorizontal2Variacion(valor1, valor2);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-red-800 p-8">
-            <h1 className="text-5xl font-bold text-white mb-6" style={{ fontFamily: 'Cursive' }}>
+        <div className="min-h-screen flex flex-col items-center justify-center bg-red-800 p-4 sm:p-8">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6" style={{fontFamily: 'Cursive'}}>
                 Análisis Horizontal Del Estado Resultados {anioActual} - {anioAnterior}
             </h1>
 
-            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
+            <div className="bg-white shadow-lg rounded-lg p-4 sm:p-8 w-full max-w-4xl overflow-x-auto">
                 <table className="table-auto w-full mb-8">
                     <thead>
                     <tr>
-                        <th className="border px-4 py-2">Cuenta</th>
-                        <th className="border px-4 py-2 text-right">{anioActual}</th>
-                        <th className="border px-4 py-2 text-right">{anioAnterior}</th>
-                        <th className="border px-4 py-2 text-right">Var.Rel (%)</th>
-                        <th className="border px-4 py-2 text-right">Var.Abs ($)</th>
+                        <th className="border px-2 sm:px-4 py-2">Cuenta</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{anioActual}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{anioAnterior}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var.Rel (%)</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var.Abs ($)</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -40,17 +40,17 @@ const EstadoResultadosConAnalisis = ({ estadoActual, anioActual, estadoAnterior,
 
                         return (
                             <tr key={index} className="bg-gray-100">
-                                <td className="border px-4 py-2">{key}</td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2">{key}</td>
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valorActual.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valorAnterior.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     {porcentaje.toFixed(2)}%
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${variacion.toLocaleString()}
                                 </td>
                             </tr>
@@ -60,6 +60,7 @@ const EstadoResultadosConAnalisis = ({ estadoActual, anioActual, estadoAnterior,
                 </table>
             </div>
         </div>
+
     );
 };
 

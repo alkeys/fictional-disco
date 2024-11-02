@@ -27,30 +27,33 @@ export function Analisis() {
 const Header = ({ changeScreen }) => {
     return (
         <div
-            className="bg-red-600 text-white flex flex-col justify-center items-center py-4 shadow-lg sticky top-0 z-10">
-            <h1 className="font-bold text-lg">Análisis de Datos</h1>
-            <p className="mt-2 text-sm">Energía pura para tu análisis financiero.</p>
-            <nav className="space-x-4">
+            className="bg-red-600 text-white flex flex-col sm:flex-row justify-between items-center py-4 shadow-lg sticky top-0 z-10">
+            <div className="lg:ml-20 text-center sm:text-left">
+                <h1 className="font-bold text-lg">Análisis de Datos</h1>
+                <p className="mt-2 text-sm">Energía pura para tu análisis financiero.</p>
+            </div>
+            <nav className="mt-4 lg:mr-20 sm:mt-0 flex flex-wrap justify-center sm:justify-end space-x-4">
                 <button
                     onClick={() => changeScreen('screen1')}
                     className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition duration-300"
                 >
-                    Analisis Vertical
+                    Análisis Vertical
                 </button>
                 <button
                     onClick={() => changeScreen('screen2')}
                     className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition duration-300"
                 >
-                    Analisis Horizontal
+                    Análisis Horizontal
                 </button>
                 <button
                     onClick={() => changeScreen('screen3')}
                     className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition duration-300"
                 >
-                    Analisis de Dupont
+                    Análisis de Dupont
                 </button>
             </nav>
         </div>
+
     );
 };
 
@@ -60,7 +63,6 @@ const Screen1 = () => (
         <p className="mt-4">Hola esta es una prueva xd</p>
     </div>
 );
-
 
 
 const Screen3 = () => (

@@ -36,24 +36,25 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
     const calcularVariacion = (valor1, valor2) => AnalisiHorizontal2Variacion(valor1, valor2);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-red-800 p-8">
-            <h1 className="text-5xl font-bold text-white mb-6" style={{ fontFamily: 'Cursive' }}>
+
+        <div className="min-h-screen flex flex-col items-center justify-center bg-red-800 p-4 sm:p-8">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6" style={{fontFamily: 'Cursive'}}>
                 Análisis Horizontal Del Balance {year1} - {year2}
             </h1>
 
-            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-4xl">
+            <div className="bg-white shadow-lg rounded-lg p-4 sm:p-8 w-full max-w-4xl overflow-x-auto">
                 {/* Activos */}
-                <h2 className="text-3xl font-bold text-red-600 mb-4">Activos</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-red-600 mb-4">Activos</h2>
 
-                <h3 className="text-xl font-semibold text-black mb-2">Activos Corrientes</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-black mb-2">Activos Corrientes</h3>
                 <table className="table-auto w-full mb-8">
                     <thead>
                     <tr>
-                        <th className="border px-4 py-2">Cuenta</th>
-                        <th className="border px-4 py-2 text-right">{year1}</th>
-                        <th className="border px-4 py-2 text-right">{year2}</th>
-                        <th className="border px-4 py-2 text-right">{Valor1}</th>
-                        <th className="border px-4 py-2 text-right">{Valor2}</th>
+                        <th className="border px-2 sm:px-4 py-2">Cuenta</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year1}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year2}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Rel.</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Abs.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -64,17 +65,17 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                         const variacion = calcularVariacion(valor1, valor2);
                         return (
                             <tr key={index} className="bg-gray-100">
-                                <td className="border px-4 py-2">{key}</td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2">{key}</td>
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor1.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor2.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     {porcentaje.toFixed(2)}%
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${variacion.toLocaleString()}
                                 </td>
                             </tr>
@@ -83,15 +84,15 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                     </tbody>
                 </table>
 
-                <h3 className="text-xl font-semibold text-black mb-2">Activos No Corrientes</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-black mb-2">Activos No Corrientes</h3>
                 <table className="table-auto w-full mb-8">
                     <thead>
                     <tr>
-                        <th className="border px-4 py-2">Cuenta</th>
-                        <th className="border px-4 py-2 text-right">{year1}</th>
-                        <th className="border px-4 py-2 text-right">{year2}</th>
-                        <th className="border px-4 py-2 text-right">{Valor1}</th>
-                        <th className="border px-4 py-2 text-right">{Valor2}</th>
+                        <th className="border px-2 sm:px-4 py-2">Cuenta</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year1}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year2}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Rel.</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Abs.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -102,17 +103,17 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                         const variacion = calcularVariacion(valor1, valor2);
                         return (
                             <tr key={index} className="bg-gray-100">
-                                <td className="border px-4 py-2">{key}</td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2">{key}</td>
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor1.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor2.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     {porcentaje.toFixed(2)}%
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${variacion.toLocaleString()}
                                 </td>
                             </tr>
@@ -122,17 +123,17 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                 </table>
 
                 {/* Pasivos */}
-                <h2 className="text-3xl font-bold text-red-600 mb-4">Pasivos</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-red-600 mb-4">Pasivos</h2>
 
-                <h3 className="text-xl font-semibold text-black mb-2">Pasivos Corrientes</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-black mb-2">Pasivos Corrientes</h3>
                 <table className="table-auto w-full mb-8">
                     <thead>
                     <tr>
-                        <th className="border px-4 py-2">Cuenta</th>
-                        <th className="border px-4 py-2 text-right">{year1}</th>
-                        <th className="border px-4 py-2 text-right">{year2}</th>
-                        <th className="border px-4 py-2 text-right">{Valor1}</th>
-                        <th className="border px-4 py-2 text-right">{Valor2}</th>
+                        <th className="border px-2 sm:px-4 py-2">Cuenta</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year1}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year2}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Rel.</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Abs.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -143,17 +144,17 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                         const variacion = calcularVariacion(valor1, valor2);
                         return (
                             <tr key={index} className="bg-gray-100">
-                                <td className="border px-4 py-2">{key}</td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2">{key}</td>
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor1.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor2.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     {porcentaje.toFixed(2)}%
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${variacion.toLocaleString()}
                                 </td>
                             </tr>
@@ -162,15 +163,15 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                     </tbody>
                 </table>
 
-                <h3 className="text-xl font-semibold text-black mb-2">Pasivos No Corrientes</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-black mb-2">Pasivos No Corrientes</h3>
                 <table className="table-auto w-full mb-8">
                     <thead>
                     <tr>
-                        <th className="border px-4 py-2">Cuenta</th>
-                        <th className="border px-4 py-2 text-right">{year1}</th>
-                        <th className="border px-4 py-2 text-right">{year2}</th>
-                        <th className="border px-4 py-2 text-right">Var.Rel</th>
-                        <th className="border px-4 py-2 text-right">Var.Abs</th>
+                        <th className="border px-2 sm:px-4 py-2">Cuenta</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year1}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year2}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Rel.</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Abs.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -181,17 +182,17 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                         const variacion = calcularVariacion(valor1, valor2);
                         return (
                             <tr key={index} className="bg-gray-100">
-                                <td className="border px-4 py-2">{key}</td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2">{key}</td>
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor1.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor2.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     {porcentaje.toFixed(2)}%
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${variacion.toLocaleString()}
                                 </td>
                             </tr>
@@ -201,15 +202,15 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                 </table>
 
                 {/* Capital */}
-                <h2 className="text-3xl font-bold text-red-600 mb-4">Capital</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-red-600 mb-4">Capital</h2>
                 <table className="table-auto w-full mb-8">
                     <thead>
                     <tr>
-                        <th className="border px-4 py-2">Cuenta</th>
-                        <th className="border px-4 py-2 text-right">{year1}</th>
-                        <th className="border px-4 py-2 text-right">{year2}</th>
-                        <th className="border px-4 py-2 text-right">{Valor1}</th>
-                        <th className="border px-4 py-2 text-right">{Valor2}</th>
+                        <th className="border px-2 sm:px-4 py-2">Cuenta</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year1}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">{year2}</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Rel.</th>
+                        <th className="border px-2 sm:px-4 py-2 text-right">Var. Abs.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -220,17 +221,17 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                         const variacion = calcularVariacion(valor1, valor2);
                         return (
                             <tr key={index} className="bg-gray-100">
-                                <td className="border px-4 py-2">{key}</td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2">{key}</td>
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor1.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${valor2.toLocaleString()}
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     {porcentaje.toFixed(2)}%
                                 </td>
-                                <td className="border px-4 py-2 text-right text-red-600 font-semibold">
+                                <td className="border px-2 sm:px-4 py-2 text-right text-red-600 font-semibold">
                                     ${variacion.toLocaleString()}
                                 </td>
                             </tr>
@@ -240,5 +241,7 @@ export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
                 </table>
             </div>
         </div>
+
+
     );
 }
