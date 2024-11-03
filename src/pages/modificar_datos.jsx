@@ -108,7 +108,7 @@ export const ModificarDatos = () => {
                     <p className="mt-3">&nbsp;</p>
                 )}
             </div>
-            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white min-h-screen">
+            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white">
                 {seleccionCatalogo && documento && (
                     <BalanceGeneral
                         estado={data.find(item => item.name === seleccionCatalogo)}
