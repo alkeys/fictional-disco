@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { actualizarDocumento } from "../Services/Firebase/Crudfirebase";
+import { actualizarDocumento, agregarDocumento, eliminarDocumento } from "../Services/Firebase/Crudfirebase";
 
-const BalanceGeneral = ({estado, anio, documento}) => {
+const BalanceGeneral = ({estado, anio, documento, onAgregar}) => {
     const initialDocumento = documento ? { ...documento } : null; // Estado inicial
     const [document, setDocument] = useState(initialDocumento);
 
@@ -154,15 +154,31 @@ const BalanceGeneral = ({estado, anio, documento}) => {
 
     const handleAgregar = async () => {
         const dataCleaned = cleanBalanceData(document);
-        let nameCollection;
-        if(esBalanceGeneral) {
-            nameCollection = import.meta.env.VITE_NOMBRE_COLECION;
+        const nameCollection = estado.name === "Balance General"
+            ? import.meta.env.VITE_NOMBRE_COLECION
+            : import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
+    
+        // Actualizar el campo "id" dentro de dataCleaned en lugar de document directamente
+        dataCleaned.id = document.fecha.anio.toString();
+    
+        if (document.fecha.anio === anio) {
+            console.log("actualizar");
+            await actualizarDocumento(nameCollection, dataCleaned.id, dataCleaned);
         } else {
-            nameCollection = import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
+            console.log("agregar y eliminar");
+            await agregarDocumento(nameCollection, dataCleaned.id, dataCleaned);
+            await eliminarDocumento(nameCollection, anio.toString());
         }
-        await actualizarDocumento(nameCollection, anio.toString(), dataCleaned);
+    
+        // Actualizar el estado con el nuevo documento
+        setDocument({ ...document, id: dataCleaned.id });
         alert("Datos actualizados correctamente");
-    }
+
+        if (onAgregar) {
+            onAgregar(); // Ejecuta la función para volver a obtener los documentos
+        }
+    };
+    
 
     const esBalanceGeneral = estado.name === "Balance General" ? true : false;
 

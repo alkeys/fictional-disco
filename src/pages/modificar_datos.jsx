@@ -28,7 +28,6 @@ export const ModificarDatos = () => {
                 ? import.meta.env.VITE_NOMBRE_COLECION 
                 : import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
 
-            // Asegúrate de que la colección no sea una cadena vacía
             if (!nameCollection) {
                 console.error("El nombre de la colección es vacío.");
                 return;
@@ -72,6 +71,15 @@ export const ModificarDatos = () => {
         setSeleccionAnio(event.target.value);
     };
 
+    // Nueva función para obtener documentos
+    const obtenerDocumentos = async () => {
+        const nameCollection = esBalanceGeneral 
+            ? import.meta.env.VITE_NOMBRE_COLECION 
+            : import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
+        const docs = await obtenerDocumentosall(nameCollection);
+        setDocumentos(docs || []);
+    };
+
     return (
         <div className="bg-red-700 pb-6 flex flex-col min-h-screen">
             <ButtonAtras />
@@ -106,12 +114,14 @@ export const ModificarDatos = () => {
                         estado={data.find(item => item.name === seleccionCatalogo)}
                         anio={seleccionAnio}
                         documento={documento}
+                        onAgregar={obtenerDocumentos} // Pasa el callback
                     />
                 )}
             </div>
         </div>
     );
 };
+
 
 
 
