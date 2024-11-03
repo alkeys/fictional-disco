@@ -13,7 +13,7 @@ const BalanceGeneral = ({estado}) => {
     }, [estado]);
 
     useEffect(() => {
-        if (balanceData) {
+        if (balanceData && esBalanceGeneral) {
             const nuevosTotales = calcularTotales(balanceData);
             setTotales(nuevosTotales);
         }
