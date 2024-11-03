@@ -4,12 +4,20 @@ import { agregarDocumento} from "../Services/Firebase/Crudfirebase.js";
 const BalanceGeneral = ({estado}) => {
     const initialBalanceData = estado ? { ...estado } : null; // Estado inicial
     const [balanceData, setBalanceData] = useState(initialBalanceData);
+    const [totales, setTotales] = useState({ totalActivosCorrientes: 0, totalActivosNoCorrientes: 0 });
 
     useEffect(() => {
         if (estado) {
             setBalanceData({...estado}); // Cargar el balance inicial cuando estado esté disponible
         }
     }, [estado]);
+
+    useEffect(() => {
+        if (balanceData) {
+            const nuevosTotales = calcularTotales(balanceData);
+            setTotales(nuevosTotales);
+        }
+    }, [balanceData]);
 
     if (!balanceData) {
         return <p className="text-center">Cargando datos del balance...</p>;
@@ -85,19 +93,66 @@ const BalanceGeneral = ({estado}) => {
     
             // Asignar el nuevo valor en la última clave
             temp[keys[keys.length - 1]] = value;
-    
+
             return newData;
         });
+
     };
-    
-    
+
+    // Calcular totales activos, pasivos y patrimonio
+    const calcularTotales = (data) => {
+        let totalActivosCorrientes = 0;
+        let totalActivosNoCorrientes = 0;
+        let totalActivos = 0;
+        let totalPasivos = 0;
+        let totalPatrimonio = 0;
+
+        Object.keys(data).splice(3).forEach((key1) => {
+            if (key1 === "Activos") {
+                Object.keys(data[key1]).forEach((key2) => {
+                    if (key2 === "Activos Corrientes") {
+                        Object.keys(data[key1][key2]).forEach((key3) => {
+                            const valor = Number(data[key1][key2][key3]);
+                            if (!isNaN(valor) && key3 !== "Total activos corrientes") {
+                                totalActivosCorrientes += valor;
+                            }
+                        });
+                    } else if (key2 === "Activos No Corrientes") {
+                        Object.keys(data[key1][key2]).forEach((key3) => {
+                            const valor = Number(data[key1][key2][key3]);
+                            if (!isNaN(valor) && key3 !== "Total activos no corrientes") {
+                                totalActivosNoCorrientes += valor;
+                            }
+                        });
+                    }
+                });
+            } else if (key1 === "Pasivo y Capital") {
+                Object.keys(data[key1]).forEach((key2) => {
+                    console.log(key2);
+
+                    // Falta terminar logica
+
+
+                });
+            }
+        });
+
+        data.Activos["Activos Corrientes"]["Total activos corrientes"] = totalActivosCorrientes;
+        data.Activos["Activos No Corrientes"]["Total activos no corrientes"] = totalActivosNoCorrientes;
+        data.Activos["Total Activos"] = totalActivosCorrientes + totalActivosNoCorrientes;
+
+        console.log(data["Total Activos"]);
+
+        return { totalActivosCorrientes, totalActivosNoCorrientes };
+    };
+
 
     const inputNameEmpresa = (e) => {
         const newBalanceData = { ...balanceData };
         newBalanceData.name_empresa = e.target.value;
         setBalanceData(newBalanceData);
         //console.log(newBalanceData);
-    }
+    };
 
     const inputDateEmpresa = (e) => {
         const newBalanceData = { ...balanceData };
@@ -297,15 +352,29 @@ const BalanceGeneral = ({estado}) => {
                                             <td colSpan={3} className="px-4">
                                                 <strong>{key2}</strong>
                                             </td>
-                                            <td>&nbsp;</td>
-                                            <td>
-                                                <button
-                                                    className="ml-2 p-1 bg-green-500 text-white rounded px-3"
-                                                    onClick={() => handleAddAccount(key1, key2)}
-                                                >
-                                                    +
-                                                </button>
-                                            </td>
+                                            {key2 === "Total Activos" ? (
+                                                <td>{balanceData[key1][key2]}</td>
+                                            ) : (
+                                                <td>&nbsp;</td>
+                                            )}
+                                            {key2 === "Total Activos" || key2 === "Total Pasivos" || key2 === "Total Capital" || key2 === "Total Pasivos y Capital" ? (
+                                                <td>&nbsp;</td>
+                                            ) : (
+                                                balanceData[key1][key2] && typeof balanceData[key1][key2] === 'object' && Object.keys(balanceData[key1][key2]).length > 0 ? (
+                                                    // Si `key2` tiene subcuentas, no mostramos el input
+                                                    <td>&nbsp;</td>
+                                                ) : (
+                                                    // Si `key2` no tiene subcuentas, mostramos el input
+                                                    <td>
+                                                        <input
+                                                            type="number"
+                                                            value={balanceData[key1][key2]}
+                                                            onChange={(e) => handleInputChange(e, key1, key2)}
+                                                            className="border border-black rounded px-2 w-16 md:w-56"
+                                                        />
+                                                    </td>
+                                                )
+                                            )}
                                         </tr>
                                         {balanceData[key1][key2] && typeof balanceData[key1][key2] === 'object' && Object.keys(balanceData[key1][key2]).length > 0 ? (
                                             Object.keys(balanceData[key1][key2]).map((key3, index3) => (
