@@ -192,7 +192,7 @@ const BalanceGeneral = ({estado}) => {
             if (day && monthText && year) {
                 newBalanceData.fecha = {
                     dia: parseInt(day, 10),
-                    mes: monthText,
+                    mes: parseInt(month, 10),
                     anio: parseInt(year, 10),
                 };
                 setBalanceData(newBalanceData);
@@ -319,7 +319,9 @@ const BalanceGeneral = ({estado}) => {
                         <input
                             type="date"
                             className="text-center"
-                            value={`${String(balanceData.fecha.anio).padStart(4, "0000")}-${String(balanceData.fecha.mes).padStart(2, '0')}-${String(balanceData.fecha.dia).padStart(2, '0')}`}
+                            value={balanceData.fecha.anio !== "0000" && balanceData.fecha.mes !== "00" && balanceData.fecha.dia !== "00"
+                                ? `${String(balanceData.fecha.anio)}-${String(balanceData.fecha.mes).padStart(2, '0')}-${String(balanceData.fecha.dia).padStart(2, '0')}`
+                                : ""}
                             onChange={(e) => inputDateEmpresa(e)}
                         />
 
