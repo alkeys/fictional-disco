@@ -4,7 +4,7 @@ import { agregarDocumento} from "../Services/Firebase/Crudfirebase.js";
 const BalanceGeneral = ({estado}) => {
     const initialBalanceData = estado ? { ...estado } : null; // Estado inicial
     const [balanceData, setBalanceData] = useState(initialBalanceData);
-    const [totales, setTotales] = useState({ totalActivosCorrientes: 0, totalActivosNoCorrientes: 0 });
+    const [totales, setTotales] = useState({ totalActivosCorrientes: 0, totalActivosNoCorrientes: 0, totalPasivosCorrientes: 0, totalPasivosNoCorrientes: 0, totalPasivos: 0, totalPatrimonio: 0 });
 
     useEffect(() => {
         if (estado) {
@@ -103,9 +103,11 @@ const BalanceGeneral = ({estado}) => {
     const calcularTotales = (data) => {
         let totalActivosCorrientes = 0;
         let totalActivosNoCorrientes = 0;
-        let totalActivos = 0;
+        let totalPasivosCorrientes = 0;
+        let totalPasivosNoCorrientes = 0;
         let totalPasivos = 0;
         let totalPatrimonio = 0;
+        let totalAxu = 0;
 
         Object.keys(data).splice(3).forEach((key1) => {
             if (key1 === "Activos") {
@@ -128,11 +130,28 @@ const BalanceGeneral = ({estado}) => {
                 });
             } else if (key1 === "Pasivo y Capital") {
                 Object.keys(data[key1]).forEach((key2) => {
-                    console.log(key2);
-
-                    // Falta terminar logica
-
-
+                    if (key2 === "Pasivos Corrientes") {
+                        Object.keys(data[key1][key2]).forEach((key3) => {
+                            const valor = Number(data[key1][key2][key3]);
+                            if (!isNaN(valor) && key3 !== "Total pasivos corrientes") {
+                                totalPasivosCorrientes += valor;
+                            }
+                        });
+                    } else if (key2 === "Pasivos No Corrientes") {
+                        Object.keys(data[key1][key2]).forEach((key3) => {
+                            const valor = Number(data[key1][key2][key3]);
+                            if (!isNaN(valor) && key3 !== "Total pasivos no corrientes") {
+                                totalPasivosNoCorrientes += valor;
+                            }
+                        });
+                    } else if (key2 === "Capital") {
+                        Object.keys(data[key1][key2]).forEach((key3) => {
+                            const valor = Number(data[key1][key2][key3]);
+                            if (!isNaN(valor) && key3 !== "Total capital") {
+                                totalPatrimonio += valor;
+                            }
+                        });
+                    }
                 });
             }
         });
@@ -140,10 +159,13 @@ const BalanceGeneral = ({estado}) => {
         data.Activos["Activos Corrientes"]["Total activos corrientes"] = totalActivosCorrientes;
         data.Activos["Activos No Corrientes"]["Total activos no corrientes"] = totalActivosNoCorrientes;
         data.Activos["Total Activos"] = totalActivosCorrientes + totalActivosNoCorrientes;
+        data["Pasivo y Capital"]["Pasivos Corrientes"]["Total pasivos corrientes"] = totalPasivosCorrientes;
+        data["Pasivo y Capital"]["Pasivos No Corrientes"]["Total pasivos no corrientes"] = totalPasivosNoCorrientes;
+        data["Pasivo y Capital"]["Total Pasivos"] = totalPasivosCorrientes + totalPasivosNoCorrientes;
+        data["Pasivo y Capital"]["Total Capital"] = totalPatrimonio + totalAxu;
+        data["Pasivo y Capital"]["Total Pasivos y Capital"] = totalPasivosCorrientes + totalPasivosNoCorrientes + totalPatrimonio;
 
-        console.log(data["Total Activos"]);
-
-        return { totalActivosCorrientes, totalActivosNoCorrientes };
+        return { totalActivosCorrientes, totalActivosNoCorrientes, totalPasivosCorrientes, totalPasivosNoCorrientes, totalPasivos, totalPatrimonio };
     };
 
 
@@ -352,7 +374,7 @@ const BalanceGeneral = ({estado}) => {
                                             <td colSpan={3} className="px-4">
                                                 <strong>{key2}</strong>
                                             </td>
-                                            {key2 === "Total Activos" ? (
+                                            {key2 === "Total Activos" || key2 === "Total Pasivos" || key2 === "Total Capital" || key2 === "Total Pasivos y Capital" ? (
                                                 <td>{balanceData[key1][key2]}</td>
                                             ) : (
                                                 <td>&nbsp;</td>
