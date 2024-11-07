@@ -53,7 +53,7 @@ const HomePage = () => {
                     </NavLink>
 
                     <NavLink
-                        to="/balances"
+                        to="/VistaBalances"
                         className="rounded-lg shadow-lg p-6 text-white bg-gradient-to-r from-orange-500 to-orange-600 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                         aria-label="Ir a Balances Generales"
                     >
@@ -73,7 +73,7 @@ const HomePage = () => {
                     </NavLink>
 
                     <NavLink
-                        to="/cositas"
+                        to="/VistaBalances"
                         className="rounded-lg shadow-lg p-6 text-gray-900 bg-gradient-to-r from-gray-200 to-gray-400 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                         aria-label="Ir a Reportes"
                     >
