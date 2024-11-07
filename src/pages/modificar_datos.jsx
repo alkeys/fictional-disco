@@ -61,6 +61,8 @@ export const ModificarDatos = () => {
         } else {
             setEsBalanceGeneral(false); // Si no hay selección, asegúrate de que es false
         }
+        setSeleccionAnio(""); // Reiniciar la selección de año
+        setDocumento(null); // Reiniciar el documento
     }, [seleccionCatalogo]);
 
     const handleSeleccion = (event) => {
