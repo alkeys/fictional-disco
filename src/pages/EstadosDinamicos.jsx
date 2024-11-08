@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import { obtenerDocumentosall } from "../Services/Firebase/Crudfirebase";
 import ButtonAtras from "../component/ButtonAtras";
 import Estado from "../component/EstadoDinamico";
+import BotonDescargarImagen from "../component/ButtonImage";
+import BotonDescargarPDF from "../component/BotonDescargarPDF";
 
 export const EstadosDinamicos = () => {
     const location = useLocation();
@@ -50,7 +52,7 @@ export const EstadosDinamicos = () => {
                     <section className="flex items-center justify-center mt-3">
                         <label htmlFor="select_anio" className="px-2 text-white">Seleccione Año:</label>
                         <select id="select_anio" className="border rounded w-36 ml-5" value={seleccionAnio || ""} onChange={handleAnio}>
-                            <option value="">Seleccionar</option>
+                            <option value="" disabled>Seleccionar</option>
                             {documentos && documentos.map((doc, index) => (
                                 <option key={index} value={doc.id}>{doc.id}</option>
                             ))}
@@ -60,6 +62,16 @@ export const EstadosDinamicos = () => {
                     <p className="mt-3">&nbsp;</p>
                 )}
             </div>
+            {seleccionAnio && (
+                <div className="flex justify-center mt-2 mb-4">
+                    <section className="mx-3">
+                        <BotonDescargarImagen idElemento="tablaEstadoDinamico" />
+                    </section>
+                    <section className="mx-3">
+                        <BotonDescargarPDF idElemento="tablaEstadoDinamico" />
+                    </section>
+                </div>
+            )}
             <div className="flex justify-center">
                 <div className="w-full py-4 px-10 max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
                     {data && (
