@@ -16,7 +16,7 @@ export const VistaBalances = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {/* Balance Estático */}
                         <NavLink
-                            to="/balances"
+                            to="/balance"
                             className="rounded-lg shadow-lg p-6 m-4 bg-gradient-to-r from-orange-500 to-yellow-400 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                             aria-label="Ir a Balance Estático"
                         >
@@ -28,6 +28,7 @@ export const VistaBalances = () => {
                         {/* Balance Dinámico */}
                         <NavLink
                             to="/estados_dinamicos"
+                            state={{ typeEstado: "Balance General" }}
                             className="rounded-lg shadow-lg p-6 m-4 bg-gradient-to-r from-purple-500 to-pink-400 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                             aria-label="Ir a Balance Dinámico"
                         >
@@ -40,4 +41,5 @@ export const VistaBalances = () => {
             </div>
         </div>
     );
-}
+};
+

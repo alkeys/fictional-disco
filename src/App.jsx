@@ -26,9 +26,8 @@ const App = () => {
                 <Route path='/VistaBalances' element={<VistaBalances/>} />
                 <Route path='/VistaResultados' element={<VistaResultados/>} />
                 <Route path='/estados_dinamicos' element={<EstadosDinamicos/>} />
-            </Routes>
-{/*            Router de analisis financiero*/}
-            <Routes>
+            
+                {/*Router de analisis financiero*/}
                 <Route path="/Analisis-Estatico" element={<Analisis/>} />
             </Routes>
         </Router>
