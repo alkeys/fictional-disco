@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { obtenerDocumentosall } from "../Services/Firebase/Crudfirebase";
 import ButtonAtras from "../component/ButtonAtras";
 import Estado from "../component/EstadoDinamico";
-import BotonDescargarImagen from "../component/ButtonImage";
+import BotonDescargarImagen from "../component/BotonDescargarImagen";
 import BotonDescargarPDF from "../component/BotonDescargarPDF";
 
 export const EstadosDinamicos = () => {
