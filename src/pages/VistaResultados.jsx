@@ -27,7 +27,8 @@ export const VistaResultados = () => {
 
                         {/* Estado Dinámico */}
                         <NavLink
-                            to="/estado-resultados-dinamico"
+                            to="/estados_dinamicos"
+                            state={{ typeEstado: "Estado de Resultados" }}
                             className="rounded-lg shadow-lg p-6 m-4 bg-gradient-to-r from-teal-500 to-green-400 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                             aria-label="Ir a Estado Dinámico"
                         >
