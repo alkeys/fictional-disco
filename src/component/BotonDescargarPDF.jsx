@@ -51,10 +51,13 @@ const BotonDescargarPDF = ({ idElemento }) => {
   return (
     <button
       onClick={descargarPDF}
-      className="px-4 py-2 bg-green-500 text-white rounded"
+      className="rounded-lg shadow-lg px-8 py-2 bg-gradient-to-r from-teal-500 to-green-400 
+             hover:shadow-xl transition-transform transform hover:scale-105 
+             active:scale-95 active:shadow-md"
     >
       Descargar PDF
     </button>
+
   );
 };
 

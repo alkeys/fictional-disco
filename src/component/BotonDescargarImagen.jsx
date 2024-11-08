@@ -16,10 +16,13 @@ const BotonDescargarImagen = ({ idElemento }) => {
   return (
     <button
       onClick={descargarImagen}
-      className="rounded shadow-lg px-4 py-2 bg-gradient-to-r from-green-500 to-lime-400 hover:shadow-xl transition-transform transform hover:scale-105"
-      >
-        Descargar Imagen
+      className="rounded-lg shadow-lg px-4 py-2 bg-gradient-to-r from-green-500 to-lime-400 
+             hover:shadow-xl transition-transform transform hover:scale-105 
+             active:scale-95 active:shadow-md"
+    >
+      Descargar Imagen
     </button>
+
   );
 };
 
