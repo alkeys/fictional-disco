@@ -1,5 +1,5 @@
 import React from 'react';
-import { analisisHorizontal, AnalisiHorizontal2Variacion } from "../../Services/Formulas.js";
+import { analisisHorizontal, AnalisiHorizontal2Variacion } from "../../../Services/Formulas.js";
 
 export function AnalisisHorizontalBalance({ anio1, data1, anio2, data2 }) {
     const year1 = anio1;

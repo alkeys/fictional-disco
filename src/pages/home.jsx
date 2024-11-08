@@ -8,12 +8,16 @@ import ingresoImage from '../images/procesamiento-de-datos.png';
 import modificarImage from '../images/nota.png';
 import balancesImage from '../images/hoja-de-balance.png';
 import cocacolaImage from '../images/coca-cola.svg';
+import '../component/Animacion.css';
+import {Animacionxd} from "../component/Animacionxd.jsx";
 
 const HomePage = () => {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-red-700">
+ <Animacionxd></Animacionxd>
+
             <div className="bg-white shadow-lg rounded-lg p-8 max-w-5xl text-center">
-                <h1 className="text-6xl text-red-600 mb-4" style={{ fontFamily: 'LOKICOLA' }}>
+                <h1 className="text-6xl text-red-600 mb-4" style={{fontFamily: 'LOKICOLA'}}>
                     Bienvenido a CocaCola Financials
                 </h1>
                 <p className="text-gray-800 mb-8">
@@ -32,7 +36,7 @@ const HomePage = () => {
                         <p className="mt-2 text-sm">Potente y revitalizante, como Powerade.</p>
                     </NavLink>
 
-                     <NavLink
+                    <NavLink
                         to="/modificar-datos"
                         className="rounded-lg shadow-lg p-6 text-white bg-gradient-to-r from-black to-gray-800 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                         aria-label="Ir a Modificar Datos"

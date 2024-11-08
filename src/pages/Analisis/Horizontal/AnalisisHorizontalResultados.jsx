@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { analisisHorizontal, AnalisiHorizontal2Variacion } from "../../Services/Formulas.js";
+import { analisisHorizontal, AnalisiHorizontal2Variacion } from "../../../Services/Formulas.js";
 
 const EstadoResultadosConAnalisis = ({ estadoActual, anioActual, estadoAnterior, anioAnterior }) => {
 
