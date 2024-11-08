@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {Screen2} from "../../component/HorizontalSelecion.jsx";
 import {Dupont} from "./Dupont/Dupont.jsx";
 import ButtonAtras from "../../component/ButtonAtras.jsx";
 import DAnalisisVertical from "./Vertical/Dinamico/DAnalisisVertical.jsx";
+import DinamicoBalanceH from "./Horizontal/Dinamico/DinamicoBalanceH.jsx";
+import DinamicoResultadosH from "./Horizontal/Dinamico/DinamicoResultadosH.jsx";
+import {transformarDatosDinamicos, transformData} from "../../Services/Cositas.js";
+import AnalisisDupontDinamico from "./Dupont/AnalisisDupontDinamico.jsx";
+
+
+
 
 
 
@@ -22,7 +28,7 @@ export function AnalisisDinamico() {
 
             {/* Renderizado condicional de las pantallas */}
             <div className="p-6 text-center bg-red-800 ">
-                {activeScreen === 'screen1' && <Screen1 tipo={2} />}
+                {activeScreen === 'screen1' && <Screen1 />}
                 {activeScreen === 'screen2' && <Screen2 />}
                 {activeScreen === 'screen3' && <Screen3 />}
             </div>
@@ -75,6 +81,34 @@ const Screen1 = () => (
 );
 
 
+
+
+const Screen2 = () => {
+    const [view, setView] = useState('balance');
+
+    return (
+        <div>
+            <div className="flex justify-center mb-4">
+                <button
+                    onClick={() => setView('balance')}
+                    className={`px-4 py-2 rounded-full font-semibold transition duration-300 ${view === 'balance' ? 'bg-red-600 text-white' : 'bg-white text-red-600 hover:bg-red-500 hover:text-white'}`}
+                >
+                    Balance
+                </button>
+                <button
+                    onClick={() => setView('resultados')}
+                    className={`ml-4 px-4 py-2 rounded-full font-semibold transition duration-300 ${view === 'resultados' ? 'bg-red-600 text-white' : 'bg-white text-red-600 hover:bg-red-500 hover:text-white'}`}
+                >
+                    Estado de Resultados
+                </button>
+            </div>
+            {view === 'balance' && <DinamicoBalanceH data={transformData()} />}
+            {view === 'resultados' && <DinamicoResultadosH data={transformarDatosDinamicos()} />}
+        </div>
+    );
+};
+
+
 const Screen3 = () => (
-    <Dupont></Dupont>
+<AnalisisDupontDinamico></AnalisisDupontDinamico>
 );
