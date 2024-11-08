@@ -6,11 +6,12 @@ import {Balances} from "./pages/Balances.jsx";
 import {IngresoDatos} from "./pages/ingreso_datos.jsx";
 import {Resultados} from "./pages/Resultados.jsx";
 import {ModificarDatos} from "./pages/modificar_datos.jsx";
-import {Analisis} from "./pages/Analisis/Analisis.jsx";
 import {VistaBalances} from "./pages/VistaBalances.jsx";
 import {VistaResultados} from "./pages/VistaResultados.jsx";
 import {EstadosDinamicos} from "./pages/EstadosDinamicos.jsx";
 import {VistaAnalisis} from "./pages/Analisis/VistaAnalisis.jsx";
+import {AnalisisDinamico} from "./pages/Analisis/AnalisisDinamico.jsx";
+import {AnalisisEstatico} from "./pages/Analisis/AnalisisEstatico.jsx";
 
 
 const App = () => {
@@ -29,7 +30,8 @@ const App = () => {
             </Routes>
 {/*            Router de analisis financiero*/}
             <Routes>
-                <Route path="/Analisis-Estatico" element={<Analisis/>} />
+                <Route path="/Analisis-Estatico" element={<AnalisisEstatico/>} />
+                <Route path="/Analisis-Dinamico" element={<AnalisisDinamico/>} />
             </Routes>
         </Router>
     );

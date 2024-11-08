@@ -30,7 +30,7 @@ export function VistaAnalisis() {
 
                         {/* Balance Dinámico */}
                         <NavLink
-                            to="/ingreso-datos-dinamico"
+                            to="/Analisis-Dinamico"
                             className="rounded-lg shadow-lg p-6 m-4 bg-gradient-to-r from-purple-500 to-pink-400 hover:shadow-xl hover:scale-105 flex flex-col items-center transform transition-all duration-300 relative overflow-hidden"
                             aria-label="Ir a Balance Dinámico"
                         >

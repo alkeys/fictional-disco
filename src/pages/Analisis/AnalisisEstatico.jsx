@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import {Screen2} from "../../component/HorizontalSelecion.jsx";
 import {AnalisisVertical} from "./Vertical/AnalisisVertical.jsx";
 import {Dupont} from "./Dupont/Dupont.jsx";
+import ButtonAtras from "../../component/ButtonAtras.jsx";
 
 
-export function Analisis() {
+export function AnalisisEstatico() {
     const [activeScreen, setActiveScreen] = useState('screen1');
 
     const changeScreen = (screen) => {
@@ -30,6 +31,7 @@ const Header = ({ changeScreen }) => {
     return (
         <div
             className="bg-red-600 text-white flex flex-col sm:flex-row justify-between items-center py-4 shadow-lg sticky top-0 z-10">
+            <ButtonAtras/>
             <div className="lg:ml-20 text-center sm:text-left">
                 <h1 className="font-bold text-lg">Análisis de Datos</h1>
                 <p className="mt-2 text-sm">Energía pura para tu análisis financiero.</p>
