@@ -72,18 +72,19 @@ const EstadoResultados = ({ data }) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {Object.keys(analisis).map((key, index) => (
-                            <tr key={key} className={`hover:bg-red-100 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                                <td className="p-4 text-lg">{key}</td>
-                                <td className="p-4 text-lg">{data[year1][key]}</td>
-                                <td className="p-4 text-lg">{data[year2][key]}</td>
-                                <td className="p-4 text-lg">{analisis[key]}%</td>
+                        {Object.keys(analisis).slice(1).map((key, index) => (
+                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
+                                <td className="p-4 text-left text-lg">{key}</td>
+                                <td className="p-4 text-left text-lg">{data[year1][key]}</td>
+                                <td className="p-4 text-left text-lg">{data[year2][key]}</td>
+                                <td className="p-4 text-left text-lg">{analisis[key]}</td>
                             </tr>
                         ))}
                         </tbody>
                     </table>
                 </div>
             )}
+
         </div>
     );
 };
