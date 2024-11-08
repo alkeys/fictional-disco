@@ -27,7 +27,7 @@ export const VistaBalances = () => {
 
                         {/* Balance Dinámico */}
                         <NavLink
-                            to="/ingreso-datos-dinamico"
+                            to="/estados_dinamicos"
                             className="rounded-lg shadow-lg p-6 m-4 bg-gradient-to-r from-purple-500 to-pink-400 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                             aria-label="Ir a Balance Dinámico"
                         >

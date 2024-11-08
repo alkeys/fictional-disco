@@ -63,17 +63,17 @@ const HomePage = () => {
                     </NavLink>
 
                     <NavLink
-                        to="/estado-resultados"
-                        className="rounded-lg shadow-lg p-6 text-green-700 bg-gradient-to-r from-green-300 to-green-500 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
+                        to="/VistaResultados"
+                        className="rounded-lg shadow-lg p-6 text-black bg-gradient-to-r from-green-300 to-green-500 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                         aria-label="Ir a Estados de Resultados"
                     >
                         <img src={resultadosImage} className='h-16 mb-1'/>
-                        <h3 className="font-bold text-lg">Estado de Resultados</h3>
+                        <h3 className="font-bold text-lg">Estados de Resultados</h3>
                         <p className="mt-2 text-sm">Refrescante como Sprite.</p>
                     </NavLink>
 
                     <NavLink
-                        to="/VistaBalances"
+                        to="/VistaResultados"
                         className="rounded-lg shadow-lg p-6 text-gray-900 bg-gradient-to-r from-gray-200 to-gray-400 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
                         aria-label="Ir a Reportes"
                     >

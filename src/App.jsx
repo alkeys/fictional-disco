@@ -8,6 +8,8 @@ import {Resultados} from "./pages/Resultados.jsx";
 import {ModificarDatos} from "./pages/modificar_datos.jsx";
 import {Analisis} from "./pages/Analisis.jsx";
 import {VistaBalances} from "./pages/VistaBalances.jsx";
+import {VistaResultados} from "./pages/VistaResultados.jsx";
+import {EstadosDinamicos} from "./pages/EstadosDinamicos.jsx";
 
 
 const App = () => {
@@ -21,6 +23,8 @@ const App = () => {
                 <Route path="/modificar-datos" element={<ModificarDatos />} />
                 <Route path="/Analisis" element={<Analisis/>} />
                 <Route path='/VistaBalances' element={<VistaBalances/>} />
+                <Route path='/VistaResultados' element={<VistaResultados/>} />
+                <Route path='/estados_dinamicos' element={<EstadosDinamicos/>} />
             </Routes>
         </Router>
     );
