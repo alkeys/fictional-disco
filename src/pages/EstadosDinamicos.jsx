@@ -60,12 +60,14 @@ export const EstadosDinamicos = () => {
                     <p className="mt-3">&nbsp;</p>
                 )}
             </div>
-            <div className="flex flex-col text-center py-6 mx-3 px-3 md:mx-10 md:px-10 border rounded-lg bg-white">
-                {data && (
-                    <Estado
-                        estado={data || null}
-                    />
-                )}
+            <div className="flex justify-center">
+                <div className="w-full py-4 px-10 max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
+                    {data && (
+                        <Estado
+                            estado={data || null}
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
