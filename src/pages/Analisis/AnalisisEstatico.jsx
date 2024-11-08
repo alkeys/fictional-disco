@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {Screen2} from "../../component/HorizontalSelecion.jsx";
-import {AnalisisVertical} from "./Vertical/AnalisisVertical.jsx";
+import {AnalisisVertical} from "./Vertical/Estatico/AnalisisVertical.jsx";
 import {Dupont} from "./Dupont/Dupont.jsx";
 import ButtonAtras from "../../component/ButtonAtras.jsx";
 
@@ -62,7 +62,7 @@ const Header = ({ changeScreen }) => {
 };
 
 const Screen1 = () => (
-       <AnalisisVertical></AnalisisVertical>
+       <AnalisisVertical tipo={1}></AnalisisVertical>
 );
 
 

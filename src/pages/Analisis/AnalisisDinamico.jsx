@@ -1,25 +1,19 @@
 import React, {useEffect, useState} from "react";
 import {Screen2} from "../../component/HorizontalSelecion.jsx";
-import {AnalisisVertical} from "./Vertical/AnalisisVertical.jsx";
 import {Dupont} from "./Dupont/Dupont.jsx";
 import ButtonAtras from "../../component/ButtonAtras.jsx";
-import {obtenerDocumentosall} from "../../Services/Firebase/Crudfirebase";
+import DAnalisisVertical from "./Vertical/Dinamico/DAnalisisVertical.jsx";
+
+
 
 export function AnalisisDinamico() {
     const [activeScreen, setActiveScreen] = useState('screen1');
-    const [data, setData] = useState(null);
-    const [data2, setData2] = useState(null);
+
     const changeScreen = (screen) => {
         setActiveScreen(screen);
     };
 
 
-    useEffect(() => {
-        const nombreColecion1 =import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
-        const nombreColecion2 = import.meta.env.VITE_NOMBRE_COLECION;
-        setData(obtenerDocumentosall(nombreColecion1));
-        setData2(obtenerDocumentosall(nombreColecion2));
-    }, []);
 
     return (
         <div className="bg-white min-h-screen">
@@ -28,7 +22,7 @@ export function AnalisisDinamico() {
 
             {/* Renderizado condicional de las pantallas */}
             <div className="p-6 text-center bg-red-800 ">
-                {activeScreen === 'screen1' && <Screen1 />}
+                {activeScreen === 'screen1' && <Screen1 tipo={2} />}
                 {activeScreen === 'screen2' && <Screen2 />}
                 {activeScreen === 'screen3' && <Screen3 />}
             </div>
@@ -70,9 +64,14 @@ const Header = ({ changeScreen }) => {
 
     );
 };
-
+/**
+ *
+ * @param Tipo es si es estatico o dinamico
+ * @returns {React.JSX.Element}
+ * @constructor
+ */
 const Screen1 = () => (
-    <AnalisisVertical></AnalisisVertical>
+    <DAnalisisVertical ></DAnalisisVertical>
 );
 
 
