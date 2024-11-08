@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import {AnalisisHorizontalBalance} from "./Analisis/AnalisisHorizontalBalance.jsx";
-import {Screen2} from "../component/HorizontalSelecion.jsx";
+import {Screen2} from "../../component/HorizontalSelecion.jsx";
+import {AnalisisVertical} from "./Vertical/AnalisisVertical.jsx";
+import {Dupont} from "./Dupont/Dupont.jsx";
+
 
 export function Analisis() {
     const [activeScreen, setActiveScreen] = useState('screen1');
@@ -58,16 +60,10 @@ const Header = ({ changeScreen }) => {
 };
 
 const Screen1 = () => (
-    <div className="text-red-600 text-2xl font-bold">
-        <h2>Analisis Vertical</h2>
-        <p className="mt-4">Hola esta es una prueva xd</p>
-    </div>
+       <AnalisisVertical></AnalisisVertical>
 );
 
 
 const Screen3 = () => (
-    <div className="text-red-600 text-2xl font-bold">
-        <h2>Pantalla 3</h2>
-        <p className="mt-4">Contenido para la Pantalla 3</p>
-    </div>
+    <Dupont></Dupont>
 );

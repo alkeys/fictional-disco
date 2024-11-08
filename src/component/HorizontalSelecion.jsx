@@ -10,8 +10,8 @@ import Ejson22 from "../Data/Resultados/2022.json";
 import Ejson23 from "../Data/Resultados/2023.json";
 
 import { useState } from "react";
-import { AnalisisHorizontalBalance } from "../pages/Analisis/AnalisisHorizontalBalance.jsx";
-import AnalisisHorizontalResultados from "../pages/Analisis/AnalisisHorizontalResultados.jsx";
+import { AnalisisHorizontalBalance } from "../pages/Analisis/Horizontal/AnalisisHorizontalBalance.jsx";
+import AnalisisHorizontalResultados from "../pages/Analisis/Horizontal/AnalisisHorizontalResultados.jsx";
 
 export const Screen2 = () => {
     const [anio1, setAnio1] = useState("2019");
@@ -25,6 +25,8 @@ export const Screen2 = () => {
     return (
         <div className="flex flex-col items-center p-4 bg-red-900 text-red-50">
             <h2 className="text-3xl font-bold mb-6">Análisis Financiero</h2>
+    <h3 className="text-2xl font-bold mb-4">Cifras en millones de dólares</h3>
+
             <div className="flex flex-col sm:flex-row justify-center mb-4">
                 <div className="mr-4 mb-2 sm:mb-0">
                     <label className="mr-2">Año 1:</label>
