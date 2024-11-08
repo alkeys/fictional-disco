@@ -67,7 +67,6 @@ export const obtenerDocumentosall = async (nombreColeccion) => {
         querySnapshot.forEach((doc) => {
             documents.push({ id: doc.id, ...doc.data() });
         });
-        console.log("Documentos: ", documents);
         return documents;
     } catch (error) {
         console.error("Error al obtener los documentos: ", error);
