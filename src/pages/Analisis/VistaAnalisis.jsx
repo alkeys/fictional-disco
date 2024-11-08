@@ -2,10 +2,58 @@ import ButtonAtras from "../../component/ButtonAtras.jsx";
 import { NavLink } from "react-router-dom";
 import BalanceEstatico from "../../images/obediente.png";
 import BalanceDinamico from "../../images/documento.png";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Animacionxd} from "../../component/Animacionxd.jsx";
+import {obtenerDocumentosall} from "../../Services/Firebase/Crudfirebase.js";
 
 export function VistaAnalisis() {
+    const [estadosPorAnio, setEstadosPorAnio] = useState({});
+    const [balancesPorAnio, setBalancesPorAnio] = useState({});
+
+
+    useEffect(() => {
+        const nombreColecion1 = import.meta.env.VITE_NOMBRE_COLECION_ESTADOS;
+        const nombreColecion2 = import.meta.env.VITE_NOMBRE_COLECION;
+
+        const obtenerDatos = async () => {
+            try {
+                // Espera a que las funciones obtengan los datos
+                const DatosEstados = await obtenerDocumentosall(nombreColecion1);
+                const DatosBalances = await obtenerDocumentosall(nombreColecion2);
+
+                // Separar los balances por año
+                const balancesPorAnio = DatosBalances.reduce((acc, balance) => {
+                    const año = balance.fecha.anio;
+                    if (!acc[año]) {
+                        acc[año] = [];
+                    }
+                    acc[año].push(balance);
+                    return acc;
+                }, {});
+
+                // Separar los estados de resultados por año
+                const estadosPorAnio = DatosEstados.reduce((acc, estado) => {
+                    const año = estado.fecha.anio;
+                    if (!acc[año]) {
+                        acc[año] = [];
+                    }
+                    acc[año].push(estado);
+                    return acc;
+                }, {});
+
+                // Guarda los datos en localStorage
+                localStorage.setItem("BalancesPorAnio", JSON.stringify(balancesPorAnio));
+                localStorage.setItem("EstadosPorAnio", JSON.stringify(estadosPorAnio));
+            } catch (error) {
+                console.error("Error al obtener los documentos:", error);
+            }
+        };
+
+        obtenerDatos();
+    }, []);
+
+
+
     return (
         <div className="min-h-screen flex flex-col bg-red-700 relative overflow-hidden">
             <Animacionxd></Animacionxd>

@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import json19 from "../../../Data/Balances/2019.json";
-import json20 from "../../../Data/Balances/2020.json";
-import json21 from "../../../Data/Balances/2021.json";
-import json22 from "../../../Data/Balances/2022.json";
-import json23 from "../../../Data/Balances/2023.json";
-import Ejson19 from "../../../Data/Resultados/2019.json";
-import Ejson20 from "../../../Data/Resultados/2020.json";
-import Ejson21 from "../../../Data/Resultados/2021.json";
-import Ejson22 from "../../../Data/Resultados/2022.json";
-import Ejson23 from "../../../Data/Resultados/2023.json";
+import React, {useEffect, useState} from 'react';
+import json19 from "../../../../Data/Balances/2019.json";
+import json20 from "../../../../Data/Balances/2020.json";
+import json21 from "../../../../Data/Balances/2021.json";
+import json22 from "../../../../Data/Balances/2022.json";
+import json23 from "../../../../Data/Balances/2023.json";
+import Ejson19 from "../../../../Data/Resultados/2019.json";
+import Ejson20 from "../../../../Data/Resultados/2020.json";
+import Ejson21 from "../../../../Data/Resultados/2021.json";
+import Ejson22 from "../../../../Data/Resultados/2022.json";
+import Ejson23 from "../../../../Data/Resultados/2023.json";
 
-import { AnalisisHorizontalBalance } from "../Horizontal/AnalisisHorizontalBalance.jsx";
-import AnalisisHorizontalResultados from "../Horizontal/AnalisisHorizontalResultados.jsx";
+import { AnalisisHorizontalBalance } from "../../Horizontal/AnalisisHorizontalBalance.jsx";
+import AnalisisHorizontalResultados from "../../Horizontal/AnalisisHorizontalResultados.jsx";
 import AnalisisVerticalBalance from "./AnalisiVerticalBalance.jsx";
 import AnalisisVerticalEstadoResultado from "./AnalisisVerticalEstadoResultado.jsx";
 
-export function AnalisisVertical() {
+/**
+ *
+ * @param tipo es si es estatico o dinamico 1 o 2 1 es estatico 2 es dinamico
+ * @returns {Element}
+ * @constructor
+ */
+export function AnalisisVertical({tipo}) {
+
+
+
     const [anio1, setAnio1] = useState("2019");
     const [tipoAnalisis, setTipoAnalisis] = useState("Balance");
     const [dataYear1, setDataYear1] = useState(json19);
