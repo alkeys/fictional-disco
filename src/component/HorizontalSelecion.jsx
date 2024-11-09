@@ -9,9 +9,11 @@ import Ejson21 from "../Data/Resultados/2021.json";
 import Ejson22 from "../Data/Resultados/2022.json";
 import Ejson23 from "../Data/Resultados/2023.json";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { AnalisisHorizontalBalance } from "../pages/Analisis/Horizontal/AnalisisHorizontalBalance.jsx";
 import AnalisisHorizontalResultados from "../pages/Analisis/Horizontal/AnalisisHorizontalResultados.jsx";
+import BotonDescargarImagen from "./BotonDescargarImagen.jsx";
+import BotonDescargarPDF from "./BotonDescargarPDF.jsx";
 
 export const Screen2 = () => {
     const [anio1, setAnio1] = useState("2019");
@@ -23,11 +25,19 @@ export const Screen2 = () => {
     const handleTipoAnalisisChange = (event) => setTipoAnalisis(event.target.value);
 
     return (
-        <div className="flex flex-col items-center p-4 bg-red-900 text-red-50">
+        <div  className="flex flex-col items-center p-4 bg-red-900 text-red-50">
+            <div className="flex justify-center mt-2 mb-4">
+                <section className="mx-3">
+                    <BotonDescargarImagen idElemento="AnalisisHorizontal"/>
+                </section>
+                <section className="mx-3">
+                    <BotonDescargarPDF idElemento="AnalisisHorizontal"/>
+                </section>
+            </div>
             <h2 className="text-3xl font-bold mb-6">Análisis Financiero</h2>
-    <h3 className="text-2xl font-bold mb-4">Cifras en millones de dólares</h3>
+            <h3 className="text-2xl font-bold mb-4">Cifras en millones de dólares</h3>
 
-            <div className="flex flex-col sm:flex-row justify-center mb-4">
+            <div  className="flex flex-col sm:flex-row justify-center mb-4">
                 <div className="mr-4 mb-2 sm:mb-0">
                     <label className="mr-2">Año 1:</label>
                     <select value={anio1} onChange={handleAnio1Change} className="bg-red-800 p-2 rounded">
@@ -56,7 +66,7 @@ export const Screen2 = () => {
                     <option value="resultado">Estado de Resultado</option>
                 </select>
             </div>
-            <div className={"text-red-800"}>
+            <div id={"AnalisisHorizontal"} className={"text-red-800"}>
                 {tipoAnalisis === "Balance" ? (
                     <AnalisisHorizontalBalance
                         anio1={anio1}

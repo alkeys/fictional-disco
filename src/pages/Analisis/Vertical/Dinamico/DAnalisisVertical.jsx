@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import BalanceV from "./BalanceV.jsx";
 import EstadoV from "./EstadoV.jsx";
+import BotonDescargarImagen from "../../../../component/BotonDescargarImagen.jsx";
+import BotonDescargarPDF from "../../../../component/BotonDescargarPDF.jsx";
 
 const AnalisisVertical = () => {
     const dataBalance = JSON.parse(localStorage.getItem("BalancesPorAnio"));
@@ -9,6 +11,14 @@ const AnalisisVertical = () => {
 
     return (
         <div>
+            <div className="flex justify-center mt-2 mb-4">
+                <section className="mx-3">
+                    <BotonDescargarImagen idElemento="AnalisisHorizontal"/>
+                </section>
+                <section className="mx-3">
+                    <BotonDescargarPDF idElemento="AnalisisHorizontal"/>
+                </section>
+            </div>
             <div className="mb-4">
                 <button
                     onClick={() => setMostrarBalance(true)}
@@ -23,7 +33,10 @@ const AnalisisVertical = () => {
                     Estado de Resultado
                 </button>
             </div>
-            {mostrarBalance ? <BalanceV data={dataBalance} /> : <EstadoV data={dataEstado} />}
+            <div id={"AnalisisHorizontal"} >
+                {mostrarBalance ? <BalanceV data={dataBalance}/> : <EstadoV data={dataEstado}/>}
+            </div>
+
         </div>
     );
 };

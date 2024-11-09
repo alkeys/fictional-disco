@@ -6,6 +6,8 @@ import DinamicoBalanceH from "./Horizontal/Dinamico/DinamicoBalanceH.jsx";
 import DinamicoResultadosH from "./Horizontal/Dinamico/DinamicoResultadosH.jsx";
 import {transformarDatosDinamicos, transformData} from "../../Services/Cositas.js";
 import AnalisisDupontDinamico from "./Dupont/AnalisisDupontDinamico.jsx";
+import BotonDescargarImagen from "../../component/BotonDescargarImagen.jsx";
+import BotonDescargarPDF from "../../component/BotonDescargarPDF.jsx";
 
 
 
@@ -88,6 +90,14 @@ const Screen2 = () => {
 
     return (
         <div>
+            <div className="flex justify-center mt-2 mb-4">
+                <section className="mx-3">
+                    <BotonDescargarImagen idElemento="AnalisisHorizontal"/>
+                </section>
+                <section className="mx-3">
+                    <BotonDescargarPDF idElemento="AnalisisHorizontal"/>
+                </section>
+            </div>
             <div className="flex justify-center mb-4">
                 <button
                     onClick={() => setView('balance')}
@@ -102,13 +112,16 @@ const Screen2 = () => {
                     Estado de Resultados
                 </button>
             </div>
-            {view === 'balance' && <DinamicoBalanceH data={transformData()} />}
-            {view === 'resultados' && <DinamicoResultadosH data={transformarDatosDinamicos()} />}
+            <div id={"AnalisisHorizontal"}>
+                {view === 'balance' && <DinamicoBalanceH data={transformData()}/>}
+                {view === 'resultados' && <DinamicoResultadosH data={transformarDatosDinamicos()}/>}
+            </div>
+
         </div>
     );
 };
 
 
 const Screen3 = () => (
-<AnalisisDupontDinamico></AnalisisDupontDinamico>
+    <AnalisisDupontDinamico></AnalisisDupontDinamico>
 );

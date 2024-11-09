@@ -10,6 +10,8 @@ import Ejson21 from "../../../Data/Resultados/2021.json";
 import Ejson22 from "../../../Data/Resultados/2022.json";
 import Ejson23 from "../../../Data/Resultados/2023.json";
 import AnalisisDupont from "./AnalisisDupont.jsx";
+import BotonDescargarImagen from "../../../component/BotonDescargarImagen.jsx";
+import BotonDescargarPDF from "../../../component/BotonDescargarPDF.jsx";
 
 
 export function Dupont() {
@@ -31,7 +33,16 @@ export function Dupont() {
     const handleTipoAnalisisChange = (event) => setTipoAnalisis(event.target.value);
 
     return (
-        <div className="flex flex-col items-center p-6 bg-red-900 text-white shadow-lg rounded-lg border border-red-800">
+        <div
+            className="flex flex-col items-center p-6 bg-red-900 text-white shadow-lg rounded-lg border border-red-800">
+            <div className="flex justify-center mt-2 mb-4">
+                <section className="mx-3">
+                    <BotonDescargarImagen idElemento="AnalisisHorizontal"/>
+                </section>
+                <section className="mx-3">
+                    <BotonDescargarPDF idElemento="AnalisisHorizontal"/>
+                </section>
+            </div>
             <h2 className="text-4xl font-bold mb-6 text-center tracking-wider">Análisis Financiero CocaCola </h2>
             <h3 className="text-2xl font-semibold mb-4 text-center">Cifras en millones de dólares</h3>
 
@@ -53,8 +64,9 @@ export function Dupont() {
             </div>
 
 
-            <div className="text-red-800 bg-white p-4 rounded-lg shadow-lg w-full">
-             <AnalisisDupont  estadoResultado={getDataForYear(anio1, "Resultado")} balance={getDataForYear(anio1,"Balance")}></AnalisisDupont>
+            <div id={"AnalisisHorizontal"} className="text-red-800 bg-white p-4 rounded-lg shadow-lg w-full">
+                <AnalisisDupont estadoResultado={getDataForYear(anio1, "Resultado")}
+                                balance={getDataForYear(anio1, "Balance")}></AnalisisDupont>
             </div>
         </div>
     );

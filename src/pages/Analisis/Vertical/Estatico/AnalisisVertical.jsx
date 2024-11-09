@@ -14,6 +14,8 @@ import { AnalisisHorizontalBalance } from "../../Horizontal/AnalisisHorizontalBa
 import AnalisisHorizontalResultados from "../../Horizontal/AnalisisHorizontalResultados.jsx";
 import AnalisisVerticalBalance from "./AnalisiVerticalBalance.jsx";
 import AnalisisVerticalEstadoResultado from "./AnalisisVerticalEstadoResultado.jsx";
+import BotonDescargarImagen from "../../../../component/BotonDescargarImagen.jsx";
+import BotonDescargarPDF from "../../../../component/BotonDescargarPDF.jsx";
 
 /**
  *
@@ -43,7 +45,16 @@ export function AnalisisVertical({tipo}) {
     const handleTipoAnalisisChange = (event) => setTipoAnalisis(event.target.value);
 
     return (
-        <div className="flex flex-col items-center p-6 bg-red-900 text-white shadow-lg rounded-lg border border-red-800">
+        <div
+            className="flex flex-col items-center p-6 bg-red-900 text-white shadow-lg rounded-lg border border-red-800">
+            <div className="flex justify-center mt-2 mb-4">
+                <section className="mx-3">
+                    <BotonDescargarImagen idElemento="AnalisisHorizontal"/>
+                </section>
+                <section className="mx-3">
+                    <BotonDescargarPDF idElemento="AnalisisHorizontal"/>
+                </section>
+            </div>
             <h2 className="text-4xl font-bold mb-6 text-center tracking-wider">Análisis Financiero CocaCola </h2>
             <h3 className="text-2xl font-semibold mb-4 text-center">Cifras en millones de dólares</h3>
 
@@ -74,9 +85,9 @@ export function AnalisisVertical({tipo}) {
                 </select>
             </div>
 
-            <div className="text-red-800 bg-white p-4 rounded-lg shadow-lg w-full">
+            <div  id={"AnalisisHorizontal"} className="text-red-800 bg-white p-4 rounded-lg shadow-lg w-full">
                 {tipoAnalisis === "Balance" ? (
-                    <AnalisisVerticalBalance balanceData={getDataForYear(anio1, "Balance")} />
+                    <AnalisisVerticalBalance balanceData={getDataForYear(anio1, "Balance")}/>
                 ) : (
                     <AnalisisVerticalEstadoResultado estadoResultado={getDataForYear(anio1, "Resultado")}
                     />
