@@ -12,6 +12,7 @@ import {EstadosDinamicos} from "./pages/EstadosDinamicos.jsx";
 import {VistaAnalisis} from "./pages/Analisis/VistaAnalisis.jsx";
 import {AnalisisDinamico} from "./pages/Analisis/AnalisisDinamico.jsx";
 import {AnalisisEstatico} from "./pages/Analisis/AnalisisEstatico.jsx";
+import Integrantes from './pages/Integrantes.jsx';
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
                 <Route path='/VistaBalances' element={<VistaBalances/>} />
                 <Route path='/VistaResultados' element={<VistaResultados/>} />
                 <Route path='/estados_dinamicos' element={<EstadosDinamicos/>} />
+                <Route path='/integrantes' element={<Integrantes/>} />
                 {/*            Router de analisis financiero*/}
                 <Route path="/Analisis-Estatico" element={<AnalisisEstatico/>} />
                 <Route path="/Analisis-Dinamico" element={<AnalisisDinamico/>} />

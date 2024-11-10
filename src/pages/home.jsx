@@ -7,7 +7,7 @@ import resultadosImage from '../images/estado-de-resultados.png';
 import ingresoImage from '../images/procesamiento-de-datos.png';
 import modificarImage from '../images/nota.png';
 import balancesImage from '../images/hoja-de-balance.png';
-import cocacolaImage from '../images/coca-cola.svg';
+import cocacolaImage from '../images/cola.png';
 import '../component/Animacion.css';
 import {Animacionxd} from "../component/Animacionxd.jsx";
 
@@ -53,7 +53,7 @@ const HomePage = () => {
                     >
                         <img src={analisisImage} className='h-16 mb-1'/>
                         <h3 className="font-bold text-lg">Análisis de Datos</h3>
-                        <p className="mt-2 text-sm">Energía pura para tu análisis financiero.</p>
+                        <p className="mt-2 text-sm  mb-3">Energía pura para tu análisis financiero.</p>
                     </NavLink>
 
                     <NavLink
@@ -77,14 +77,15 @@ const HomePage = () => {
                     </NavLink>
 
                     <NavLink
-                        to="/VistaResultados"
-                        className="rounded-lg shadow-lg p-6 text-gray-900 bg-gradient-to-r from-gray-200 to-gray-400 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
-                        aria-label="Ir a Reportes"
-                    >
-                        <img src={cocacolaImage} className='h-14 mb-3'/>
-                        <h3 className="font-bold text-lg">Cositas XD</h3>
-                        <p className="mt-2 text-sm">Claridad y transparencia al estilo Light.</p>
-                    </NavLink>
+    to="/integrantes"
+    className="rounded-lg shadow-lg p-6 text-white bg-gradient-to-r from-red-600 to-orange-500 hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center"
+    aria-label="Ir a Integrantes"
+>
+    <img src={cocacolaImage} className='h-16 mb-1'/>
+    <h3 className="font-bold text-lg">Integrantes</h3>
+    <p className="mt-2 text-sm">Energía y colaboración al estilo Coca-Cola Energy.</p>
+</NavLink>
+
                 </div>
             </div>
         </div>
