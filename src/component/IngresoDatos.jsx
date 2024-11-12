@@ -29,18 +29,33 @@ const BalanceGeneral = ({estado}) => {
     // Eliminar cuenta específica
     const handleDeleteAccount = (key1, key2, key3, key4, key5) => {
         const newBalanceData = { ...balanceData };
-    
+        const borrar = prompt("¿Está seguro de eliminar la cuenta? (S/N)");
+
         // Verifica qué nivel de cuenta está siendo eliminado y ajusta
         if (key5) {
-            delete newBalanceData[key1][key2][key3][key4][key5];
+            if (borrar === "S" || borrar === "s") {
+                delete newBalanceData[key1][key2][key3][key4][key5];
+            }
         } else if (key4) {
-            delete newBalanceData[key1][key2][key3][key4];
+            if (borrar === "S" || borrar === "s") {
+                delete newBalanceData[key1][key2][key3][key4];
+            }
         } else if (key3) {
-            delete newBalanceData[key1][key2][key3];
+            if (key3 === "Total activos corrientes" || key3 === "Total activos no corrientes" || key3 === "Total pasivos corrientes" || key3 === "Total pasivos no corrientes" || key3 === "Total capital") {
+                alert("No se puede eliminar el total de cuentas");
+            } else {
+                if (borrar === "S" || borrar === "s") {
+                    delete newBalanceData[key1][key2][key3];
+                }
+            }
         } else if (key2) {
-            delete newBalanceData[key1][key2];
+            if (borrar === "S" || borrar === "s") {
+                delete newBalanceData[key1][key2];
+            }
         } else if (key1) {
-            delete newBalanceData[key1];
+            if (borrar === "S" || borrar === "s") {
+                delete newBalanceData[key1];
+            }
         }
     
         setBalanceData(newBalanceData);
@@ -114,16 +129,52 @@ const BalanceGeneral = ({estado}) => {
                 Object.keys(data[key1]).forEach((key2) => {
                     if (key2 === "Activos Corrientes") {
                         Object.keys(data[key1][key2]).forEach((key3) => {
-                            const valor = Number(data[key1][key2][key3]);
-                            if (!isNaN(valor) && key3 !== "Total activos corrientes") {
-                                totalActivosCorrientes += valor;
+                            if (data[key1][key2][key3] && typeof data[key1][key2][key3] === 'object' && Object.keys(data[key1][key2][key3]).length > 0) {
+                                Object.keys(data[key1][key2][key3]).forEach((key4) => {
+                                    if (data[key1][key2][key3][key4] && typeof data[key1][key2][key3][key4] === 'object' && Object.keys(data[key1][key2][key3][key4]).length > 0) {
+                                        Object.keys(data[key1][key2][key3][key4]).forEach((key5) => {
+                                            const valor = Number(data[key1][key2][key3][key4][key5]);
+                                            if (!isNaN(valor) && key5 !== "Total activos corrientes") {
+                                                totalActivosCorrientes += valor;
+                                            }
+                                        });
+                                    } else {
+                                        const valor = Number(data[key1][key2][key3][key4]);
+                                        if (!isNaN(valor) && key4 !== "Total activos corrientes") {
+                                            totalActivosCorrientes += valor;
+                                        }
+                                    }
+                                });
+                            } else {
+                                const valor = Number(data[key1][key2][key3]);
+                                if (!isNaN(valor) && key3 !== "Total activos corrientes") {
+                                    totalActivosCorrientes += valor;
+                                }
                             }
                         });
                     } else if (key2 === "Activos No Corrientes") {
                         Object.keys(data[key1][key2]).forEach((key3) => {
-                            const valor = Number(data[key1][key2][key3]);
-                            if (!isNaN(valor) && key3 !== "Total activos no corrientes") {
-                                totalActivosNoCorrientes += valor;
+                            if (data[key1][key2][key3] && typeof data[key1][key2][key3] === 'object' && Object.keys(data[key1][key2][key3]).length > 0) {
+                                Object.keys(data[key1][key2][key3]).forEach((key4) => {
+                                    if (data[key1][key2][key3][key4] && typeof data[key1][key2][key3][key4] === 'object' && Object.keys(data[key1][key2][key3][key4]).length > 0) {
+                                        Object.keys(data[key1][key2][key3][key4]).forEach((key5) => {
+                                            const valor = Number(data[key1][key2][key3][key4][key5]);
+                                            if (!isNaN(valor) && key5 !== "Total activos no corrientes") {
+                                                totalActivosNoCorrientes += valor;
+                                            }
+                                        });
+                                    } else {
+                                        const valor = Number(data[key1][key2][key3][key4]);
+                                        if (!isNaN(valor) && key4 !== "Total activos no corrientes") {
+                                            totalActivosNoCorrientes += valor;
+                                        }
+                                    }
+                                });
+                            } else {
+                                const valor = Number(data[key1][key2][key3]);
+                                if (!isNaN(valor) && key3 !== "Total activos no corrientes") {
+                                    totalActivosNoCorrientes += valor;
+                                }
                             }
                         });
                     }
@@ -132,23 +183,72 @@ const BalanceGeneral = ({estado}) => {
                 Object.keys(data[key1]).forEach((key2) => {
                     if (key2 === "Pasivos Corrientes") {
                         Object.keys(data[key1][key2]).forEach((key3) => {
-                            const valor = Number(data[key1][key2][key3]);
-                            if (!isNaN(valor) && key3 !== "Total pasivos corrientes") {
-                                totalPasivosCorrientes += valor;
+                            if (data[key1][key2][key3] && typeof data[key1][key2][key3] === 'object' && Object.keys(data[key1][key2][key3]).length > 0) {
+                                Object.keys(data[key1][key2][key3]).forEach((key4) => {
+                                    if (data[key1][key2][key3][key4] && typeof data[key1][key2][key3][key4] === 'object' && Object.keys(data[key1][key2][key3][key4]).length > 0) {
+                                        Object.keys(data[key1][key2][key3][key4]).forEach((key5) => {
+                                            const valor = Number(data[key1][key2][key3][key4][key5]);
+                                            if (!isNaN(valor) && key5 !== "Total pasivos corrientes") {
+                                                totalPasivosCorrientes += valor;
+                                            }
+                                        });
+                                    } else {
+                                        const valor = Number(data[key1][key2][key3][key4]);
+                                        if (!isNaN(valor) && key4 !== "Total pasivos corrientes") {
+                                            totalPasivosCorrientes += valor;
+                                        }
+                                    }
+                                });
                             }
                         });
                     } else if (key2 === "Pasivos No Corrientes") {
                         Object.keys(data[key1][key2]).forEach((key3) => {
-                            const valor = Number(data[key1][key2][key3]);
-                            if (!isNaN(valor) && key3 !== "Total pasivos no corrientes") {
-                                totalPasivosNoCorrientes += valor;
+                            if (data[key1][key2][key3] && typeof data[key1][key2][key3] === 'object' && Object.keys(data[key1][key2][key3]).length > 0) {
+                                Object.keys(data[key1][key2][key3]).forEach((key4) => {
+                                    if (data[key1][key2][key3][key4] && typeof data[key1][key2][key3][key4] === 'object' && Object.keys(data[key1][key2][key3][key4]).length > 0) {
+                                        Object.keys(data[key1][key2][key3][key4]).forEach((key5) => {
+                                            const valor = Number(data[key1][key2][key3][key4][key5]);
+                                            if (!isNaN(valor) && key5 !== "Total pasivos no corrientes") {
+                                                totalPasivosNoCorrientes += valor;
+                                            }
+                                        });
+                                    } else {
+                                        const valor = Number(data[key1][key2][key3][key4]);
+                                        if (!isNaN(valor) && key4 !== "Total pasivos no corrientes") {
+                                            totalPasivosNoCorrientes += valor;
+                                        }
+                                    }
+                                });
+                            } else {
+                                const valor = Number(data[key1][key2][key3]);
+                                if (!isNaN(valor) && key3 !== "Total pasivos no corrientes") {
+                                    totalPasivosNoCorrientes += valor;
+                                }
                             }
                         });
                     } else if (key2 === "Capital") {
                         Object.keys(data[key1][key2]).forEach((key3) => {
-                            const valor = Number(data[key1][key2][key3]);
-                            if (!isNaN(valor) && key3 !== "Total capital") {
-                                totalPatrimonio += valor;
+                            if (data[key1][key2][key3] && typeof data[key1][key2][key3] === 'object' && Object.keys(data[key1][key2][key3]).length > 0) {
+                                Object.keys(data[key1][key2][key3]).forEach((key4) => {
+                                    if (data[key1][key2][key3][key4] && typeof data[key1][key2][key3][key4] === 'object' && Object.keys(data[key1][key2][key3][key4]).length > 0) {
+                                        Object.keys(data[key1][key2][key3][key4]).forEach((key5) => {
+                                            const valor = Number(data[key1][key2][key3][key4][key5]);
+                                            if (!isNaN(valor) && key5 !== "Total capital") {
+                                                totalPatrimonio += valor;
+                                            }
+                                        });
+                                    } else {
+                                        const valor = Number(data[key1][key2][key3][key4]);
+                                        if (!isNaN(valor) && key4 !== "Total capital") {
+                                            totalPatrimonio += valor;
+                                        }
+                                    }
+                                });
+                            } else {
+                                const valor = Number(data[key1][key2][key3]);
+                                if (!isNaN(valor) && key3 !== "Total capital") {
+                                    totalPatrimonio += valor;
+                                }
                             }
                         });
                     }

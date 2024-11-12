@@ -9,59 +9,59 @@
         },
         "Activos": {
             "Activos Corrientes": {
-                "Efectivo y equivalentes de efectivo": "null",
-                "Cuentas por cobrar, neto": "null",
-                "Inventarios": "null",
-                "Impuestos por recuperar": "null",
-                "Otros activos financieros corrientes": "null",
-                "Otros activos corrientes": "null",
-                "Total activos corrientes": "null"
+                "Efectivo y equivalentes de efectivo": null,
+                "Cuentas por cobrar, neto": null,
+                "Inventarios": null,
+                "Impuestos por recuperar": null,
+                "Otros activos financieros corrientes": null,
+                "Otros activos corrientes": null,
+                "Total activos corrientes": null
             },
             "Activos No Corrientes": {
-                "Inversiones en otras entidades": "null",
-                "Activos por derecho de uso": "null",
-                "Propiedad, planta y equipo, neto": "null",
-                "Activos intangibles, neto": "null",
-                "Activos por impuestos diferidos": "null",
-                "Otros activos financieros no corrientes": "null",
-                "Otros activos no corrientes": "null",
-                "Total activos no corrientes": "null"
+                "Inversiones en otras entidades": null,
+                "Activos por derecho de uso": null,
+                "Propiedad, planta y equipo, neto": null,
+                "Activos intangibles, neto": null,
+                "Activos por impuestos diferidos": null,
+                "Otros activos financieros no corrientes": null,
+                "Otros activos no corrientes": null,
+                "Total activos no corrientes": null
             },
-            "Total Activos": "null"
+            "Total Activos": null
         },
         "Pasivo y Capital": {
             "Pasivos Corrientes": {
-                "Préstamos bancarios y documentos por pagar": "null",
-                "Vencimiento a corto plazo del pasivo no corriente": "null",
-                "Vencimiento a corto plazo del pasivo por arrendamiento": "null",
-                "Intereses por pagar": "null",
-                "Proveedores": "null",
-                "Cuentas por pagar o otros pasivos corrientes": "null",
-                "Impuestos por pagar": "null",
-                "Otros pasivos financieros corrientes": "null",
-                "Total pasivos corrientes": "null"
+                "Préstamos bancarios y documentos por pagar": null,
+                "Vencimiento a corto plazo del pasivo no corriente": null,
+                "Vencimiento a corto plazo del pasivo por arrendamiento": null,
+                "Intereses por pagar": null,
+                "Proveedores": null,
+                "Cuentas por pagar o otros pasivos corrientes": null,
+                "Impuestos por pagar": null,
+                "Otros pasivos financieros corrientes": null,
+                "Total pasivos corrientes": null
             },
             "Pasivos No Corrientes": {
-                "Préstamos bancarios y documentos por pagar": "null",
-                "Beneficios posteriores al retiro y otros beneficios a empleados": "null",
-                "Porción no corriente de pasivos por arrendamiento": "null",
-                "Pasivos por impuestos diferidos": "null",
-                "Otros pasivos financieros no corrientes y Provisiones": "null",
-                "Otros pasivos no corrientes": "null",
-                "Total pasivos no corrientes": "null"
+                "Préstamos bancarios y documentos por pagar": null,
+                "Beneficios posteriores al retiro y otros beneficios a empleados": null,
+                "Porción no corriente de pasivos por arrendamiento": null,
+                "Pasivos por impuestos diferidos": null,
+                "Otros pasivos financieros no corrientes y Provisiones": null,
+                "Otros pasivos no corrientes": null,
+                "Total pasivos no corrientes": null
             },
-            "Total Pasivos": "null",
+            "Total Pasivos": null,
             "Capital": {
-                "Capital Social": "null",
-                "Prima en suscripción de acciones": "null",
-                "Utilidades retenidas": "null",
-                "Otros instrumentos de capital": "null",
-                "Otras partidas acumuladas de la utilidad integral": "null",
-                "Capital atribuible a los propietarios de la controladora": "null",
-                "Participación no controladora en subsidiarias consolidadas": "null"
+                "Capital Social": null,
+                "Prima en suscripción de acciones": null,
+                "Utilidades retenidas": null,
+                "Otros instrumentos de capital": null,
+                "Otras partidas acumuladas de la utilidad integral": null,
+                "Capital atribuible a los propietarios de la controladora": null,
+                "Participación no controladora en subsidiarias consolidadas": null
             },
-            "Total Capital": "null",
-            "Total Pasivos y Capital": "null"
+            "Total Capital": null,
+            "Total Pasivos y Capital": null
         }
     },
     "resultados": {
