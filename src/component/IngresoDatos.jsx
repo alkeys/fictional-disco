@@ -199,6 +199,11 @@ const BalanceGeneral = ({estado}) => {
                                         }
                                     }
                                 });
+                            } else {
+                                const valor = Number(data[key1][key2][key3]);
+                                if (!isNaN(valor) && key3 !== "Total pasivos corrientes") {
+                                    totalPasivosCorrientes += valor;
+                                }
                             }
                         });
                     } else if (key2 === "Pasivos No Corrientes") {
@@ -229,24 +234,27 @@ const BalanceGeneral = ({estado}) => {
                     } else if (key2 === "Capital") {
                         Object.keys(data[key1][key2]).forEach((key3) => {
                             if (data[key1][key2][key3] && typeof data[key1][key2][key3] === 'object' && Object.keys(data[key1][key2][key3]).length > 0) {
+                                
                                 Object.keys(data[key1][key2][key3]).forEach((key4) => {
                                     if (data[key1][key2][key3][key4] && typeof data[key1][key2][key3][key4] === 'object' && Object.keys(data[key1][key2][key3][key4]).length > 0) {
                                         Object.keys(data[key1][key2][key3][key4]).forEach((key5) => {
                                             const valor = Number(data[key1][key2][key3][key4][key5]);
-                                            if (!isNaN(valor) && key5 !== "Total capital") {
-                                                totalPatrimonio += valor;
+                                            if (!isNaN(valor) && key5 !== "Capital atribuible a los propietarios de la controladora" && key5 !== "Participación no controladora en subsidiarias consolidadas") {
+                                                totalAxu += valor;
                                             }
                                         });
                                     } else {
                                         const valor = Number(data[key1][key2][key3][key4]);
-                                        if (!isNaN(valor) && key4 !== "Total capital") {
-                                            totalPatrimonio += valor;
+                                        if (!isNaN(valor) && key4 !== "Capital atribuible a los propietarios de la controladora" && key4 !== "Participación no controladora en subsidiarias consolidadas") {
+                                            totalAxu += valor;
                                         }
                                     }
                                 });
                             } else {
                                 const valor = Number(data[key1][key2][key3]);
-                                if (!isNaN(valor) && key3 !== "Total capital") {
+                                if (!isNaN(valor) && key3 !== "Capital atribuible a los propietarios de la controladora" && key3 !== "Participación no controladora en subsidiarias consolidadas") {
+                                    totalAxu += valor;
+                                } else if (key3 !== "Capital atribuible a los propietarios de la controladora" && key3 === "Participación no controladora en subsidiarias consolidadas") {
                                     totalPatrimonio += valor;
                                 }
                             }
@@ -262,8 +270,9 @@ const BalanceGeneral = ({estado}) => {
         data["Pasivo y Capital"]["Pasivos Corrientes"]["Total pasivos corrientes"] = totalPasivosCorrientes;
         data["Pasivo y Capital"]["Pasivos No Corrientes"]["Total pasivos no corrientes"] = totalPasivosNoCorrientes;
         data["Pasivo y Capital"]["Total Pasivos"] = totalPasivosCorrientes + totalPasivosNoCorrientes;
+        data["Pasivo y Capital"]["Capital"]["Capital atribuible a los propietarios de la controladora"] = totalAxu;
         data["Pasivo y Capital"]["Total Capital"] = totalPatrimonio + totalAxu;
-        data["Pasivo y Capital"]["Total Pasivos y Capital"] = totalPasivosCorrientes + totalPasivosNoCorrientes + totalPatrimonio;
+        data["Pasivo y Capital"]["Total Pasivos y Capital"] = totalPasivosCorrientes + totalPasivosNoCorrientes + totalPatrimonio + totalAxu;
 
         return { totalActivosCorrientes, totalActivosNoCorrientes, totalPasivosCorrientes, totalPasivosNoCorrientes, totalPasivos, totalPatrimonio };
     };
