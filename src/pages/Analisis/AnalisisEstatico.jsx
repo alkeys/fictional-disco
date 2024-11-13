@@ -53,7 +53,7 @@ const Header = ({ changeScreen }) => {
                     onClick={() => changeScreen('screen3')}
                     className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition duration-300"
                 >
-                    Análisis de Dupont
+                    Análisis
                 </button>
             </nav>
         </div>
