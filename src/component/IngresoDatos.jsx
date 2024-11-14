@@ -482,20 +482,20 @@ const BalanceGeneral = ({estado}) => {
                                 Object.keys(balanceData[key1]).map((key2, index2) => (
                                     <React.Fragment key={index2}>
                                         <tr>
-                                            <td colSpan={3} className="px-4">
+                                            <td colSpan={3} className="bg-gray-200">
                                                 <strong>{key2}</strong>
                                             </td>
                                             {key2 === "Total Activos" || key2 === "Total Pasivos" || key2 === "Total Capital" || key2 === "Total Pasivos y Capital" ? (
-                                                <td>{balanceData[key1][key2]}</td>
+                                                <td className="bg-gray-200">{balanceData[key1][key2]}</td>
                                             ) : (
-                                                <td>&nbsp;</td>
+                                                <td className="bg-gray-200">&nbsp;</td>
                                             )}
                                             {key2 === "Total Activos" || key2 === "Total Pasivos" || key2 === "Total Capital" || key2 === "Total Pasivos y Capital" ? (
-                                                <td>&nbsp;</td>
+                                                <td className="bg-gray-200">&nbsp;</td>
                                             ) : (
                                                 balanceData[key1][key2] && typeof balanceData[key1][key2] === 'object' && Object.keys(balanceData[key1][key2]).length > 0 ? (
                                                     // Si `key2` tiene subcuentas, no mostramos el input
-                                                    <td>&nbsp;</td>
+                                                    <td className="bg-gray-200">&nbsp;</td>
                                                 ) : (
                                                     // Si `key2` no tiene subcuentas, mostramos el input
                                                     <td>
@@ -508,32 +508,51 @@ const BalanceGeneral = ({estado}) => {
                                                     </td>
                                                 )
                                             )}
+                                            <td className="bg-gray-200"></td>
                                         </tr>
                                         {balanceData[key1][key2] && typeof balanceData[key1][key2] === 'object' && Object.keys(balanceData[key1][key2]).length > 0 ? (
                                             Object.keys(balanceData[key1][key2]).map((key3, index3) => (
                                                 <React.Fragment key={index3}>
                                                     <tr>
-                                                        <td colSpan={3} className="px-7">
-                                                            {/* Aplica negrita solo si `key3` tiene subcuentas */}
-                                                            {balanceData[key1][key2][key3] && typeof balanceData[key1][key2][key3] === 'object' && Object.keys(balanceData[key1][key2][key3]).length > 0 ? (
-                                                                <strong>{key3}</strong>
+                                                        {
+                                                            key3 !== "Capital atribuible a los propietarios de la controladora" && key3 !== "Total pasivos no corrientes" && key3 !== "Total pasivos corrientes" && key3 !== "Total activos no corrientes" && key3 !== "Total activos corrientes" ? (
+                                                                <td colSpan={3} className="px-7">
+                                                                    {/* Aplica negrita solo si `key3` tiene subcuentas */}
+                                                                    {balanceData[key1][key2][key3] && typeof balanceData[key1][key2][key3] === 'object' && Object.keys(balanceData[key1][key2][key3]).length > 0 ? (
+                                                                        <strong>{key3}</strong>
+                                                                    ) : (
+                                                                        key3
+                                                                    )}
+                                                                </td>
                                                             ) : (
-                                                                key3
-                                                            )}
-                                                        </td>
+                                                                <td colSpan={3} className="px-7 bg-gray-200">
+                                                                    {/* Aplica negrita solo si `key3` tiene subcuentas */}
+                                                                    
+                                                                        <strong>{key3}</strong>
+                                                                    
+                                                                </td>
+                                                            )
+                                                        }
                                                         {balanceData[key1][key2][key3] && typeof balanceData[key1][key2][key3] === 'object' && Object.keys(balanceData[key1][key2][key3]).length > 0 ? (
                                                             // Si `key3` tiene subcuentas, no mostramos el input
                                                             <td>&nbsp;</td>
                                                         ) : (
                                                             // Si `key3` no tiene subcuentas, mostramos el input
-                                                            <td>
-                                                                <input
-                                                                    type="number"
-                                                                    value={balanceData[key1][key2][key3]}
-                                                                    onChange={(e) => handleInputChange(e, key1, key2, key3)}
-                                                                    className="border border-black rounded px-2 w-16 md:w-56"
-                                                                />
-                                                            </td>
+                                                            key3 !== "Capital atribuible a los propietarios de la controladora" && key3 !== "Total pasivos no corrientes" && key3 !== "Total pasivos corrientes" && key3 !== "Total activos no corrientes" && key3 !== "Total activos corrientes" ? (
+                                                                <td>
+                                                                    <input
+                                                                        type="number"
+                                                                        value={balanceData[key1][key2][key3]}
+                                                                        onChange={(e) => handleInputChange(e, key1, key2, key3)}
+                                                                        className="border border-black rounded px-2 w-16 md:w-56"
+                                                                    />
+                                                                </td>
+                                                            ) : (
+                                                                <td className="bg-gray-200">
+                                                                    {balanceData[key1][key2][key3]}
+                                                                </td>
+                                                            )
+                                                            
                                                         )}
                                                         <td>
                                                             <button
