@@ -65,7 +65,7 @@ const Header = ({ changeScreen }) => {
                     onClick={() => changeScreen('screen3')}
                     className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition duration-300"
                 >
-                    Análisis de Dupont
+                    Análisis
                 </button>
             </nav>
         </div>
@@ -92,7 +92,7 @@ const Screen2 = () => {
         <div>
             <div className="flex justify-center mt-2 mb-4">
                 <section className="mx-3">
-                    <BotonDescargarImagen idElemento="AnalisisHorizontal"/>
+                    <BotonDescargarImagen idElemeno="AnalisisHorizontal"/>
                 </section>
                 <section className="mx-3">
                     <BotonDescargarPDF idElemento="AnalisisHorizontal"/>

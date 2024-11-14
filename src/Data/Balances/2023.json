@@ -30,8 +30,8 @@
       "Proveedores": 1618,
       "Cuentas por pagar o otros pasivos corrientes": 804,
       "Impuestos por pagar": 609,
-      "Otros pasivos financieros corrientes": 122,
-      "Total pasivos corrientes": 3250
+      "Otros pasivos financieros corrientes": 121,
+      "Total pasivos corrientes": 3249
     },
     "Pasivos No Corrientes": {
       "Préstamos bancarios y documentos por pagar": 3851,
@@ -42,16 +42,16 @@
       "Otros pasivos no corrientes": 144,
       "Total pasivos no corrientes": 5024
     },
-    "Total Pasivos": 8274,
+    "Total Pasivos": 8273,
     "Capital": {
       "Capital Social": 122,
-      "Prima en suscripción de acciones": 269,
+      "Prima en suscripción de acciones": 2696,
       "Utilidades retenidas": 5681,
       "Otros instrumentos de capital": 135,
       "Otras partidas acumuladas de la utilidad integral": 847,
-      "Capital atribuible a los propietarios de la controladora": 7516,
+      "Capital atribuible a los propietarios de la controladora": 7517,
       "Participación no controladora en subsidiarias consolidadas": 395,
-      "Total capital": 7911
+      "Total capital": 7912
     },
     "Total Pasivos y Capital": 16185
   }
