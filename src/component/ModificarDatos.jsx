@@ -5,6 +5,7 @@ const BalanceGeneral = ({estado, anio, documento, onAgregar}) => {
     const initialDocumento = documento ? { ...documento } : null; // Estado inicial
     const [document, setDocument] = useState(initialDocumento);
     const [totales, setTotales] = useState({ totalActivosCorrientes: 0, totalActivosNoCorrientes: 0, totalPasivosCorrientes: 0, totalPasivosNoCorrientes: 0, totalPasivos: 0, totalPatrimonio: 0 });
+    let anioAnterior = 0;
 
     useEffect(() => {
         if (documento) {
@@ -21,25 +22,27 @@ const BalanceGeneral = ({estado, anio, documento, onAgregar}) => {
 
     if (!document) {
         return <p className="text-center">Cargando datos del balance...</p>;
+    } else {
+        anioAnterior = documento.fecha.anio;
     }
 
     const handleDeleteAccount = (key1, key2, key3, key4, key5) => {
-        const newdocument = { ...document };
+        const newDocument = { ...document };
     
         // Verifica qué nivel de cuenta está siendo eliminado y ajusta
         if (key5) {
-            delete newBalanceData[key1][key2][key3][key4][key5];
+            delete newDocument[key1][key2][key3][key4][key5];
         } else if (key4) {
-            delete newBalanceData[key1][key2][key3][key4];
+            delete newDocument[key1][key2][key3][key4];
         } else if (key3) {
-            delete newBalanceData[key1][key2][key3];
+            delete newDocument[key1][key2][key3];
         } else if (key2) {
-            delete newBalanceData[key1][key2];
+            delete newDocument[key1][key2];
         } else if (key1) {
-            delete newBalanceData[key1];
+            delete newDocument[key1];
         }
     
-        setDocument(newBalanceData);
+        setDocument(newDocument);
     };
 
     const handleAddAccount = (key1, key2, key3, key4) => {
@@ -168,8 +171,12 @@ const BalanceGeneral = ({estado, anio, documento, onAgregar}) => {
     
         // Actualizar el campo "id" dentro de dataCleaned en lugar de document directamente
         dataCleaned.id = document.fecha.anio.toString();
+
+        console.log("anioDocument", document.fecha.anio);
+        console.log("anioAnterior", anioAnterior);
+        
     
-        if (document.fecha.anio === anio) {
+        if (document.fecha.anio === anioAnterior) {
             console.log("actualizar");
             await actualizarDocumento(nameCollection, dataCleaned.id, dataCleaned);
         } else {
@@ -518,7 +525,7 @@ const BalanceGeneral = ({estado, anio, documento, onAgregar}) => {
                                                         ) : (
                                                             <td>
                                                                 <button
-                                                                    className="ml-2 p-1 bg-red-500 text-white rounded px-3.5"
+                                                                    className="ml-2 p-1 bg-green-500 text-white rounded px-3.5"
                                                                     onClick={() => handleDeleteAccount(key1, key2, key3)}
                                                                 >
                                                                     +
