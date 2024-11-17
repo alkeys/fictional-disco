@@ -1,0 +1,218 @@
+import React from 'react';
+
+const MetricasInfo = () => {
+    const metricas = [
+        {
+            nombre: 'Margen de Utilidad',
+            definicion: 'Indica el porcentaje de ingresos que se convierte en ganancia neta después de deducir todos los gastos.',
+            formula: 'Utilidad Neta / Ingresos Totales',
+            fuente: 'https://www.investopedia.com/terms/p/profitmargin.asp',
+            uso: 'Se utiliza para identificar la eficiencia operativa de la empresa. Un margen bajo podría indicar altos costos operativos o precios bajos.'
+        },
+        {
+            nombre: 'Liquidez Corriente',
+            definicion: 'Mide la capacidad de la empresa para pagar sus obligaciones a corto plazo con sus activos corrientes.',
+            formula: 'Activos Corrientes / Pasivos Corrientes',
+            fuente: 'https://www.investopedia.com/terms/c/currentratio.asp',
+            uso: 'Evalúa la capacidad de pago a corto plazo. Un valor bajo podría significar dificultades para cumplir con las obligaciones inmediatas.'
+        },
+        {
+            nombre: 'Prueba Ácida',
+            definicion: 'Evalúa la capacidad de la empresa para cumplir con sus obligaciones a corto plazo sin depender de la venta de inventarios.',
+            formula: '(Activos Corrientes - Inventarios) / Pasivos Corrientes',
+            fuente: 'https://www.investopedia.com/terms/q/quickratio.asp',
+            uso: 'Proporciona una visión más estricta de la liquidez inmediata. Un valor bajo indica dependencia excesiva en los inventarios.'
+        },
+        {
+            nombre: 'Ratio Deuda/Capital',
+            definicion: 'Indica la proporción de deuda que tiene la empresa en relación con su capital.',
+            formula: 'Pasivos Totales / Capital Total',
+            fuente: 'https://www.bbva.com/es/salud-financiera/que-es-el-ratio-de-endeudamiento-y-como-se-calcula',
+            uso: 'Muestra el nivel de apalancamiento de la empresa. Un ratio alto indica dependencia excesiva en financiamiento externo.'
+        },
+        {
+            nombre: 'Rotación de Activos',
+            definicion: 'Mide la eficiencia con la que la empresa utiliza sus activos para generar ventas.',
+            formula: 'Ingresos Totales / Activos Totales',
+            fuente: 'https://www.investopedia.com/terms/a/assetturnover.asp',
+            uso: 'Indica qué tan bien la empresa está utilizando sus activos para generar ingresos. Un valor bajo puede reflejar activos infrautilizados.'
+        },
+        {
+            nombre: 'Rentabilidad sobre el Capital (ROE)',
+            definicion: 'Indica la rentabilidad que obtienen los accionistas sobre su inversión en la empresa.',
+            formula: 'Utilidad Neta / Capital Total',
+            fuente: 'https://www.investopedia.com/terms/r/returnonequity.asp',
+            uso: 'Evalúa la capacidad de la empresa para generar retornos para los accionistas. Un ROE bajo puede indicar ineficiencia operativa o financiera.'
+        },
+        {
+            nombre: 'Rentabilidad sobre los Activos (ROA)',
+            definicion: 'Mide la eficiencia de la empresa para generar utilidades a partir de sus activos.',
+            formula: 'Utilidad Neta / Activos Totales',
+            fuente: 'https://www.investopedia.com/terms/r/returnonassets.asp',
+            uso: 'Indica qué tan efectivamente la empresa utiliza sus activos para generar ganancias. Un ROA bajo puede reflejar ineficiencia operativa.'
+        },
+        {
+            nombre: 'Periodo Promedio de Cobro',
+            definicion: 'Indica el número promedio de días que tarda la empresa en cobrar a sus clientes.',
+            formula: '(Cuentas por Cobrar / Ventas a Crédito) * 365',
+            fuente: 'https://leanfinance.es/periodo-medio-pago-cobro/',
+            uso: 'Un periodo largo puede indicar problemas en la gestión de cuentas por cobrar, afectando el flujo de efectivo.'
+        },
+        {
+            nombre: 'Periodo Promedio de Pago',
+            definicion: 'Muestra el número promedio de días que la empresa tarda en pagar a sus proveedores.',
+            formula: '(Cuentas por Pagar / Compras a Crédito) * 365',
+            fuente: 'https://www.investopedia.com/terms/a/accountspayableturnoverratio.asp',
+            uso: 'Un periodo corto puede reflejar un flujo de efectivo ajustado, mientras que un periodo largo puede dañar relaciones con proveedores.'
+        }
+    ];
+
+    const recomendaciones = [
+        {
+            criterio: 'Margen de Utilidad < 10%',
+            accion: 'Incrementar precios o reducir costos operativos.',
+            razon: 'Un margen bajo indica que la empresa no convierte suficientes ingresos en ganancias netas.',
+            fuente: 'https://www.investopedia.com/terms/p/profitmargin.asp'
+        },
+        {
+            criterio: 'Liquidez Corriente < 1',
+            accion: 'Aumentar activos corrientes o reducir pasivos corrientes.',
+            razon: 'Un valor bajo puede dificultar el cumplimiento de obligaciones a corto plazo.',
+            fuente: 'https://www.investopedia.com/terms/c/currentratio.asp'
+        },
+        {
+            criterio: 'ROA < 5%',
+            accion: 'Incrementar la eficiencia operativa y mejorar el uso de activos.',
+            razon: 'Un ROA bajo refleja una mala utilización de los activos.',
+            fuente: 'https://www.investopedia.com/terms/r/returnonassets.asp'
+        },
+        {
+            criterio: 'Periodo Promedio de Cobro > 90 días',
+            accion: 'Implementar políticas más estrictas de cobro.',
+            razon: 'Un periodo largo afecta el flujo de efectivo y puede aumentar el riesgo de cuentas incobrables.',
+            fuente: 'https://economipedia.com/definiciones/periodo-medio-de-cobro-pmc.html'
+        },
+        {
+            criterio: 'Ratio Deuda/Capital > 1',
+            accion: 'Reducir el apalancamiento renegociando deudas o aumentando el capital propio.',
+            razon: 'Un alto nivel de deuda puede comprometer la solvencia de la empresa.',
+            fuente: 'https://economipedia.com/definiciones/ratio-de-deuda-sobre-capital.html'
+        }
+    ];
+
+    const evaluaciones = [
+        {
+            criterio: 'Liquidez Corriente >= 1.5',
+            evaluacion: 'Excelente capacidad para cubrir obligaciones a corto plazo.',
+            fuente: 'https://www.investopedia.com/terms/c/currentratio.asp'
+        },
+        {
+            criterio: 'ROE >= 15%',
+            evaluacion: 'Excelente retorno sobre la inversión para los accionistas.',
+            fuente: 'https://www.investopedia.com/terms/r/returnonequity.asp'
+        },
+        {
+            criterio: 'Rotación de Activos >= 1',
+            evaluacion: 'Alta eficiencia en el uso de activos para generar ingresos.',
+            fuente: 'https://www.investopedia.com/terms/a/assetturnover.asp'
+        },
+        {
+            criterio: 'Margen de Utilidad >= 20%',
+            evaluacion: 'Operación altamente eficiente con un margen excelente.',
+            fuente: 'https://www.investopedia.com/terms/p/profitmargin.asp'
+        }
+    ];
+
+    return (
+        <div className="bg-red-600 text-white p-6 rounded-lg shadow-lg max-w-3xl mx-auto my-8">
+            <h2 className="text-3xl font-bold mb-4 text-center border-b-4 border-white pb-2">
+                Información de Métricas y Análisis
+            </h2>
+
+            <h3 className="text-2xl font-semibold mb-4 border-b-2 border-white pb-2">
+                Métricas Financieras
+            </h3>
+            {metricas.map((metrica, index) => (
+                <div key={index} className="mb-6 bg-white text-red-600 p-4 rounded-lg shadow-md">
+                    <h4 className="text-xl font-bold mb-2">{metrica.nombre}</h4>
+                    <p className="mb-1">
+                        <span className="font-semibold">Definición:</span> {metrica.definicion}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Fórmula:</span> {metrica.formula}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Uso:</span> {metrica.uso}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Fuente:</span>
+                        <a
+                            href={metrica.fuente}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 underline"
+                        >
+                            {metrica.fuente}
+                        </a>
+                    </p>
+                </div>
+            ))}
+
+            <h3 className="text-2xl font-semibold mb-4 border-b-2 border-white pb-2">
+                Cómo se Derivan las Recomendaciones
+            </h3>
+            {recomendaciones.map((rec, index) => (
+                <div key={index} className="mb-4 bg-white text-red-600 p-4 rounded-lg shadow-md">
+                    <p className="mb-1">
+                        <span className="font-semibold">Criterio:</span> {rec.criterio}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Acción Sugerida:</span> {rec.accion}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Razón:</span> {rec.razon}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Fuente:</span>
+                        <a
+                            href={rec.fuente}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 underline"
+                        >
+                            {rec.fuente}
+                        </a>
+                    </p>
+                </div>
+            ))}
+
+            <h3 className="text-2xl font-semibold mb-4 border-b-2 border-white pb-2">
+                Criterios de Evaluación
+            </h3>
+            {evaluaciones.map((item, index) => (
+                <div key={index} className="mb-4 bg-white text-red-600 p-4 rounded-lg shadow-md">
+                    <p className="mb-1">
+                        <span className="font-semibold">Criterio:</span> {item.criterio}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Evaluación:</span> {item.evaluacion}
+                    </p>
+                    <p className="mb-1">
+                        <span className="font-semibold">Fuente:</span>
+                        <a
+                            href={item.fuente}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 underline"
+                        >
+                            {item.fuente}
+                        </a>
+                    </p>
+                </div>
+            ))}
+        </div>
+    );
+
+};
+
+export default MetricasInfo;

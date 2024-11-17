@@ -8,10 +8,7 @@ import {transformarDatosDinamicos, transformData} from "../../Services/Cositas.j
 import AnalisisDupontDinamico from "./Dupont/AnalisisDupontDinamico.jsx";
 import BotonDescargarImagen from "../../component/BotonDescargarImagen.jsx";
 import BotonDescargarPDF from "../../component/BotonDescargarPDF.jsx";
-
-
-
-
+import Metricas from "./Dupont/Dinamico/Metricas.jsx";
 
 
 export function AnalisisDinamico() {
@@ -22,24 +19,24 @@ export function AnalisisDinamico() {
     };
 
 
-
     return (
         <div className="bg-white min-h-screen">
             {/* Cabecera con botones para cambiar de pantalla */}
-            <Header changeScreen={changeScreen} />
+            <Header changeScreen={changeScreen}/>
 
             {/* Renderizado condicional de las pantallas */}
             <div className="p-6 text-center bg-red-800 ">
-                {activeScreen === 'screen1' && <Screen1 />}
-                {activeScreen === 'screen2' && <Screen2 />}
-                {activeScreen === 'screen3' && <Screen3 />}
+                {activeScreen === 'screen1' && <Screen1/>}
+                {activeScreen === 'screen2' && <Screen2/>}
+                {activeScreen === 'screen3' && <Screen3/>}
+                {activeScreen === 'screen4' && <Screen4/>}
             </div>
         </div>
     );
 }
 
 
-const Header = ({ changeScreen }) => {
+const Header = ({changeScreen}) => {
     return (
         <div
             className="bg-red-600 text-white flex flex-col sm:flex-row justify-between items-center py-4 shadow-lg sticky top-0 z-10">
@@ -67,6 +64,12 @@ const Header = ({ changeScreen }) => {
                 >
                     Análisis
                 </button>
+                <button
+                    onClick={() => changeScreen('screen4')}
+                    className="bg-white text-red-600 px-4 py-2 rounded-full font-semibold hover:bg-red-500 hover:text-white transition duration-300"
+                >
+                    Métricas
+                </button>
             </nav>
         </div>
 
@@ -79,10 +82,8 @@ const Header = ({ changeScreen }) => {
  * @constructor
  */
 const Screen1 = () => (
-    <DAnalisisVertical ></DAnalisisVertical>
+    <DAnalisisVertical></DAnalisisVertical>
 );
-
-
 
 
 const Screen2 = () => {
@@ -124,4 +125,10 @@ const Screen2 = () => {
 
 const Screen3 = () => (
     <AnalisisDupontDinamico></AnalisisDupontDinamico>
+);
+
+const Screen4 = () => (
+    <div>
+        <Metricas/>
+    </div>
 );

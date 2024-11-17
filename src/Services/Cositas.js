@@ -72,7 +72,7 @@ export function transformarDatosA_Balance() {
             // Recorremos las claves del item y las agregamos al resultado
             Object.keys(item).forEach(key => {
                 // Filtramos las claves que no son necesarias (como id, name, etc.)
-                if (key !== "id" && key !== "name" && key !== "name_empresa" && key !== "fecha") {
+                if (key !== "id"  && key !== "fecha") {
                     // Si el valor es "null", lo cambiamos por "0" o por lo que desees
                     resultado[anio][key] = item[key] === "null" ? "0" : item[key];
                 }
