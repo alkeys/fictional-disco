@@ -77,7 +77,7 @@ const Header = ({changeScreen}) => {
 };
 /**
  *
- * @param Tipo es si es estatico o dinamico
+ * @param Tipo es si es estatico o dinamico via la vidad la verda que weaba mucho hambre 
  * @returns {React.JSX.Element}
  * @constructor
  */
