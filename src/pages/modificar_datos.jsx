@@ -84,7 +84,9 @@ export const ModificarDatos = () => {
 
     return (
         <div className="bg-red-700 pb-6 flex flex-col min-h-screen">
-            <ButtonAtras />
+            <div>
+                <ButtonAtras/>
+            </div>
             <div className="flex flex-col text-center px-10 py-4 bg-red-700">
                 <h1 className="text-5xl font-bold mb-6 text-white">Modificación de Datos</h1>
                 <section className="flex items-center justify-center">

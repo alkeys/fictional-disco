@@ -12,7 +12,9 @@ export const Integrantes = () => {
 
     return (
         <div className="bg-red-700 pb-6 flex flex-col min-h-screen">
-            <ButtonAtras/>
+            <div>
+                <ButtonAtras/>
+            </div>
             <div className="flex flex-col items-center justify-center">
                 <h1 className="text-5xl font-bold text-white">
                     Integrantes grupo 4

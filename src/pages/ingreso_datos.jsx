@@ -19,7 +19,9 @@ export const IngresoDatos = () => {
 
     return (
         <div className="bg-red-700 pb-6">
-            <ButtonAtras/>
+            <div>
+                <ButtonAtras/>
+            </div>
             <div className="flex flex-col text-center px-10 py-4 bg-red-700">
                 <h1 className="text-5xl font-bold mb-6 text-white">
                     Ingreso de Datos

@@ -31,7 +31,9 @@ const Header = ({ changeScreen }) => {
     return (
         <div
             className="bg-red-600 text-white flex flex-col sm:flex-row justify-between items-center py-4 shadow-lg sticky top-0 z-10">
-            <ButtonAtras/>
+            <div>
+                <ButtonAtras/>
+            </div>
             <div className="lg:ml-20 text-center sm:text-left">
                 <h1 className="font-bold text-lg">Análisis de Datos</h1>
                 <p className="mt-2 text-sm">Energía pura para tu análisis financiero.</p>

@@ -58,7 +58,9 @@ export function VistaAnalisis() {
         <div className="min-h-screen flex flex-col bg-red-700 relative overflow-hidden">
             <Animacionxd></Animacionxd>
 
-            <ButtonAtras />
+            <div>
+                <ButtonAtras />
+            </div> 
             <div className="flex justify-center items-center mt-16">
                 <div className="bg-white shadow-lg rounded-lg p-8 max-w-5xl text-center">
                     <h1 className="mb-10 text-5xl text-red-600 font-bold">

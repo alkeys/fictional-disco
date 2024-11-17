@@ -45,7 +45,9 @@ export const EstadosDinamicos = () => {
 
     return (
         <div className="bg-red-700 pb-6 flex flex-col min-h-screen">
-            <ButtonAtras />
+            <div>
+                <ButtonAtras/>
+            </div>
             <div className="flex flex-col text-center px-10 py-4 bg-red-700">
                 <h1 className="text-5xl font-bold mb-6 text-white">{typeEstado}</h1>
                 {documentos.length ? (
