@@ -33,7 +33,7 @@ const AnalisisVertical = () => {
                     Estado de Resultado
                 </button>
             </div>
-            <div id={"AnalisisHorizontal"} >
+            <div id={"AnalisisHorizontal"} className={"min-h-[100vh]"} >
                 {mostrarBalance ? <BalanceV data={dataBalance}/> : <EstadoV data={dataEstado}/>}
             </div>
 
