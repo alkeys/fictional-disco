@@ -77,7 +77,7 @@ const Header = ({changeScreen}) => {
 };
 /**
  *
- * @param Tipo es si es estatico o dinamico
+ * @param Tipo es si es estatico o dinamico via la vidad la verda que weaba mucho hambre 
  * @returns {React.JSX.Element}
  * @constructor
  */
@@ -90,7 +90,7 @@ const Screen2 = () => {
     const [view, setView] = useState('balance');
 
     return (
-        <div>
+        <div className={"min-h-[200vh]"}>
             <div className="flex justify-center mt-2 mb-4">
                 <section className="mx-3">
                     <BotonDescargarImagen idElemeno="AnalisisHorizontal"/>
@@ -124,7 +124,9 @@ const Screen2 = () => {
 
 
 const Screen3 = () => (
-    <AnalisisDupontDinamico></AnalisisDupontDinamico>
+   <div className={"min-h-[100vh]"}>
+       <AnalisisDupontDinamico></AnalisisDupontDinamico>
+   </div>
 );
 
 const Screen4 = () => (

@@ -8,3 +8,5 @@ export default defineConfig({
     outDir: 'dist', // This ensures the output goes to 'dist'
   },
 });
+
+
