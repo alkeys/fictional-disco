@@ -9,7 +9,7 @@ const EstadoDinamico = ({ estado }) => {
     return (
         <>
             {estado ? (
-                <table className="w-full text-left border" id="tablaEstadoDinamico">
+                <table className="w-full text-left border">
                     <thead className="text-center font-bold text-red-700">
                         <tr>
                             <th colSpan="100%" className="pb-1 pt-3">

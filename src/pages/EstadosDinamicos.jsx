@@ -73,12 +73,14 @@ export const EstadosDinamicos = () => {
                 </div>
             )}
             <div className="flex justify-center">
-                <div className="w-full py-4 px-10 max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
-                    {data && (
-                        <Estado
-                            estado={data || null}
-                        />
-                    )}
+                <div id="tablaEstadoDinamico" className="w-full py-4 px-10 max-w-4xl bg-white rounded-lg shadow-lg overflow-hidden">
+                    <React.Fragment>
+                        {data && (
+                            <Estado
+                                estado={data || null}
+                            />
+                        )}
+                    </React.Fragment>
                 </div>
             </div>
         </div>
