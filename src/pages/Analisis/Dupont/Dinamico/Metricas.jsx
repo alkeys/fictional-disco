@@ -1,6 +1,13 @@
-import React from 'react';
-
+import React, {useState} from 'react';
+import './style/MetricasInfo.css';
 const MetricasInfo = () => {
+    const [openSection, setOpenSection] = useState(null);
+
+
+    const toggleSection = (section) => {
+        setOpenSection(openSection === section ? null : section);
+    };
+
     const metricas = [
         {
             nombre: 'Margen de Utilidad',
@@ -124,94 +131,108 @@ const MetricasInfo = () => {
     ];
 
     return (
-        <div className="bg-red-600 text-white p-6 rounded-lg shadow-lg max-w-3xl mx-auto my-8">
-            <h2 className="text-3xl font-bold mb-4 text-center border-b-4 border-white pb-2">
+        <div className="bg-white h-full text-gray-800 p-6 rounded-lg shadow-lg max-w-3xl mx-auto my-8 animate-fadeIn">
+            <h2 className="text-3xl font-bold mb-4 text-center border-b-4 border-gray-300 pb-2">
                 Información de Métricas y Análisis
             </h2>
 
-            <h3 className="text-2xl font-semibold mb-4 border-b-2 border-white pb-2">
+            <button
+                className="w-full text-left font-bold text-2xl bg-gray-800 text-white px-4 py-3 rounded-lg mb-4 hover:bg-gray-700 hover:scale-105 transition-transform duration-300 shadow-md"
+                onClick={() => toggleSection('metricas')}
+            >
                 Métricas Financieras
-            </h3>
-            {metricas.map((metrica, index) => (
-                <div key={index} className="mb-6 bg-white text-red-600 p-4 rounded-lg shadow-md">
-                    <h4 className="text-xl font-bold mb-2">{metrica.nombre}</h4>
-                    <p className="mb-1">
-                        <span className="font-semibold">Definición:</span> {metrica.definicion}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Fórmula:</span> {metrica.formula}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Uso:</span> {metrica.uso}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Fuente:</span>
-                        <a
-                            href={metrica.fuente}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 underline"
-                        >
-                            {metrica.fuente}
-                        </a>
-                    </p>
+            </button>
+            {openSection === 'metricas' && (
+                <div className="section-content">
+                    {metricas.map((metrica, index) => (
+                        <div key={index} className="card bg-gray-100 text-gray-800 p-4 rounded-lg mb-4 shadow-md animate-slideDown">
+                            <h4 className="text-xl font-bold mb-2 text-gray-900">{metrica.nombre}</h4>
+                            <p>
+                                <span className="font-semibold text-gray-600">Definición:</span> {metrica.definicion}
+                            </p>
+                            <p>
+                                <span className="font-semibold text-gray-600">Fórmula:</span> {metrica.formula}
+                            </p>
+                            <p>
+                                <span className="font-semibold text-gray-600">Uso:</span> {metrica.uso}
+                            </p>
+                            <a
+                                href={metrica.fuente}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-500"
+                            >
+                                Fuente
+                            </a>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            )}
 
-            <h3 className="text-2xl font-semibold mb-4 border-b-2 border-white pb-2">
-                Cómo se Derivan las Recomendaciones
-            </h3>
-            {recomendaciones.map((rec, index) => (
-                <div key={index} className="mb-4 bg-white text-red-600 p-4 rounded-lg shadow-md">
-                    <p className="mb-1">
-                        <span className="font-semibold">Criterio:</span> {rec.criterio}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Acción Sugerida:</span> {rec.accion}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Razón:</span> {rec.razon}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Fuente:</span>
-                        <a
-                            href={rec.fuente}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 underline"
-                        >
-                            {rec.fuente}
-                        </a>
-                    </p>
+            <button
+                className="w-full text-left font-bold text-2xl bg-gray-800 text-white px-4 py-3 rounded-lg mb-4 hover:bg-gray-700 hover:scale-105 transition-transform duration-300 shadow-md"
+                onClick={() => toggleSection('recomendaciones')}
+            >
+                Recomendaciones
+            </button>
+            {openSection === 'recomendaciones' && (
+                <div className="section-content">
+                    {recomendaciones.map((rec, index) => (
+                        <div key={index} className="card bg-gray-100 text-gray-800 p-4 rounded-lg mb-4 shadow-md animate-slideDown">
+                            <p>
+                                <span className="font-semibold text-gray-600">Criterio:</span> {rec.criterio}
+                            </p>
+                            <p>
+                                <span className="font-semibold text-gray-600">Acción Sugerida:</span> {rec.accion}
+                            </p>
+                            <p>
+                                <span className="font-semibold text-gray-600">Razón:</span> {rec.razon}
+                            </p>
+                            <a
+                                href={rec.fuente}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-500"
+                            >
+                                Fuente
+                            </a>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            )}
 
-            <h3 className="text-2xl font-semibold mb-4 border-b-2 border-white pb-2">
+            <button
+                className="w-full text-left font-bold text-2xl bg-gray-800 text-white px-4 py-3 rounded-lg mb-4 hover:bg-gray-700 hover:scale-105 transition-transform duration-300 shadow-md"
+                onClick={() => toggleSection('evaluaciones')}
+            >
                 Criterios de Evaluación
-            </h3>
-            {evaluaciones.map((item, index) => (
-                <div key={index} className="mb-4 bg-white text-red-600 p-4 rounded-lg shadow-md">
-                    <p className="mb-1">
-                        <span className="font-semibold">Criterio:</span> {item.criterio}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Evaluación:</span> {item.evaluacion}
-                    </p>
-                    <p className="mb-1">
-                        <span className="font-semibold">Fuente:</span>
-                        <a
-                            href={item.fuente}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 underline"
-                        >
-                            {item.fuente}
-                        </a>
-                    </p>
+            </button>
+            {openSection === 'evaluaciones' && (
+                <div className="section-content">
+                    {evaluaciones.map((item, index) => (
+                        <div key={index} className="card bg-gray-100 text-gray-800 p-4 rounded-lg mb-4 shadow-md animate-slideDown">
+                            <p>
+                                <span className="font-semibold text-gray-600">Criterio:</span> {item.criterio}
+                            </p>
+                            <p>
+                                <span className="font-semibold text-gray-600">Evaluación:</span> {item.evaluacion}
+                            </p>
+                            <a
+                                href={item.fuente}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-500"
+                            >
+                                Fuente
+                            </a>
+                        </div>
+                    ))}
                 </div>
-            ))}
+            )}
         </div>
     );
+
+
 
 };
 

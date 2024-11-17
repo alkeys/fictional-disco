@@ -128,7 +128,7 @@ const Screen3 = () => (
 );
 
 const Screen4 = () => (
-    <div>
+    <div className={"min-h-[100vh]"}>
         <Metricas/>
     </div>
 );
