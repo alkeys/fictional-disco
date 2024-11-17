@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        cream: '#f5f5dc', // Definiendo el color crema
+      },
+    },
   },
   plugins: [],
 }
+
