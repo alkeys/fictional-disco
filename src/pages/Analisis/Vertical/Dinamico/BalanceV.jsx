@@ -4,65 +4,52 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 const AnalisisVertical = ({ data }) => {
     const [añoSeleccionado, setAñoSeleccionado] = useState("");
     const [analisis, setAnalisis] = useState([]);
-    const [detalleCuenta, setDetalleCuenta] = useState(null); // Estado para mostrar el detalle de la cuenta seleccionada
-    const [filtroPorcentaje, setFiltroPorcentaje] = useState(0); // Filtro dinámico para el porcentaje
+    const [filtroPorcentaje, setFiltroPorcentaje] = useState(0);
 
     // Función para calcular el porcentaje
     const calcularPorcentaje = (valor, total) => {
         return ((valor / total) * 100).toFixed(2);
     };
 
-    // Lista de cuentas importantes
-    const cuentasImportantes = [
-        "Total activos corrientes",
-        "Total activos no corrientes",
-        "Total pasivos corrientes",
-        "Total pasivos no corrientes",
-        "Total Pasivos",
-        "Total Capital",
-        "Total Activos"
-    ];
-
-    // Función para resaltar las cuentas importantes
-    const esCuentaImportante = (cuenta) => {
-        return cuentasImportantes.some((item) => cuenta.toLowerCase().includes(item.toLowerCase()));
+    // Formatear el valor con signo de dólar
+    const formatearMoneda = (valor) => {
+        return `$${valor.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
     };
 
-    // Función recursiva para extraer todas las cuentas y calcular su porcentaje
+    // Procesar datos para incluir cantidad y porcentaje
     const procesarDatos = (data) => {
         return data.map((item) => {
             const totalActivos = item.Activos["Total Activos"];
-            const totalPasivosYCapital = item["Pasivo y Capital"]["Total Pasivos y Capital"]; // Total combinado
+            const totalPasivosYCapital = item["Pasivo y Capital"]["Total Pasivos y Capital"];
 
-            // Función recursiva para recorrer cada objeto y calcular los porcentajes
-            const obtenerCuentasYPorcentajes = (objeto, total) => {
-                let cuentas = {};
+            // Función recursiva para recorrer y procesar datos
+            const obtenerCuentas = (objeto, total) => {
+                let cuentas = [];
                 for (let clave in objeto) {
                     if (typeof objeto[clave] === "object") {
                         // Llamada recursiva si es un objeto
-                        cuentas = { ...cuentas, ...obtenerCuentasYPorcentajes(objeto[clave], total) };
+                        cuentas = [...cuentas, ...obtenerCuentas(objeto[clave], total)];
                     } else {
                         if (clave.includes("Total") || objeto[clave] !== undefined) {
-                            cuentas[clave] = calcularPorcentaje(objeto[clave], total);
+                            cuentas.push({
+                                cuenta: clave,
+                                valor: objeto[clave],
+                                porcentaje: calcularPorcentaje(objeto[clave], total),
+                            });
                         }
                     }
                 }
                 return cuentas;
             };
 
-            // Obtener todas las cuentas de Activos, Pasivos y Capital
-            const cuentasActivos = obtenerCuentasYPorcentajes(item.Activos, totalActivos);
-            const cuentasPasivosYCapital = obtenerCuentasYPorcentajes(item["Pasivo y Capital"], totalPasivosYCapital);
-
             return {
                 empresa: item.name_empresa,
-                cuentasActivos,
-                cuentasPasivosYCapital,
+                cuentasActivos: obtenerCuentas(item.Activos, totalActivos),
+                cuentasPasivosYCapital: obtenerCuentas(item["Pasivo y Capital"], totalPasivosYCapital),
             };
         });
     };
 
-    // Actualizar el análisis cuando cambia el año seleccionado
     useEffect(() => {
         if (añoSeleccionado && data[añoSeleccionado]) {
             setAnalisis(procesarDatos(data[añoSeleccionado]));
@@ -71,54 +58,13 @@ const AnalisisVertical = ({ data }) => {
         }
     }, [data, añoSeleccionado]);
 
-    // Función para manejar el cambio en la selección del año
     const handleCambioAño = (e) => {
         setAñoSeleccionado(e.target.value);
     };
 
-    // Función para mostrar el detalle de la cuenta seleccionada
-    const mostrarDetalleCuenta = (cuenta, porcentaje, tipo) => {
-        setDetalleCuenta({
-            cuenta,
-            porcentaje,
-            tipo,
-            analisis: generarAnalisis(cuenta, porcentaje),
-        });
-    };
-
-    // Función que genera el análisis de la cuenta basado en el porcentaje
-    const generarAnalisis = (cuenta, porcentaje) => {
-        let analisis = "";
-        if (porcentaje > 50) {
-            analisis = `La cuenta "${cuenta}" tiene un porcentaje superior al 50%, lo que indica que representa una parte significativa del total.`;
-        } else if (porcentaje > 20) {
-            analisis = `La cuenta "${cuenta}" representa un porcentaje importante del total.`;
-        } else if (porcentaje > 5) {
-            analisis = `La cuenta "${cuenta}" tiene un porcentaje moderado en el total.`;
-        } else {
-            analisis = `La cuenta "${cuenta}" tiene un porcentaje bajo en el total.`;
-        }
-        return analisis;
-    };
-
-    // Filtrar cuentas por porcentaje, pero asegurándose de que las cuentas importantes no se oculten
+    // Filtrar cuentas por porcentaje
     const filtrarPorcentaje = (cuentas) => {
-        const cuentasImportantesFiltradas = Object.keys(cuentas)
-            .filter(cuenta => esCuentaImportante(cuenta) || cuentas[cuenta] >= filtroPorcentaje)
-            .map(cuenta => ({
-                cuenta,
-                porcentaje: cuentas[cuenta],
-            }));
-
-        return cuentasImportantesFiltradas;
-    };
-
-    // Función para manejar el clic en una barra del gráfico
-    const handleBarClick = (data, tipo) => {
-        const { cuenta, porcentaje } = data; // Asegúrate de que los datos pasados son correctos
-        if (cuenta && porcentaje) {
-            mostrarDetalleCuenta(cuenta, porcentaje, tipo); // Llamamos a la función que muestra el detalle
-        }
+        return cuentas.filter((cuenta) => cuenta.porcentaje >= filtroPorcentaje);
     };
 
     return (
@@ -156,12 +102,7 @@ const AnalisisVertical = ({ data }) => {
                 />
             </div>
 
-            {/* Mostrar mensaje si no hay un año seleccionado */}
-            {!añoSeleccionado && (
-                <p className="text-center text-red-800 font-semibold">Por favor, seleccione un año para mostrar el análisis.</p>
-            )}
-
-            {/* Mostrar los gráficos de análisis */}
+            {/* Mostrar gráficos */}
             {añoSeleccionado && analisis.length > 0 && (
                 <div>
                     {/* Gráfico de Activos */}
@@ -172,9 +113,14 @@ const AnalisisVertical = ({ data }) => {
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="cuenta" />
                                 <YAxis />
-                                <Tooltip />
+                                <Tooltip
+                                    formatter={(value, name, props) => {
+                                        const { payload } = props; // Obtén el dato original
+                                        return [`${value}% (${formatearMoneda(payload.valor)})`, "Porcentaje y Valor"];
+                                    }}
+                                />
                                 <Legend />
-                                <Bar dataKey="porcentaje" fill="#8884d8" onClick={(data) => handleBarClick(data, "Activos")} />
+                                <Bar dataKey="porcentaje" name="Porcentaje" fill="#8884d8" />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
@@ -187,30 +133,16 @@ const AnalisisVertical = ({ data }) => {
                                 <CartesianGrid strokeDasharray="3 3" />
                                 <XAxis dataKey="cuenta" />
                                 <YAxis />
-                                <Tooltip />
+                                <Tooltip
+                                    formatter={(value, name, props) => {
+                                        const { payload } = props; // Obtén el dato original
+                                        return [`${value}% (${formatearMoneda(payload.valor)})`, "Porcentaje y Valor"];
+                                    }}
+                                />
                                 <Legend />
-                                <Bar dataKey="porcentaje" fill="#82ca9d" onClick={(data) => handleBarClick(data, "Pasivos y Capital")} />
+                                <Bar dataKey="porcentaje" name="Porcentaje" fill="#82ca9d" />
                             </BarChart>
                         </ResponsiveContainer>
-                    </div>
-                </div>
-            )}
-
-            {/* Detalle de la cuenta seleccionada - Ventana emergente */}
-            {detalleCuenta && (
-                <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-xl w-96">
-                        <h3 className="text-xl font-semibold text-red-800 mb-2">Detalle de la Cuenta</h3>
-                        <p><strong>Cuenta:</strong> {detalleCuenta.cuenta}</p>
-                        <p><strong>Porcentaje:</strong> {detalleCuenta.porcentaje}%</p>
-                        <p><strong>Tipo:</strong> {detalleCuenta.tipo}</p>
-                        <p><strong>Análisis:</strong> {detalleCuenta.analisis}</p>
-                        <button
-                            onClick={() => setDetalleCuenta(null)}
-                            className="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600"
-                        >
-                            Cerrar
-                        </button>
                     </div>
                 </div>
             )}
